@@ -18,7 +18,7 @@ export function defaultLab(type="button",theme=PRESETS.forest) {
 export function validateLab(input) {
   if (!input || input.version !== 1 || !Object.hasOwn(EXAMPLES,input.type)) throw new Error("Invalid component schema");
 
-  for (const [key,max] of [["title",90],["body",240],["action",40]]) {
+  for (const [key,max] of Object.entries({title:90,body:240,action:40})) {
     if (typeof input[key] !== "string" || input[key].length>max ||
         (key==="title" && !input[key].trim())) throw new Error("Invalid field: "+key);
   }
