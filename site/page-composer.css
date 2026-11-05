@@ -1,0 +1,75 @@
+/* Original composer interface; no runtime packages or remote assets. */
+.composer { max-width: 100rem; }
+.composer > nav { font-size: .86rem; margin-bottom: 1rem; }
+.composer-header h1 { font-size: clamp(2.2rem, 4.6vw, 3.9rem); }
+.composer-header p { color: #526b59; max-width: 62rem; }
+.composer-header .composer-eyebrow { font-size: .75rem; font-weight: 800; letter-spacing: .12em; color: #17694e; }
+.composer-layout { display: grid; grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr); gap: clamp(1rem, 2.3vw, 2rem); align-items: start; }
+.composer-editor { background: #fff; border: 1px solid #c7d8cc; border-radius: 1rem; padding: 1rem 1.25rem; }
+.composer-editor section + section { border-top: 1px solid #d6e2d8; margin-top: 1.25rem; padding-top: 1.25rem; }
+.composer h2 { font-size: 1.25rem; margin: 0 0 .6rem; }
+.composer .composer-help { font-size: .82rem; color: #537263; margin: .3rem 0 .9rem; }
+.composer-editor label { font-size: .84rem; margin-top: .5rem; display: block; font-weight: 650; }
+.composer-editor input[type="text"], .composer-editor textarea, .composer-editor select { display: block; width: 100%; box-sizing: border-box; font: inherit; margin: .3rem 0 .75rem; padding: .6rem; border: 1px solid #b1c6b9; border-radius: .55rem; color: #24392c; background: #fff; }
+.composer-editor input[type="file"] { font-size: .8rem; width: 100%; padding: .6rem 0; box-sizing: border-box; }
+.composer-editor button { font: inherit; font-size: .86rem; cursor: pointer; border-radius: .55rem; border: 1px solid #9db7a6; padding: .55rem .8rem; background: #edf6ef; color: #16533a; }
+.composer-editor button:disabled { opacity: .4; cursor: not-allowed; }
+.composer-editor #composer-sections { list-style: none; padding: 0; margin: .75rem 0; display: grid; gap: .5rem; }
+.composer #composer-sections li { border: 1px solid #c9dace; border-radius: .65rem; padding: .65rem; min-width: 0; }
+.composer #composer-sections li[data-active="true"] { border-color: #1e8057; background: #f1faf3; }
+.composer-outline-title { display: block; margin-bottom: .5rem; min-width: 0; overflow-wrap: anywhere; font-size: .86rem; font-weight: 700; }
+.composer-outline-type { font-size: .7rem; font-weight: 500; color: #537263; }
+.composer-outline-actions { display: flex; gap: .35rem; flex-wrap: wrap; }
+.composer-outline-actions button { padding: .32rem .5rem; font-size: .75rem; }
+.composer #composer-sections button[aria-pressed="true"] { background: #185d40; color: #fff; }
+.composer-add { border-top: 1px dashed #b7d0be; padding-top: .7rem; }
+.composer .composer-exports { display: grid; gap: .45rem; }
+.composer .composer-exports h2 { margin-bottom: .35rem; }
+.composer .composer-exports label { margin-top: .25rem; }
+.composer #composer-status { font-size: .8rem; color: #39734b; min-height: 2.5em; }
+.composer-preview-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem; }
+.composer-preview-top h2 { margin: 0; }
+.composer-viewports { display: flex; gap: .3rem; padding: .25rem; background: #e5eee7; border-radius: .65rem; }
+.composer-viewports button { border: none; padding: .5rem .7rem; border-radius: .48rem; background: transparent; color: #315f44; cursor: pointer; font: inherit; font-size: .83rem; }
+.composer-viewports button[aria-pressed="true"] { background: #fff; font-weight: 750; box-shadow: 0 1px 5px #24432925; }
+.composer-frame { container-type: inline-size; width: 100%; box-sizing: border-box; max-width: 100%; margin: 1rem auto; padding: .55rem; background: #dce9df; border: 1px solid #b9cfc0; border-radius: 1rem; transition: max-width .2s ease; }
+.composer-frame[data-viewport="tablet"] { max-width: 700px; }
+.composer-frame[data-viewport="mobile"] { max-width: 390px; }
+.composer-canvas { --ui-canvas: #f1f6f2; --ui-surface: #fff; --ui-text: #183428; --ui-muted: #496354; --ui-accent: #17694e; --ui-on-accent: #fff; --ui-border: #d2e1d6; --ui-radius: 12px; --ui-density: 1rem; --ui-font: system-ui, sans-serif; border-radius: .65rem; overflow: hidden; }
+.composer-canvas .composed-page { font-family: var(--ui-font); background: var(--ui-canvas); color: var(--ui-text); line-height: 1.5; min-height: 24rem; }
+.composer-canvas .composed-page * { box-sizing: border-box; }
+.composer-canvas .page-section { padding: clamp(1.35rem, 4.2cqw, 3rem); }
+.composer-canvas .page-hero { min-height: 16rem; background: var(--ui-surface); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.composer-canvas .composed-page h1 { color: var(--ui-text); max-width: 45rem; font-size: clamp(1.5rem, 4.4cqw, 3.2rem); letter-spacing: -.055em; line-height: 1.12; margin: .5rem 0 .8rem; }
+.composer-canvas .composed-page h2 { color: var(--ui-text); font-size: clamp(1.1rem, 3.3cqw, 2.2rem); letter-spacing: -.045em; line-height: 1.16; margin: .4rem 0 .8rem; }
+.composer-canvas .composed-page p { max-width: 40rem; font-size: .83rem; color: var(--ui-muted); margin: .3rem 0 1rem; }
+.composer-canvas .page-action { display: inline-block; padding: calc(var(--ui-density)*.72) var(--ui-density); border-radius: var(--ui-radius); background: var(--ui-accent); color: var(--ui-on-accent); text-decoration: none; font-size: .8rem; font-weight: 700; margin-top: .5rem; }
+.composer-canvas .page-tiles { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--ui-density); margin-top: 1.3rem; }
+.composer-canvas .page-tile { background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); padding: var(--ui-density); min-width: 0; }
+.composer-canvas .page-tile strong { display: block; font-size: .95rem; }
+.composer-canvas .page-tile p { font-size: .75rem; margin: .3rem 0; }
+.composer-canvas .page-callout { background: var(--ui-accent); color: var(--ui-on-accent); }
+.composer-canvas .page-callout h2, .composer-canvas .page-callout p { color: var(--ui-on-accent); }
+.composer-canvas .page-callout .page-action { background: var(--ui-on-accent); color: var(--ui-accent); }
+.composer-canvas .page-footer { background: var(--ui-surface); border-top: 1px solid var(--ui-border); }
+.composer-canvas .page-footer p { margin: 0; }
+.composer-canvas .page-section[data-selected="true"] { outline: 3px solid var(--ui-accent); outline-offset: -3px; }
+.composer-footer { margin-top: 2rem; border-top: 1px solid #c3d4c7; padding-top: 1rem; font-size: .8rem; color: #587366; }
+@container (max-width: 620px) {
+  .composer-canvas .page-tiles { grid-template-columns: 1fr; }
+  .composer-canvas .page-tile { padding: calc(var(--ui-density)*.65); }
+}
+@media (max-width: 1000px) { .composer-layout { grid-template-columns: 1fr; } }
+@media (prefers-color-scheme: dark) {
+ .composer-editor { background: #202f27; border-color: #546a5b; }
+ .composer-header p, .composer .composer-help, .composer-footer { color: #b1c6b5; }
+ .composer .composer-eyebrow { color: #8ad2aa; }
+ .composer #composer-sections li { border-color: #4b6d59; }
+ .composer #composer-sections li[data-active="true"] { background: #244a37; border-color: #76c69b; }
+ .composer .composer-exports { border-color: #536655; }
+ .composer #composer-status { color: #b5e7c2; }
+ .composer-viewports { background: #243b2b; }
+ .composer-viewports button { color: #d0e5d4; }
+ .composer-viewports button[aria-pressed="true"] { background: #3c604a; color: #fff; }
+}
+@media (prefers-reduced-motion: reduce) { .composer-frame { transition: none; } }
