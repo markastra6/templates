@@ -11,7 +11,7 @@
 - **Client/runtime required** means a compatible coding agent, Node.js/browser runtime, desktop environment, backend or other host is needed. A GitHub entry alone does not activate a tool.
 - **Zero-cost boundary** refers to the software/project, not necessarily hosting, compute, commercial assets, usage overages or third-party services.
 
-The machine-readable source of truth is [toolchain.registry.json](../contracts/toolchain.registry.json). It now contains 108 tool records: the original 15 plus 93 reviewed candidates. Candidate state is recorded separately from active configuration.
+The machine-readable source of truth is [toolchain.registry.json](../contracts/toolchain.registry.json). It now contains 112 tool records: the original 15 plus 97 reviewed candidates. Candidate state is recorded separately from active configuration.
 
 ## 1. Agent skills and design judgment
 
@@ -254,6 +254,8 @@ Choose one framework for an app. Do not combine multiple app shells simply becau
 ### Desktop and Android apps
 
 The [app toolkit](APP-TOOLKIT.md) covers cross-platform frameworks, platform-specific sample apps, theming, accessibility, device performance and APK inspection.
+
+For AutoAnimate, Rough.js, Heroicons and OpenMoji, see the [creation directory](../CREATION-DIRECTORY.md#more-free-design-tools).
 
 ### License and cost policy
 
