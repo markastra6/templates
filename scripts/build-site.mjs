@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
+import { auditCatalogue } from "./ui-audit.mjs";
 
 const escape = value => String(value).replace(/[&<>"']/g, ch => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
@@ -21,12 +22,14 @@ if (src.sources.length !== 31 || new Set(src.sources.map(s => s.id)).size !== 31
   throw new Error("Expected 31 unique sources");
 }
 const indexed = src.sources.filter(s => ["registry", "tree"].includes(s.collection));
-const lists = await Promise.all(indexed.map(async s => {
+const indexDocs = await Promise.all(indexed.map(async s => {
   const doc = JSON.parse(await readFile(`docs/references/ui-index/${s.id}.json`, "utf8"));
   if (doc.source !== s.id || doc.count !== doc.entries.length) throw new Error("Invalid source index " + s.id);
-  return doc.entries.map(entry => ({ ...entry, source: s.id }));
+  return doc;
 }));
-const components = lists.flat();
+const audit = auditCatalogue(src, indexDocs);
+if (audit.errors.length) throw new Error("UI catalogue audit failed: " + audit.errors.slice(0, 8).join("; "));
+const components = indexDocs.flatMap(doc => doc.entries.map(entry => ({...entry,source:doc.source})));
 const ids = new Set();
 const counts = new Map();
 for (const c of components) {
@@ -84,12 +87,13 @@ const homepage = template
   .replace("<!-- component count -->", components.length.toLocaleString("en-US"));
 await writeFile("dist/site/index.html", homepage);
 await writeFile("dist/site/ui-explorer.html", html);
+await writeFile("dist/site/ui-audit.json", JSON.stringify(audit) + "\n");
 await writeFile("dist/site/ui-index.json", JSON.stringify({
   schema_version: "1.0.0",
   generated_from: src.updated,
   count: components.length,
   entries: components
 }) + "\n");
-for (const file of ["directory.js", "style.css", "ui-explorer.js", "ui-tools.js", "token-studio.html", "token-studio.css", "token-studio.js", "ui-tokens.js", "page-composer.html", "page-composer.css", "page-composer.js", "page-composer-core.js"]) {
+for (const file of ["directory.js", "style.css", "ui-explorer.js", "ui-tools.js", "token-studio.html", "token-studio.css", "token-studio.js", "ui-tokens.js", "page-composer.html", "page-composer.css", "page-composer.js", "page-composer-core.js", "ui-audit.html", "ui-audit.js"]) {
   await copyFile("site/" + file, "dist/site/" + file);
 }

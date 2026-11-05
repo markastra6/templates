@@ -112,3 +112,13 @@ li p { margin: .35rem 0; } a { color: #175341; font-weight: 700; }
  .hub #result { color: #c2dbc7; }
  .hub-footer { border-color: #506f58; }
 }
+
+/* Offline source-quality report. */
+.audit .audit-table-wrap { max-width: 100%; overflow-x: auto; }
+.audit .audit-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.audit .audit-table th, .audit .audit-table td { padding: .7rem .8rem; border-bottom: 1px solid #93a89c; text-align: left; vertical-align: top; }
+.audit .audit-table th { font-size: .87rem; }
+.audit .audit-table td { font-size: .9rem; }
+.audit #audit-stats { margin: 1rem 0 2rem; }
+.audit #audit-stats > div { padding: .75rem; border: 1px solid #93a89c; border-radius: .65rem; }
+.audit #audit-stats strong, .audit #audit-stats span { display: block; }
