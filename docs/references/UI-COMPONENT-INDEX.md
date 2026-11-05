@@ -1,7 +1,7 @@
 # UI component sources and public metadata index
 
-**Snapshot:** 2026-11-05  
-**Repository:** markastra6/templates  
+**Snapshot:** 2026-11-05
+**Repository:** markastra6/templates
 **Scope:** 31 public design directories; source-code-free metadata index from seven official public GitHub registries or trees.
 
 ## Inventory
