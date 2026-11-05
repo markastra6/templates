@@ -11,7 +11,7 @@ const EXAMPLES = Object.freeze({
 });
 
 export function makeBlock(type,id) {
-  if (!TYPES.includes(type) || !/^[a-z0-9-]{1,64}$/.test(id)) throw new Error("Invalid section type or ID");
+  if (!TYPES.includes(type) || !/^[a-z0-9-]{1,64}$/.test(id) || id === "page-top") throw new Error("Invalid section type or ID");
   return {id,type,...EXAMPLES[type]};
 }
 
@@ -21,7 +21,7 @@ export function validateProject(input) {
   const ids = new Set();
   const blocks = input.blocks.map(block => {
     if (!block || !TYPES.includes(block.type) ||
-        typeof block.id !== "string" || !/^[a-z0-9-]{1,64}$/.test(block.id) || ids.has(block.id)) {
+        typeof block.id !== "string" || !/^[a-z0-9-]{1,64}$/.test(block.id) || block.id === "page-top" || ids.has(block.id)) {
       throw new Error("Invalid or duplicate section");
     }
     ids.add(block.id);
