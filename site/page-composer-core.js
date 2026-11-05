@@ -25,7 +25,8 @@ export function validateProject(input) {
       throw new Error("Invalid or duplicate section");
     }
     ids.add(block.id);
-    for (const [key,max] of [["title",100],["body",240],["action",36]]) {
+    for (const key of ["title","body","action"]) {
+      const max = key === "title" ? 100 : key === "body" ? 240 : 36;
       if (typeof block[key] !== "string" || block[key].length > max) throw new Error("Invalid section text");
     }
     return {id:block.id,type:block.type,title:block.title,body:block.body,action:block.action};
