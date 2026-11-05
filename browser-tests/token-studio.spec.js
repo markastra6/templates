@@ -11,7 +11,7 @@ for (const width of [375, 1280]) {
     await expect(page.locator("#studio-preview")).toHaveCSS("--ui-accent","#7be1bf");
     await page.getByRole("button", { name:"Mobile" }).click();
     await expect(page.locator("#studio-frame")).toHaveAttribute("data-width","mobile");
-    expect(await page.locator("#studio-frame").evaluate(node=>node.getBoundingClientRect().width)).toBeLessThanOrEqual(375);
+    await expect.poll(async () => page.locator("#studio-frame").evaluate(node => node.getBoundingClientRect().width)).toBeLessThanOrEqual(375);
     const [download] = await Promise.all([
       page.waitForEvent("download"),
       page.getByRole("button", { name:"Export CSS" }).click()
