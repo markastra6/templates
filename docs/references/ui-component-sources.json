@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "updated": "2026-11-05",
-  "policy": "No paywalled extraction, no login bypass, no personal data, no bulk scraping of inspiration sites. Only source metadata from explicitly listed official GitHub public registries/trees; independently check item licenses before use.",
+  "policy": "Only public component registry metadata, official README links and public source-file paths from named upstream GitHub repositories are indexed. No crawling of inspiration websites, scraping of restricted user content, code downloads, premium assets or personal data.",
   "sources": [
     {
       "id": "aceternity-ui",
@@ -69,9 +69,9 @@
       "url": "https://originui.com",
       "group": "components",
       "focus": "Modern React controls, forms and navigation",
-      "collection": "reference",
-      "repo": "https://github.com/origin-space",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "collection": "registry",
+      "repo": "https://github.com/degouville/originui",
+      "notice": "Public registry metadata from the project's GitHub repo; verify licenses and dependencies before use."
     },
     {
       "id": "cult-ui",
@@ -79,8 +79,9 @@
       "url": "https://www.cult-ui.com",
       "group": "components",
       "focus": "Experimental user interface interactions",
-      "collection": "reference",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "collection": "registry",
+      "notice": "Public registry metadata from its official GitHub repo; free source code or premium assets are not included.",
+      "repo": "https://github.com/nolly-studio/cult-ui"
     },
     {
       "id": "kokonut-ui",
@@ -98,8 +99,9 @@
       "url": "https://uiverse.io",
       "group": "components",
       "focus": "Community CSS buttons, loaders and effects",
-      "collection": "reference",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "collection": "tree",
+      "notice": "Public GitHub Galaxy archive filenames only, linked with attribution; user-submitted source and artwork are not republished.",
+      "repo": "https://github.com/uiverse-io/galaxy"
     },
     {
       "id": "shadcn-ui",
@@ -126,9 +128,9 @@
       "url": "https://flowbite.com",
       "group": "components",
       "focus": "Tailwind components, UI kits and dashboards",
-      "collection": "reference",
+      "collection": "tree",
       "repo": "https://github.com/themesberg/flowbite",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "notice": "Public GitHub component documentation paths only; no Pro blocks or subscription assets."
     },
     {
       "id": "preline-ui",
@@ -136,8 +138,9 @@
       "url": "https://preline.co",
       "group": "components",
       "focus": "Tailwind application sections, controls and blocks",
-      "collection": "reference",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "collection": "registry",
+      "notice": "Official public README links to component documentation; site content has not been copied or crawled.",
+      "repo": "https://github.com/htmlstreamofficial/preline"
     },
     {
       "id": "hyperui",
@@ -145,9 +148,9 @@
       "url": "https://www.hyperui.dev",
       "group": "components",
       "focus": "Open source Tailwind website and shop blocks",
-      "collection": "reference",
+      "collection": "tree",
       "repo": "https://github.com/markmead/hyperui",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "notice": "Public GitHub example file metadata only, including light and dark variants; no markup copied."
     },
     {
       "id": "daisyui",
@@ -155,9 +158,9 @@
       "url": "https://daisyui.com",
       "group": "components",
       "focus": "Tailwind themes and semantic CSS UI classes",
-      "collection": "reference",
+      "collection": "tree",
       "repo": "https://github.com/saadeghi/daisyui",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "notice": "Public GitHub component CSS filenames only; no CSS source redistributed."
     },
     {
       "id": "float-ui",
@@ -165,9 +168,9 @@
       "url": "https://floatui.com",
       "group": "templates",
       "focus": "Responsive website components and templates",
-      "collection": "reference",
-      "repo": "https://github.com/Float-UI/floatui-oss",
-      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+      "collection": "tree",
+      "repo": "https://github.com/MarsX-dev/floatui",
+      "notice": "Public GitHub example MDX paths only; no source, illustrations or template files redistributed."
     },
     {
       "id": "bootstrapmade",

@@ -2,7 +2,7 @@
 
 **Snapshot:** 2026-11-05
 **Repository:** markastra6/templates
-**Scope:** 31 public design directories; source-code-free metadata index from seven official public GitHub registries or trees.
+**Scope:** 31 public design directories; source-code-free metadata index from fifteen official public GitHub registries, README links, or trees.
 
 ## Inventory
 
@@ -15,14 +15,22 @@
 | ReUI | keenthemes/reui, registry-reui/bases/base/components/**/*.tsx | 1,264 | One base's public implementation paths; not every product variant |
 | shadcn/ui | shadcn-ui/ui, apps/v4/registry/bases/radix/{ui,blocks}/**/*.tsx | 248 | Radix base only; counts individual files, including block internals |
 | Motion Primitives | ibelick/motion-primitives, components/core/*.tsx | 33 | Public source paths |
+| Cult UI | nolly-studio/cult-ui, apps/www/registry.json | 307 | Public registry only |
+| Origin UI | degouville/originui, registry.json | 571 | Public registry only |
+| Uiverse | uiverse-io/galaxy, public HTML paths | 3,802 | Official GitHub archive; source not copied |
+| Flowbite | themesberg/flowbite, content/components/*.md | 44 | Public component documentation paths |
+| Preline UI | htmlstreamofficial/preline, README component links | 84 | Published links, no site crawl |
+| HyperUI | markmead/hyperui, public/examples/**/*.html | 560 | Includes light/dark variants |
+| DaisyUI | saadeghi/daisyui, CSS component files | 61 | Only style paths |
+| Float UI | MarsX-dev/floatui, componentsDB/**/*.mdx | 198 | MDX example paths only |
 
-**Total: 3,776 records.** This is not 3,776 distinct production-ready designs. Snapshot counts were validated against retrieved upstream registry entries and tree paths at collection time. The full 31-source listing is [ui-component-sources.json](ui-component-sources.json). Source pages and licensing can change.
+**Total: 9,403 records.** This is not 3,776 distinct production-ready designs. Snapshot counts were validated against retrieved upstream registry entries and tree paths at collection time. The full 31-source listing is [ui-component-sources.json](ui-component-sources.json). Source pages and licensing can change.
 
 ## Collection boundaries
 
 - Index only data published openly by the respective projects as registry metadata or source paths; retain the upstream repository name, manifest path or Git tree SHA, plus each source URL.
-- Do not bulk scrape Dribbble, Mobbin, or other third-party portfolio/inspiration sites. The other 24 sources remain curated navigational links until their official terms and interfaces can be reviewed individually.
-- Do not download, rehost or redistribute images, thumbnails, private content, gated templates, community submissions, or product source. A visible preview or linked file is **not** evidence of permission to redistribute it.
+- Do not bulk scrape Dribbble, Mobbin, or other third-party portfolio/inspiration sites. The other 16 sources remain curated navigational links until an authorized public data source can be verified.
+- Do not download, rehost or redistribute images, thumbnails, private content, gated templates, or product source. Uiverse filenames come only from its official public Galaxy repository; its user-authored HTML is not republished. A visible preview or linked file is **not** evidence of permission to redistribute it.
 - Do not treat a repository's license as blanket permission for every file, asset, component, trademark or example. Inspect its license and notices, and check the source's upstream dependencies, framework compatibility, security, accessibility and attribution *before* adoption.
 - Existing repository rules require zero spending. Do not use paid libraries, bypass a paywall, access private registries, run credentialed scrapes, or rely on a commercial API.
 - All items are **discovery metadata only**. No executable source code is included in the index. Source URLs are HTTPS links back to the publisher.
@@ -41,4 +49,4 @@ The snapshot is **not a scheduled scraper**. No network calls run in the deploye
 
 ## Usage
 
-Run `npm run build`; browse `dist/site/ui-explorer.html`. Filter by source and search names, tags, or dependency names. Search results display metadata and take you to original source pages for actual preview, licensing and implementation review. For project implementation, use the existing unified web engineering skill and component provenance records in feature handoffs.
+Run `npm run build`; browse `dist/site/ui-explorer.html`. The browser loads `ui-index.json` locally and renders only the first 72 matching records, avoiding thousands of initial DOM elements. Filter by source and search names, tags, or dependency names. Search results display metadata and take you to original source pages for actual preview, licensing and implementation review. For project implementation, use the existing unified web engineering skill and component provenance records in feature handoffs.
