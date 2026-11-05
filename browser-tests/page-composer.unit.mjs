@@ -29,6 +29,7 @@ test("Imported projects reject unknown types, duplicate IDs, oversized fields an
   invalid([{...makeBlock("hero","valid"),id:"\" onmouseover=\"alert(1)"}]);
   invalid(Array.from({length:17},(_,i)=>makeBlock("hero",`block-${i+1}`)));
   assert.throws(()=>makeBlock("unknown","good"),/Invalid/);
+  assert.throws(()=>makeBlock("hero","page-top"),/Invalid/);
   assert.throws(()=>validateProject({...project,theme:{...project.theme,font:"url(evil)"}}),/Invalid/);
 });
 
