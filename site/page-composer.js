@@ -98,7 +98,7 @@ function render(syncInputs = true) {
   actionField.hidden = !["hero","callout"].includes(current.type);
   applyTheme();
   canvas.innerHTML = buildPageBody(project);
-  const highlighted = canvas.querySelector("#" + selected);
+  const highlighted = canvas.querySelector('[id="' + selected + '"]');
   if (highlighted) /** @type {HTMLElement} */ (highlighted).dataset.selected = "true";
 }
 function edit(key, value) {
