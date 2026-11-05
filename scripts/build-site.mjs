@@ -74,7 +74,12 @@ const html = `<!doctype html>
 <footer><p class="fine">Index snapshot: ${escape(src.updated)}. Restricted and paid content is not collected.</p></footer></main></body></html>`;
 
 await mkdir("dist/site", { recursive: true });
-await writeFile("dist/site/index.html", template.replace("<!-- registry entries -->", cards.join("\n")));
+const homepage = template
+  .replace("<!-- registry entries -->", cards.join("\n"))
+  .replace("<!-- source count -->", String(src.sources.length))
+  .replace("<!-- indexed count -->", String(indexed.length))
+  .replace("<!-- component count -->", components.length.toLocaleString("en-US"));
+await writeFile("dist/site/index.html", homepage);
 await writeFile("dist/site/ui-explorer.html", html);
 await writeFile("dist/site/ui-index.json", JSON.stringify({
   schema_version: "1.0.0",
