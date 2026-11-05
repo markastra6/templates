@@ -25,3 +25,40 @@ li p { margin: .35rem 0; } a { color: #175341; font-weight: 700; }
 .explorer .fine { font-size: .81rem; opacity: .82; }
 .explorer #show-more { padding: .75rem 1.3rem; border: 1px solid currentColor; border-radius: .4rem; background: transparent; color: inherit; font: inherit; cursor: pointer; margin-block: 1rem 2rem; }
 .explorer #show-more[hidden] { display: none; }
+
+/* Local design-discovery workspace; no external assets or stylesheets. */
+.explorer .toolbar { gap: .6rem 1rem; border: 1px solid #c8d4cc; border-radius: .85rem; padding: 1rem; }
+.explorer .toolbar > label { width: auto; flex: 0 0 100%; font-size: .9rem; }
+.explorer .toolbar > input[type="search"] { flex: 2 1 16rem; margin: 0; }
+.explorer .toolbar > select { flex: 1 1 11rem; }
+.explorer .toolbar .ui-checks { flex: 0 0 100%; display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; }
+.explorer .ui-checks label { font-size: .94rem; font-weight: 500; display: inline-flex; gap: .5rem; align-items: center; cursor: pointer; }
+.explorer input[type="checkbox"] { width: 1.15rem; height: 1.15rem; margin: 0; accent-color: #175341; }
+.explorer .workspace-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1rem; margin: 1.25rem 0 .5rem; }
+.explorer .workspace-toolbar > span { flex: 1 1 17rem; }
+.explorer .workspace-toolbar label { font-size: .88rem; font-weight: 600; }
+.explorer .workspace-toolbar input[type="file"] { font: inherit; font-size: .82rem; width: min(100%, 16rem); padding: .45rem; border: 1px solid #a6b4ab; border-radius: .4rem; }
+.explorer .workspace-toolbar button, .explorer .comparison-header button { font: inherit; background: transparent; color: inherit; border: 1px solid #849b8b; padding: .65rem .95rem; border-radius: .5rem; cursor: pointer; }
+.explorer .workspace-toolbar button:disabled { opacity: .45; cursor: not-allowed; }
+.explorer #ui-status { font-weight: 650; font-size: .94rem; margin-block: 1rem; }
+.explorer .component-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .8rem; }
+.explorer .component { display: flex; flex-direction: column; }
+.explorer .ui-action { border: 1px solid #a3b5aa; color: inherit; background: transparent; border-radius: .5rem; padding: .4rem .85rem; font: inherit; font-size: .86rem; cursor: pointer; }
+.explorer .ui-action[aria-pressed="true"] { background: #d7eee1; color: #14503d; border-color: #33886b; }
+.explorer .ui-action:disabled { opacity: .45; cursor: not-allowed; }
+.explorer #ui-compare { border-top: 2px solid #849b8b; padding-top: 1rem; margin-top: 2rem; }
+.explorer #ui-compare[hidden] { display: none; }
+.explorer .comparison-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem; }
+.explorer .comparison-header h2 { margin-block: 0; }
+.explorer .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; }
+.explorer .comparison-item { border: 1px solid #9db1a4; border-radius: .75rem; padding: 1rem; min-width: 0; overflow-wrap: anywhere; }
+.explorer .comparison-item h3 { margin: 0 0 .85rem; }
+.explorer .comparison-item p { font-size: .9rem; }
+@media (prefers-color-scheme: dark) {
+  .explorer .toolbar { border-color: #516b5d; }
+  .explorer .ui-action[aria-pressed="true"] { background: #1a4b3a; color: #d1f7dc; border-color: #4ca27a; }
+  .explorer .ui-action, .explorer .workspace-toolbar button, .explorer .comparison-header button { border-color: #6c8d77; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .explorer .ui-action:not(:disabled) { transition: background-color .15s, border-color .15s; }
+}
