@@ -32,7 +32,7 @@ Coding agents must read [AGENTS.md](AGENTS.md) before making changes and read [.
 
 ## UI component source explorer
 
-The [UI source directory](docs/references/ui-component-sources.json) lists 31 sites. Seven sources have linked metadata snapshots under [ui-index](docs/references/ui-index), currently totaling 3,776 public component references. Run `npm run build` and open `dist/site/ui-explorer.html` to browse the static, searchable index. Each result links to the original publisher. No third-party code, screenshots or paid templates are bundled. See [data provenance and refresh process](docs/references/UI-COMPONENT-INDEX.md) before using any component.
+The [UI source directory](docs/references/ui-component-sources.json) lists 31 sites. Fifteen sources have linked metadata snapshots under [ui-index](docs/references/ui-index), currently totaling 9,403 public component references. Run `npm run build` and open `dist/site/ui-explorer.html` to browse the static, searchable index. Each result links to the original publisher. No third-party code, screenshots or paid templates are bundled. See [data provenance and refresh process](docs/references/UI-COMPONENT-INDEX.md) before using any component.
 
 ## Run the starter
 
