@@ -10,3 +10,18 @@ li { border-top: 1px solid #809087; padding-block: .75rem; }
 li p { margin: .35rem 0; } a { color: #175341; font-weight: 700; }
 :focus-visible { outline: 3px solid #3472bf; outline-offset: 3px; }
 @media (prefers-color-scheme: dark) { body { background: #171b19; color: #eef4ed; } a { color: #a8e5c9; } }
+
+/* UI source explorer: accessible, responsive, minimal styling. */
+.explorer { max-width: 88rem; }
+.explorer h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); margin-top: 2.4rem; }
+.explorer h3 { font-size: 1.08rem; margin: 0; }
+.explorer .toolbar { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: end; margin-block: 1.5rem; }
+.explorer .toolbar label { width: 100%; font-weight: 650; }
+.explorer select { padding: .8rem; font: inherit; border: 1px solid; border-radius: .35rem; background: transparent; color: inherit; min-width: 12rem; }
+.explorer .explorer-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: .65rem 1.25rem; }
+.explorer .resource { padding: 1rem; border: 1px solid #93a89c; border-radius: .65rem; min-width: 0; overflow-wrap: anywhere; }
+.explorer .resource[hidden] { display: none; }
+.explorer .meta { font-size: .88rem; font-weight: 600; }
+.explorer .fine { font-size: .81rem; opacity: .82; }
+.explorer #show-more { padding: .75rem 1.3rem; border: 1px solid currentColor; border-radius: .4rem; background: transparent; color: inherit; font: inherit; cursor: pointer; margin-block: 1rem 2rem; }
+.explorer #show-more[hidden] { display: none; }
