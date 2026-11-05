@@ -1,8 +1,67 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Find design, development and audit tools for websites and apps."><title>Creation directory</title><link rel="stylesheet" href="./style.css"><script type="module" src="./directory.js"></script></head>
-<body><main><header><h1>Creation directory</h1><p>Find a tool for your next website or app.</p></header>
-<form role="search" hidden><label for="query">Search tools</label><input id="query" type="search" placeholder="Try Android, motion or accessibility" autocomplete="off"></form>
-<p><a href="./ui-explorer.html">Explore 31 UI design sources and 9,403 public component references</a></p>
-<p><a href="./token-studio.html">Open Design Token Studio — live themes, contrast and CSS export</a></p>
-<p id="result" role="status"></p><ul id="tools"><!-- registry entries --></ul>
-</main></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="One unified home for UI reference discovery, design tokens and accessible website development tools.">
+<title>Unified UI Workbench</title>
+<link rel="stylesheet" href="./style.css">
+<script type="module" src="./directory.js"></script>
+</head>
+<body>
+<main class="hub">
+  <header class="hub-hero">
+    <p class="hub-eyebrow">UNIFIED DESIGN & DEVELOPMENT WORKSPACE</p>
+    <h1>One place to explore, design, and build better interfaces.</h1>
+    <p class="hub-intro">Discover source-backed UI patterns, refine original design tokens, shortlist components, and bring development tools together without paid dependencies.</p>
+    <div class="hub-metrics" aria-label="Catalogue coverage">
+      <div><strong><!-- source count --></strong><span>UI source websites</span></div>
+      <div><strong><!-- component count --></strong><span>Indexed references</span></div>
+      <div><strong><!-- indexed count --></strong><span>Source indexes</span></div>
+    </div>
+  </header>
+  <form class="hub-search" role="search" hidden>
+    <label for="query">Search development tools</label>
+    <input id="query" type="search" placeholder="Try accessibility, React, design tokens, motion…" autocomplete="off">
+  </form>
+  <section class="hub-workspaces" aria-labelledby="workspaces-title">
+    <div class="hub-section-heading">
+      <div><p class="hub-eyebrow">START HERE</p><h2 id="workspaces-title">Your workspaces</h2></div>
+      <p>Choose a workspace. Your component references remain linked to their original publishers.</p>
+    </div>
+    <div class="hub-workspace-grid">
+      <article class="hub-workspace-card">
+        <span class="hub-card-index">01 / DISCOVER</span>
+        <div class="hub-icon" aria-hidden="true">⌕</div>
+        <h3>Component Explorer</h3>
+        <p>Search thousands of indexed UI references. Filter, save, export lists, and compare source-backed component metadata.</p>
+        <a href="./ui-explorer.html">Open component explorer</a>
+      </article>
+      <article class="hub-workspace-card">
+        <span class="hub-card-index">02 / DESIGN</span>
+        <div class="hub-icon" aria-hidden="true">◐</div>
+        <h3>Design Token Studio</h3>
+        <p>Edit colors, typography, spacing, and corner radius. Preview an original dashboard, check contrast, and export CSS or JSON.</p>
+        <a href="./token-studio.html">Open design studio</a>
+      </article>
+      <article class="hub-workspace-card">
+        <span class="hub-card-index">03 / DEVELOP</span>
+        <div class="hub-icon" aria-hidden="true">⌘</div>
+        <h3>Development Toolchain</h3>
+        <p>Find accessible primitives, agent skills, implementation guidance, and security and testing tools in the searchable directory below.</p>
+        <a href="https://github.com/markastra6/templates/blob/main/docs/CREATION-DIRECTORY.md" target="_blank" rel="noopener noreferrer">Explore creation guide</a>
+      </article>
+    </div>
+  </section>
+  <section class="hub-directory" aria-labelledby="directory-title">
+    <div class="hub-section-heading">
+      <div><p class="hub-eyebrow">REFERENCE LIBRARY</p><h2 id="directory-title">Development tool directory</h2></div>
+      <p>Search the repository's reviewed tool registry. Configuration is not proof of a live integration.</p>
+    </div>
+    <p id="result" role="status"></p>
+    <ul id="tools"><!-- registry entries --></ul>
+  </section>
+  <footer class="hub-footer">Original tools and demo components are maintained in this repository. External code and images are not copied into this workbench automatically.</footer>
+</main>
+</body>
+</html>
