@@ -34,6 +34,12 @@ Coding agents must read [AGENTS.md](AGENTS.md) before making changes and read [.
 
 The [UI source directory](docs/references/ui-component-sources.json) lists 31 sites. Fifteen sources have linked metadata snapshots under [ui-index](docs/references/ui-index), currently totaling 9,403 public component references. Run `npm run build` and open `dist/site/ui-explorer.html` to browse the static, searchable index. Each result links to the original publisher. No third-party code, screenshots or paid templates are bundled. See [data provenance and refresh process](docs/references/UI-COMPONENT-INDEX.md) before using any component.
 
+## Component discovery workspace
+
+The [source explorer](site/ui-explorer.js) now supports source and component-type filters, conservative grouping of known implementation variants, browser-local saved references, and side-by-side metadata comparison of up to three items. Save up to 200 component references and use **Export saved** / **Import saved JSON** to move your shortlist between browsers. The shortlist contains only source IDs; it never uploads personal information to a backend. Browser storage is best-effort, so export important shortlists before clearing browser data.
+
+The explorer deliberately **does not execute or embed third-party components**; it links to their original websites or GitHub source for licensing, compatibility and preview review. See the [workspace instructions](docs/references/UI-WORKSPACE.md) and [source provenance](docs/references/UI-COMPONENT-INDEX.md). Implementation decisions and quality gates are recorded in the [feature handoff contract](docs/contracts/features/ui-discovery-workspace.json).
+
 ## Run the starter
 
 The example website searches the tool registry. From the repository root, run the following with Node.js 24 and Python 3, then open the address printed by the local server.
