@@ -30,6 +30,10 @@ See [the unified toolchain architecture](docs/architecture/UNIFIED-TOOLCHAIN.md)
 
 Coding agents must read [AGENTS.md](AGENTS.md) before making changes and read [.agents/skills/design-to-code/SKILL.md](.agents/skills/design-to-code/SKILL.md) before substantial design-to-code work.
 
+## Unified workbench home
+
+The static homepage now brings the three core workflows together: component reference discovery and saved comparisons, original design-token editing and CSS export, and the repository's searchable development tool registry. The source and reference counts are generated from the checked-in index at build time rather than hard-coded into the page. This is a unified navigation and tool workspace, not a claim that 31 independent websites or their paid templates are installed locally.
+
 ## UI component source explorer
 
 The [UI source directory](docs/references/ui-component-sources.json) lists 31 sites. Fifteen sources have linked metadata snapshots under [ui-index](docs/references/ui-index), currently totaling 9,403 public component references. Run `npm run build` and open `dist/site/ui-explorer.html` to browse the static, searchable index. Each result links to the original publisher. No third-party code, screenshots or paid templates are bundled. See [data provenance and refresh process](docs/references/UI-COMPONENT-INDEX.md) before using any component.
