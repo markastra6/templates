@@ -40,7 +40,7 @@ const sourceCards = src.sources.map(s => {
   const count = counts.get(s.id) || 0;
   const coverage = count ? count.toLocaleString("en-US") + " indexed" :
     s.collection === "restricted" ? "Link only" : "Discovery";
-  return `<li class="resource" data-source="${escape(s.id)}" data-text="${escape([s.name,s.focus,s.group].join(" ").toLowerCase())}"><h3><a href="${safeUrl(s.url)}" target="_blank" rel="noopener noreferrer">${escape(s.name)}</a></h3><p>${escape(s.focus)}</p><p class="meta">${escape(s.group)} · ${escape(coverage)}</p><p class="fine">${escape(s.notice)}</p></li>`;
+  return `<li class="resource" data-source="${escape(s.id)}" data-group="${escape(s.group)}" data-text="${escape([s.name,s.focus,s.group].join(" ").toLowerCase())}"><h3><a href="${safeUrl(s.url)}" target="_blank" rel="noopener noreferrer">${escape(s.name)}</a></h3><p>${escape(s.focus)}</p><p class="meta">${escape(s.group)} · ${escape(coverage)}</p><p class="fine">${escape(s.notice)}</p></li>`;
 }).join("\n");
 const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
