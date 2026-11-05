@@ -51,10 +51,10 @@ test("component lab reuses validated saved theme, escapes text and exports stand
   await page.evaluate(value => localStorage.setItem("ui-token-studio-v1",JSON.stringify(value)),theme);
   await page.getByRole("button",{name:"Use saved Token Studio theme"}).click();
   await expect(page.getByRole("status").last()).toContainText("theme applied");
-  await expect(page.locator("#lab-source")).toContainText("--ui-accent: #155eef;");
+  await expect(page.locator("#lab-source")).toHaveValue(/--ui-accent: #155eef;/);
 
   await page.getByLabel("Heading").fill("<script>alert(1)</script>");
-  await expect(page.locator("#lab-source")).toContainText("&lt;script&gt;alert(1)&lt;/script&gt;");
+  await expect(page.locator("#lab-source")).toHaveValue(/&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   const download=page.waitForEvent("download");
   await page.getByRole("button",{name:"Export standalone HTML"}).click();
   const file=await download;
