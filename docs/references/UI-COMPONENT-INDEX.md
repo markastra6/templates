@@ -50,3 +50,11 @@ The snapshot is **not a scheduled scraper**. No network calls run in the deploye
 ## Usage
 
 Run `npm run build`; browse `dist/site/ui-explorer.html`. The browser loads `ui-index.json` locally and renders only the first 72 matching records, avoiding thousands of initial DOM elements. Filter by source, source category, component type, declared dependencies, and search names, tags or dependency names. Order results by best match, name or library. The dependency filter only means the upstream manifest listed dependencies; missing dependency metadata does not prove that a component is dependency-free. Search results display metadata and take you to original source pages for actual preview, licensing and implementation review. For project implementation, use the existing unified web engineering skill and component provenance records in feature handoffs.
+
+## Offline quality dashboard
+
+The project now generates `dist/site/ui-audit.json` alongside the indexed component metadata. Open `dist/site/ui-audit.html` through the local development server for source-level records, variant-family counts, declared-dependency coverage and manifest snapshot dates.
+
+The validation is intentionally offline: it checks safe URL format, duplicate item IDs, source/index consistency and required metadata arrays. The build fails when the audit finds invalid data. It does not visit third-party websites, verify HTTP availability, grant reuse rights or certify components as accessible, secure or framework compatible.
+
+Use `npm test`, `npm run build` and the normal repository CI checks before publishing a revised index.
