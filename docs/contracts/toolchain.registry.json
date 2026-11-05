@@ -2883,13 +2883,109 @@
       "selection_rule": "Capture a short local trace around a slow interaction and compare the same action after the change.",
       "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
       "license_note": "Upstream source: Apache-2.0. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "auto-animate",
+      "name": "AutoAnimate",
+      "organ": "motion",
+      "kind": "javascript-library",
+      "repo_url": "https://github.com/formkit/auto-animate",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Animate items entering, leaving or changing order in a list.",
+      "consumes": [
+        "dom-list"
+      ],
+      "produces": [
+        "animated-list"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use for simple list transitions. Give each element one animation owner and test reduced motion.",
+      "cost_boundary": "Use locally with no account, subscription or paid API.",
+      "license_note": "MIT. Check the notices in the downloaded release."
+    },
+    {
+      "id": "rough",
+      "name": "Rough.js",
+      "organ": "visual-assets",
+      "kind": "javascript-library",
+      "repo_url": "https://github.com/rough-stuff/rough",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Draw sketch-style diagrams with SVG or Canvas.",
+      "consumes": [
+        "diagram-geometry"
+      ],
+      "produces": [
+        "illustration"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use for explanatory illustrations. Supply text equivalents for meaningful diagrams.",
+      "cost_boundary": "Use locally with no account, subscription or paid API.",
+      "license_note": "MIT. Check the notices in the downloaded release."
+    },
+    {
+      "id": "heroicons",
+      "name": "Heroicons",
+      "organ": "visual-assets",
+      "kind": "source-assets",
+      "repo_url": "https://github.com/tailwindlabs/heroicons",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Use a consistent set of SVG interface icons.",
+      "consumes": [
+        "control-inventory"
+      ],
+      "produces": [
+        "interface-icons"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Choose one icon family for a screen. Give icon-only controls accessible names.",
+      "cost_boundary": "Use locally with no account, subscription or paid API.",
+      "license_note": "MIT. Check the notices in the downloaded release."
+    },
+    {
+      "id": "openmoji",
+      "name": "OpenMoji",
+      "organ": "visual-assets",
+      "kind": "source-assets",
+      "repo_url": "https://github.com/hfg-gmuend/openmoji",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Use a consistent emoji illustration set in onboarding or empty states.",
+      "consumes": [
+        "illustration-brief"
+      ],
+      "produces": [
+        "attributed-artwork"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Credit the artwork and track ShareAlike terms for adaptations. Pair meaningful images with text.",
+      "cost_boundary": "Use locally with no account, subscription or paid API.",
+      "license_note": "CC-BY-SA-4.0 artwork. Check the notices in the downloaded release."
     }
   ],
   "research_date": "2026-11-05",
   "coverage_note": "Curated public GitHub scan, not an exhaustive enumeration of all GitHub repositories. Candidates are not automatically installed or connected. Each entry distinguishes repository review from active client/runtime availability.",
   "selection_policy": "Use capability-triggered selection, not tool accumulation. Verify current releases, component/package license, third-party notices, dependencies, permissions, client compatibility and actual cost boundary before activating a candidate.",
   "core_tool_count": 15,
-  "reviewed_candidate_count": 93,
-  "total_tool_records": 108,
+  "reviewed_candidate_count": 97,
+  "total_tool_records": 112,
   "candidate_status_policy": "Reviewed candidates are research references, not installed dependencies, active MCP servers or live connections. Activate only against a feature requirement and after checking package license, environment, accessibility, security and cost."
 }
