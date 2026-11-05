@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@playwright/test": "1.64.1"
+  },
+  "type": "module",
+  "name": "templates-directory-starter",
+  "scripts": {
+    "lint": "node --check site/directory.js",
+    "typecheck": "tsc --allowJs --checkJs --noEmit --target es2022 site/directory.js",
+    "build": "node scripts/build-site.mjs",
+    "test": "node --test browser-tests/directory.unit.mjs"
+  },
+  "version": "1.0.0"
+}

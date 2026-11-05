@@ -1,0 +1,11 @@
+{
+  "name": "templates-local-agent-tools",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "motion-ai": "14.2.0",
+    "skills": "1.7.6",
+    "ui-ux-pro-max-cli": "2.15.0",
+    "shadcn": "4.23.0"
+  }
+}

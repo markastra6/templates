@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "shadcn": { "command": "npx", "args": ["-y", "shadcn@latest", "mcp"] },
+    "shadcn": { "command": "node", "args": ["tools/agent/node_modules/shadcn/dist/index.js", "mcp"] },
     "21st": { "url": "https://21st.dev/api/mcp", "headers": { "x-api-key": "${API_KEY_21ST}" } },
     "watermelon": { "url": "https://mcp.watermelon.sh/mcp" },
     "penpot": { "url": "${PENPOT_MCP_URL}" },

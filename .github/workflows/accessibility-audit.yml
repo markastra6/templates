@@ -34,7 +34,12 @@ jobs:
         env:
           TARGET_URL: ${{ inputs.url }}
         run: python scripts/validate_public_url.py "$TARGET_URL"
-      - name: Run Pa11y CI
+      - name: Prepare audit CLI outside the browser namespace
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+        run: npm install --prefix "$RUNNER_TEMP/audit-tools" --ignore-scripts --no-fund --no-audit pa11y-ci@5.0.0
+      - name: Audit in a restricted network namespace
         env:
           TARGET_URL: ${{ inputs.url }}
-        run: npx --yes pa11y-ci@5.0.0 "$TARGET_URL"
+          AUDIT_HOST: ${{ vars.AUDIT_HOST || format('{0}.github.io', github.repository_owner) }}
+        run: bash scripts/run_isolated_audit.sh pa11y

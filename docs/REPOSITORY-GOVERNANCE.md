@@ -23,7 +23,7 @@ Enable:
 3. **Block force pushes.**
 4. **Block branch deletion.**
 
-Do not require the conditional CodeQL analysis or Playwright test jobs while the application scaffold is absent; those jobs are intentionally skipped until their source/configuration exists. Their detection jobs still run and can be required.
+The starter now runs Chromium browser tests and both Python and JavaScript/TypeScript analysis. Require the actual analysis and browser job names after they have run on the repository.
 
 ## Operating rules
 

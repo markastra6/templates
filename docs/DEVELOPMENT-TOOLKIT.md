@@ -26,10 +26,12 @@ All specialist outputs must be written into the same feature handoff: tokens, ch
 Run from the repository root:
 
 ```bash
-bash scripts/setup-agent-toolkit.sh
+bash scripts/setup-agent-toolkit.sh gsap
 ```
 
-The installer sets up:
+Choose one of motion, gsap, taste, vercel, 21st, uipro or shadcn. Select all explicitly to run each installer. The shadcn option prepares the local MCP CLI. Run the MCP client from the repository root. npm ci verifies dependencies against the committed toolkit lockfile.
+
+Available selections:
 
 | Tool / skill | Purpose | Cost |
 |---|---|---|
@@ -97,17 +99,17 @@ The repository contains GitHub Actions workflows for:
 | Workflow | Trigger | Purpose | Current state |
 |---|---|---|---|
 | Repository validation | Every push, pull request, manual | Checks MCP JSON, env placeholders, `.gitignore`, local Markdown links, public audit URL regression tests, installer syntax, GitHub Actions syntax via actionlint and full-diff whitespace | Runs now; actionlint is checksum-verified before use |
-| Quality checks | Push, pull request, manual | Markdown lint; optional npm dependency audit, lint, typecheck, test and build | Markdown runs now; Node.js checks wait for a package manifest and lockfile |
-| CodeQL | Push, pull request, weekly schedule | Static security analysis for JavaScript/TypeScript | Skips until JS/TS source files exist |
+| Quality checks | Push, pull request, manual | Markdown lint; optional npm dependency audit, lint, typecheck, test and build | Runs on the directory starter |
+| CodeQL | Push, pull request, weekly schedule | Static security analysis for Python and JavaScript/TypeScript | Both languages have tracked source |
 | Secret scan | Push, pull request, weekly schedule | Gitleaks scans Git history for accidentally committed credentials | Runs now |
-| Browser tests | Push, pull request, manual | Playwright Chromium tests | Skips until package manifest, lockfile and Playwright config exist |
+| Browser tests | Push, pull request, manual | Playwright Chromium tests | Runs the directory search and keyboard tests at desktop and phone widths |
 | Accessibility audit | Manual | Pa11y CI audit against a supplied public URL | Runs when a target URL is provided |
 | Lighthouse audit | Manual | Performance, accessibility, best-practices and SEO report | Runs when a target URL is provided; report stored as a short-retention artifact |
-| GitHub Pages deploy | Manual | Deploys the `site/` directory | Waits for `site/index.html` and Pages configuration |
+| GitHub Pages deploy | Manual | Builds the directory and deploys `dist/site/` | Requires Pages configuration |
 
 The repository also has a Python-based validator at `scripts/validate_repo.py`; it checks the repository-owned MCP and environment configuration, not whether remote MCP endpoints are reachable. The workflow separately runs actionlint against every GitHub Actions workflow, downloading a pinned release and verifying its SHA-256 checksum before execution. Its checkout disables persisted Git credentials. Keep this validation workflow and script when editing `.mcp.json`, `.env.example`, `.gitignore`, or Markdown links.
 
-The public repository uses standard GitHub-hosted runners. The workflows do not call paid AI APIs or paid external scanning services. Lighthouse and accessibility audits accept only public HTTPS targets: a standard-library Python validator rejects credentials, local/reserved hostnames, non-default ports, and DNS answers containing non-global IP addresses. Its regression tests run in repository validation. This reduces common SSRF mistakes but is not a network sandbox; only submit sites you trust and control. Do not put credentials or private URLs into workflow inputs.
+The public repository uses standard GitHub-hosted runners. The workflows do not call paid AI APIs or paid external scanning services. Lighthouse and accessibility audits accept only public HTTPS targets: a standard-library Python validator rejects credentials, local/reserved hostnames, non-default ports, and DNS answers containing non-global IP addresses. Its regression tests run in repository validation. The hosted browser runs inside a separate Linux network namespace with a pinned TLS relay for the authorized hostname. Use a staging site you control. Do not put credentials or private URLs into workflow inputs.
 
 ### Running manual audits from GitHub on mobile
 
@@ -121,11 +123,11 @@ These manual audits become useful once the site is deployed.
 
 ### GitHub Pages setup
 
-When the website is ready, open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. The included deployment workflow expects the built static site in `site/` and an `index.html` at its root. No custom domain is required.
+When the website is ready, open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. The deployment workflow generates `dist/site/index.html` from the registry. No custom domain is required.
 
 ### Dependency updates
 
-Dependabot currently checks GitHub Actions weekly. The npm updater is intentionally disabled because this repository has no `package.json`; leaving it enabled produces a failed update job (`/package.json not found`). Add the appropriate Dependabot ecosystem only after selecting the application's package manager and committing its manifest and lockfile. The Node.js CI job runs `npm audit --audit-level=high` only when an npm project and `package-lock.json` are present.
+Dependabot checks Actions and both npm projects weekly. CI runs locked installs and rejects high-severity advisories.
 
 ## 5. Strix without API spending
 
@@ -140,7 +142,7 @@ ollama pull qwen3-vl
 Install Strix and configure the local model:
 
 ```bash
-curl -fsSL https://strix.ai/install | bash
+# Start after installing a reviewed Strix release from its upstream repository.
 export STRIX_LLM="ollama/qwen3-vl"
 export LLM_API_BASE="http://localhost:11434"
 strix -n --target ./ --scan-mode quick
@@ -161,7 +163,7 @@ Strix's local-model guide: [Ollama setup](https://github.com/usestrix/strix/blob
 
 ## 7. Pending app scaffold
 
-This repository currently has no `package.json`, React app, `components.json`, or deployment target. Do not install React, Next.js, Tailwind, Motion, GSAP, React Bits components, or Watermelon components until the framework and actual site requirements are selected.
+The runnable starter is a static directory with a root npm test harness and optional GitHub Pages deployment. Do not install React, Next.js, Tailwind, Motion, GSAP, React Bits components, or Watermelon components until the framework and actual site requirements are selected.
 
 Once the scaffold exists:
 
