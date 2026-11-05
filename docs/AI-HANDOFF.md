@@ -1,5 +1,7 @@
 # AI agent handoff
 
+Current repository: [markastra6/templates](https://github.com/markastra6/templates). Use the [creation directory](CREATION-DIRECTORY.md) for current capabilities. The following snapshot describes the upstream project before this fork.
+
 - **Snapshot date:** 2026-11-03
 - **Repository:** [astramark06-sudo/website-creation](https://github.com/astramark06-sudo/website-creation)
 - **Default branch at snapshot:** `main`

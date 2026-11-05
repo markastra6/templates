@@ -79,7 +79,7 @@ def validate_public_https_url(value: str) -> None:
     else:
         addresses = {literal_address}
 
-    if any(not address.is_global for address in addresses):
+    if any(address.is_multicast or not address.is_global for address in addresses):
         raise ValueError("hostname resolves to a non-public, private, or reserved IP address")
 
 

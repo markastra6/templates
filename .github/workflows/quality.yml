@@ -66,7 +66,7 @@ jobs:
       - name: Run available project checks
         if: steps.detect.outputs.present == 'true'
         run: |
-          npm run lint --if-present
-          npm run typecheck --if-present
-          npm run test --if-present
-          npm run build --if-present
+          npm run lint
+          npm run typecheck
+          npm run test
+          npm run build

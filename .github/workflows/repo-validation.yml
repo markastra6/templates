@@ -31,7 +31,11 @@ jobs:
       - name: Test public audit URL validation
         run: python -m unittest discover -s tests -v
       - name: Validate toolkit installer syntax
-        run: bash -n scripts/setup-agent-toolkit.sh
+        run: |
+          bash -n scripts/setup-agent-toolkit.sh
+          bash -n scripts/run_isolated_audit.sh
+      - name: Prove external audit isolation with a local TLS fixture
+        run: bash tests/audit-network-smoke.sh
       - name: Install actionlint
         env:
           ACTIONLINT_VERSION: "1.7.12"

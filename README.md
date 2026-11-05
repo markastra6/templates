@@ -4,6 +4,8 @@ Start with the [website and app creation directory](docs/CREATION-DIRECTORY.md) 
 
 For Windows, macOS and Android, use the [app toolkit](docs/references/APP-TOOLKIT.md) and copy the [app planning and audit template](docs/contracts/APP-PLAN-AND-AUDIT.md) into your feature folder.
 
+Original work and third-party resources have separate [reuse terms](RIGHTS.md).
+
 ## Cost policy
 
 This project has a strict zero-spend requirement. Use free/open-source tools, free public-repository GitHub Actions, and GitHub Pages. Do not introduce paid subscriptions, paid model APIs, paid hosting, paid assets, or paid component licenses. Optional free tiers may have usage limits.
@@ -17,8 +19,8 @@ This project has a strict zero-spend requirement. Use free/open-source tools, fr
 - Quality: Markdown lint and optional Node.js dependency audit, lint, typecheck, test and build jobs.
 - Security: CodeQL for JavaScript/TypeScript when present, Gitleaks history scans and npm audit when a Node.js project exists.
 - Browser and UX: conditional Playwright tests, manual Pa11y accessibility audit and manual Lighthouse audit.
-- Deployment: manual GitHub Pages workflow for a built static site in `site/`.
-- Dependency maintenance: weekly Dependabot updates for GitHub Actions; package-manager updates will be enabled when the application manifest and lockfile are added.
+- Deployment: manual GitHub Pages workflow for the generated static directory in `dist/site/`.
+- Dependency maintenance: weekly Dependabot updates for GitHub Actions; npm updates cover the starter and local toolkit.
 
 ## Mobile-first workflow
 
@@ -28,6 +30,17 @@ See [the unified toolchain architecture](docs/architecture/UNIFIED-TOOLCHAIN.md)
 
 Coding agents must read [AGENTS.md](AGENTS.md) before making changes and read [.agents/skills/design-to-code/SKILL.md](.agents/skills/design-to-code/SKILL.md) before substantial design-to-code work.
 
-## Project state
+## Run the starter
 
-The repository is still a tooling starter. No frontend framework, application scaffold, package manifest or website content has been selected. App-specific CI checks and deployment remain conditional until the corresponding source/configuration exists.
+The example website searches the tool registry. From the repository root, run the following with Node.js 24 and Python 3, then open the address printed by the local server.
+
+```sh
+node scripts/build-site.mjs
+python -m http.server 8080 --bind 127.0.0.1 --directory dist/site
+```
+
+Open [the local starter](http://127.0.0.1:8080). Edit the registry and rebuild to update the directory. The static site has no runtime packages and works with keyboard, touch, and JavaScript disabled. For automated checks, run npm ci, npm test and npm run typecheck. Install Chromium with npx playwright install chromium before running npx playwright test.
+
+For manual external audits, set the repository variable AUDIT_HOST to a DNS name you control. The default is the owner's GitHub Pages hostname. The hosted browser can reach only the chosen host's pinned TLS endpoint. Cross-origin assets will be blocked, so use a first-party staging build when measuring performance. Lighthouse minimums are 75 for performance, 90 for accessibility, 85 for best practices and 80 for SEO. Reports are retained when a budget fails.
+
+Windows, macOS and Android native starter builds are outside this static example. See the app toolkit for target-specific plans.

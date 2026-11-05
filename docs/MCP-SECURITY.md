@@ -32,7 +32,7 @@ The 21st.dev limit is documented at [21st.dev MCP docs](https://docs.21st.dev/mc
 
 ## Supply-chain and runtime controls
 
-- `.mcp.json` may execute packages through `npx`. Package tags such as `latest` and `stable` are mutable. Review package ownership and recent releases before updates; do not assume a tag is immutable.
+- The shadcn entry runs the local CLI installed from the toolkit lockfile. Review source, dependency changes and integrity hashes when updating it.
 - Run MCP clients and browser automation in a dedicated project directory and isolated profile. Keep private source files and local secrets outside public repository paths.
 - Use the least-privilege GitHub App connection already available rather than creating a second personal access token.
 - Do not automatically install model weights, start persistent services, expose local ports, or enable paid/hosted inference.

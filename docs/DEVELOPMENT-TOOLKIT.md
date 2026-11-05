@@ -26,10 +26,12 @@ All specialist outputs must be written into the same feature handoff: tokens, ch
 Run from the repository root:
 
 ```bash
-bash scripts/setup-agent-toolkit.sh
+bash scripts/setup-agent-toolkit.sh gsap
 ```
 
-The installer sets up:
+Choose one of motion, gsap, taste, vercel, 21st, uipro or shadcn. Select all explicitly to run each installer. The shadcn option prepares the local MCP CLI. Run the MCP client from the repository root. npm ci verifies dependencies against the committed toolkit lockfile.
+
+Available selections:
 
 | Tool / skill | Purpose | Cost |
 |---|---|---|
@@ -121,7 +123,7 @@ These manual audits become useful once the site is deployed.
 
 ### GitHub Pages setup
 
-When the website is ready, open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. The included deployment workflow expects the built static site in `site/` and an `index.html` at its root. No custom domain is required.
+When the website is ready, open **Settings â†’ Pages** and set the build/deployment source to **GitHub Actions**. The included deployment workflow expects the built static site in `site/` and an `index.html` at its root. No custom domain is required.
 
 ### Dependency updates
 
@@ -140,7 +142,7 @@ ollama pull qwen3-vl
 Install Strix and configure the local model:
 
 ```bash
-curl -fsSL https://strix.ai/install | bash
+# Start after installing a reviewed Strix release from its upstream repository.
 export STRIX_LLM="ollama/qwen3-vl"
 export LLM_API_BASE="http://localhost:11434"
 strix -n --target ./ --scan-mode quick
@@ -161,7 +163,7 @@ Strix's local-model guide: [Ollama setup](https://github.com/usestrix/strix/blob
 
 ## 7. Pending app scaffold
 
-This repository currently has no `package.json`, React app, `components.json`, or deployment target. Do not install React, Next.js, Tailwind, Motion, GSAP, React Bits components, or Watermelon components until the framework and actual site requirements are selected.
+The runnable starter is a static directory with a root npm test harness and optional GitHub Pages deployment. Do not install React, Next.js, Tailwind, Motion, GSAP, React Bits components, or Watermelon components until the framework and actual site requirements are selected.
 
 Once the scaffold exists:
 
@@ -243,69 +245,69 @@ Supabase and Appwrite are backend alternatives. Umami is an optional privacy-ori
 
 PocketBase is deliberately excluded from the recommended candidate list because its upstream repository was archived on October 26, 2026. A tool being open source is not enough; active maintenance and acceptable risk still matter.
 
-## 1.3.0 — Application builders, interactive UI and dynamic layout
+## 1.3.0 â€” Application builders, interactive UI and dynamic layout
 
 The latest expansion adds 30 candidates specifically for building apps, editable pages, interactive UI, visual flows, responsive workspaces and dynamic CSS. These tools solve different problems and should not be stacked indiscriminately.
 
 ### Visual webpage and page-authoring systems
 
-- **Puck** — React-native visual page editor. Use when the product itself needs editable page composition inside a React app.
-- **GrapesJS** — framework-agnostic HTML/CSS drag-and-drop builder. Use for template/CMS-style editing; inspect generated markup and plugin licenses.
-- **Webstudio** — full visual website builder. AGPL-3.0; review deployment and modification obligations before self-hosting.
-- **Onlook** — visual editing of real codebases. Core source is Apache-2.0; AI features may need external model services and must not silently create API spend.
+- **Puck** â€” React-native visual page editor. Use when the product itself needs editable page composition inside a React app.
+- **GrapesJS** â€” framework-agnostic HTML/CSS drag-and-drop builder. Use for template/CMS-style editing; inspect generated markup and plugin licenses.
+- **Webstudio** â€” full visual website builder. AGPL-3.0; review deployment and modification obligations before self-hosting.
+- **Onlook** â€” visual editing of real codebases. Core source is Apache-2.0; AI features may need external model services and must not silently create API spend.
 
 ### Visual app builders and code-first admin frameworks
 
-- **Appsmith** — low-code internal tools, dashboards and data-backed admin panels.
-- **Budibase** — internal business apps and operations workflows. Overall GPLv3 guidance; check each package's license.
-- **ToolJet** — low-code internal apps and workflows. AGPL-3.0.
-- **Refine** — code-first React framework for custom admin/B2B applications.
-- **React Admin** — data-centric CRUD interfaces over REST/GraphQL.
+- **Appsmith** â€” low-code internal tools, dashboards and data-backed admin panels.
+- **Budibase** â€” internal business apps and operations workflows. Overall GPLv3 guidance; check each package's license.
+- **ToolJet** â€” low-code internal apps and workflows. AGPL-3.0.
+- **Refine** â€” code-first React framework for custom admin/B2B applications.
+- **React Admin** â€” data-centric CRUD interfaces over REST/GraphQL.
 
 Appsmith/Budibase/ToolJet are visual low-code builders; Refine/React Admin are code-first frameworks. Choose one architecture based on product requirements. Self-hosting still needs infrastructure; managed tiers can cost money.
 
 ### Interactive component systems and primitives
 
-- **Magic UI** — animated React/Tailwind component source.
-- **daisyUI** — semantic Tailwind components and theme layer.
-- **Flowbite React** — Tailwind-based React components; distinguish free core from separately licensed Pro assets.
-- **Chakra UI** and **MUI** — alternative full React component/design systems.
-- **Headless UI** — unstyled accessible interactive primitives.
-- **Floating UI** — low-level tooltip, popover, menu and anchored-element positioning engine.
+- **Magic UI** â€” animated React/Tailwind component source.
+- **daisyUI** â€” semantic Tailwind components and theme layer.
+- **Flowbite React** â€” Tailwind-based React components; distinguish free core from separately licensed Pro assets.
+- **Chakra UI** and **MUI** â€” alternative full React component/design systems.
+- **Headless UI** â€” unstyled accessible interactive primitives.
+- **Floating UI** â€” low-level tooltip, popover, menu and anchored-element positioning engine.
 
 Do not combine multiple global design systems. Keep shadcn as the existing baseline unless a feature has a documented reason to choose another.
 
 ### Flow editors, diagrams and canvas interfaces
 
-- **React Flow / Svelte Flow** — interactive node graphs and workflow designers.
-- **Rete.js** — programmable visual programming and dataflow editors.
-- **Excalidraw** — freeform diagramming and whiteboard canvas.
+- **React Flow / Svelte Flow** â€” interactive node graphs and workflow designers.
+- **Rete.js** â€” programmable visual programming and dataflow editors.
+- **Excalidraw** â€” freeform diagramming and whiteboard canvas.
 
 Use structured node editors for workflows and Excalidraw for freeform sketching; these are not interchangeable.
 
 ### Dynamic layouts and drag/drop
 
-- **React Grid Layout** — draggable/resizable dashboard widget grids with responsive breakpoints.
-- **dnd-kit** — sortable, nested and custom drag/drop interactions.
-- **FormKit Drag and Drop** — lighter framework-agnostic drag/drop alternative.
-- **React Resizable Panels** — resizable split panes and workspace layouts.
+- **React Grid Layout** â€” draggable/resizable dashboard widget grids with responsive breakpoints.
+- **dnd-kit** â€” sortable, nested and custom drag/drop interactions.
+- **FormKit Drag and Drop** â€” lighter framework-agnostic drag/drop alternative.
+- **React Resizable Panels** â€” resizable split panes and workspace layouts.
 
 Every drag interaction needs keyboard alternatives, touch support, responsive behavior and an explicit persistence policy.
 
 ### Dynamic CSS and alternative motion models
 
-- **Open Props** — CSS custom properties for design tokens, easing, spacing, colors and typography. Map selected values into the existing project token contract.
-- **CSS Doodle** — generative CSS visuals and backgrounds. Keep effects decorative, performant and accessible.
-- **React Spring** — spring-physics animation for React.
-- **Anime.js** — framework-agnostic property/SVG/timeline animation.
+- **Open Props** â€” CSS custom properties for design tokens, easing, spacing, colors and typography. Map selected values into the existing project token contract.
+- **CSS Doodle** â€” generative CSS visuals and backgrounds. Keep effects decorative, performant and accessible.
+- **React Spring** â€” spring-physics animation for React.
+- **Anime.js** â€” framework-agnostic property/SVG/timeline animation.
 
 React Spring and Anime.js are alternatives, not additional defaults. Maintain one animation owner per DOM target.
 
 ### Application framework alternatives
 
-- **Next.js** — React full-stack framework.
-- **SvelteKit** — Svelte full-stack framework.
-- **Nuxt** — Vue full-stack framework.
+- **Next.js** â€” React full-stack framework.
+- **SvelteKit** â€” Svelte full-stack framework.
+- **Nuxt** â€” Vue full-stack framework.
 
 These are mutually exclusive app-shell choices for a given application. The repository still has no selected framework.
 

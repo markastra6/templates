@@ -1,31 +1,28 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+case "${1:-}" in
+  motion|gsap|taste|vercel|21st|uipro|shadcn|all) selection=$1 ;;
+  *) echo "Usage: bash scripts/setup-agent-toolkit.sh {motion|gsap|taste|vercel|21st|uipro|shadcn|all}"; exit 2 ;;
+esac
 
-# Run from the repository root in a compatible coding-agent environment.
-# These are free/open-source agent skills; this does not install the website app.
-
-echo "Installing Motion for React documentation and agent skills..."
-npx motion-ai
-
-echo "Installing GSAP skills..."
-npx skills add https://github.com/greensock/gsap-skills
-
-echo "Installing Taste frontend design skill..."
-npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
-
-echo "Installing Vercel React performance and web design skills..."
-npx skills add vercel-labs/agent-skills --skill react-best-practices --skill web-design-guidelines
-
-echo "Installing 21st.dev agent skills..."
-npx skills add https://github.com/21st-dev/skill
-
-echo "Installing UI/UX Pro Max into the universal .agents/skills directory..."
-npx --yes ui-ux-pro-max-cli init --ai universal
-
-echo
-echo "Agent skills installed. Restart the coding agent so it reloads them."
-echo "The design-to-code skill is already included at .agents/skills/design-to-code/."
-echo "This script does not install or build the website application."
-echo "Strix is a separate local-only option; see docs/DEVELOPMENT-TOOLKIT.md."
-echo "21st.dev has free-tier limits. Set API_KEY_21ST only if you choose to use its MCP."
-echo "Context7 supports anonymous use at lower rate limits; authenticate only with a free allowance."
+npm ci --prefix tools/agent --ignore-scripts --no-audit --no-fund
+bin="$PWD/tools/agent/node_modules/.bin"
+temp=$(mktemp -d)
+trap 'rm -rf -- "$temp"' EXIT
+install_skill() {
+  local repo=$1 commit=$2 folder="$temp/${1##*/}"
+  shift 2
+  git init -q "$folder"
+  git -C "$folder" fetch --depth=1 "https://github.com/$repo.git" "$commit"
+  git -C "$folder" checkout -q --detach "$commit"
+  test "$(git -C "$folder" rev-parse HEAD)" = "$commit"
+  "$bin/skills" add "$folder" --copy "$@"
+}
+selected() { [[ "$selection" == all || "$selection" == "$1" ]]; }
+if selected motion; then "$bin/skills" add "$PWD/tools/agent/node_modules/motion-ai/content/skills" --copy; fi
+if selected gsap; then install_skill greensock/gsap-skills aed9cfd3277740755f6bfc1155c7aa645403b760; fi
+if selected taste; then install_skill Leonxlnx/taste-skill 9b4bf937a1f69348126959c15d2f99a73e65699b --skill design-taste-frontend; fi
+if selected vercel; then install_skill vercel-labs/agent-skills 1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62 --skill react-best-practices --skill web-design-guidelines; fi
+if selected 21st; then install_skill 21st-dev/skill 15c7436c41dc88c54094f1be93ce53bda456b114; fi
+if selected uipro; then "$bin/uipro" init --ai universal --offline; fi

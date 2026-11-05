@@ -2,6 +2,7 @@
 .env.*
 !.env.example
 !.env.template
+__pycache__/
 node_modules/
 dist/
 build/
@@ -12,3 +13,6 @@ coverage/
 strix_runs/
 .playwright/
 .DS_Store
+
+test-results/
+playwright-report/

@@ -36,12 +36,33 @@ jobs:
             fi
           done
 
-          if git ls-files | grep -Eq "$pattern"; then
+          if git ls-files | grep -E "$pattern" > /dev/null; then
             echo "has_source=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_source=false" >> "$GITHUB_OUTPUT"
             echo "No JavaScript/TypeScript source yet; CodeQL will start after the app is added."
           fi
+
+  analyze-python:
+    name: Analyze Python
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      security-events: write
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: python
+          build-mode: none
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v4
 
   analyze:
     name: Analyze JavaScript and TypeScript

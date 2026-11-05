@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
+import subprocess
 from pathlib import Path
 from urllib.parse import parse_qsl, unquote, urlsplit
 
@@ -34,7 +36,10 @@ def read_env_example(errors: list[str]) -> set[str]:
         if "=" not in line:
             fail(f".env.example:{line_number}: expected KEY=value", errors)
             continue
-        name, _ = line.split("=", 1)
+        name, value = line.split("=", 1)
+        safe_defaults = {"STRIX_LLM": "ollama/qwen3-vl", "LLM_API_BASE": "http://localhost:11434"}
+        if value and value != safe_defaults.get(name):
+            fail(f".env.example:{line_number}: leave credentials blank and use only documented local defaults", errors)
         if not re.fullmatch(r"[A-Z][A-Z0-9_]*", name):
             fail(f".env.example:{line_number}: invalid environment key {name!r}", errors)
             continue
@@ -42,6 +47,26 @@ def read_env_example(errors: list[str]) -> set[str]:
             fail(f".env.example:{line_number}: duplicate environment key {name}", errors)
         names.add(name)
     return names
+
+
+def validate_mcp_url(raw: str, name: str, errors: list[str], *, literal: bool) -> None:
+    try:
+        parsed = urlsplit(raw)
+        port = parsed.port
+        host = parsed.hostname
+        invalid = (
+            not host or parsed.username is not None or parsed.password is not None
+            or port == 0 or parsed.netloc.endswith(":") or "\\" in raw
+            or any(ord(c) <= 32 or ord(c) == 127 for c in raw)
+            or (parsed.scheme != "https" and not (
+                parsed.scheme == "http" and host in {"localhost", "127.0.0.1", "::1"}
+            ))
+            or (literal and any(k.casefold() in SECRET_QUERY_KEYS for k, _ in parse_qsl(parsed.query)))
+        )
+    except ValueError:
+        invalid = True
+    if invalid:
+        fail(f".mcp.json: {name!r} has an invalid endpoint or embedded credentials", errors)
 
 
 def validate_mcp_config(env_names: set[str], errors: list[str]) -> None:
@@ -70,17 +95,11 @@ def validate_mcp_config(env_names: set[str], errors: list[str]) -> None:
             fail(f".mcp.json: server {name!r} args must be an array", errors)
         if has_url:
             raw_url = spec["url"]
-            for variable in PLACEHOLDER.findall(raw_url):
-                if variable not in env_names:
-                    fail(f".mcp.json: {name!r} references {variable}, missing from .env.example", errors)
-            if not PLACEHOLDER.fullmatch(raw_url):
-                parsed = urlsplit(raw_url)
-                if parsed.scheme != "https" and not (
-                    parsed.scheme == "http" and parsed.hostname in {"localhost", "127.0.0.1", "::1"}
-                ):
-                    fail(f".mcp.json: {name!r} must use HTTPS or loopback HTTP", errors)
-                if any(key.casefold() in SECRET_QUERY_KEYS for key, _ in parse_qsl(parsed.query)):
-                    fail(f".mcp.json: {name!r} must not embed credentials in a literal URL", errors)
+            variable = PLACEHOLDER.fullmatch(raw_url)
+            if variable and (resolved := os.environ.get(variable.group(1))):
+                validate_mcp_url(resolved, name, errors, literal=False)
+            if not variable:
+                validate_mcp_url(raw_url, name, errors, literal=True)
 
         serialized = json.dumps(spec, ensure_ascii=False)
         for variable in PLACEHOLDER.findall(serialized):
@@ -96,25 +115,50 @@ def validate_env_gitignore(errors: list[str]) -> None:
         fail(".gitignore must explicitly keep the safe .env.example template", errors)
 
 
+def markdown_anchors(text: str) -> set[str]:
+    anchors = set()
+    text = re.sub(r"`{3}[\s\S]*?`{3}|~~~[\s\S]*?~~~", "", text)
+    for heading in re.findall(r"^ {0,3}#{1,6} (.+)$", text, flags=re.MULTILINE):
+        base = re.sub(r"[^\w\- ]", "", heading.lower().strip()).replace(" ", "-")
+        anchor = base
+        suffix = 0
+        while anchor in anchors:
+            suffix += 1
+            anchor = f"{base}-{suffix}"
+        anchors.add(anchor)
+    return anchors
+
+
 def validate_markdown_links(errors: list[str]) -> int:
     count = 0
-    for markdown in sorted(ROOT.rglob("*.md")):
-        if ".git" in markdown.parts:
+    tracked = set(subprocess.check_output(
+        ["git", "ls-files", "-z"], cwd=ROOT
+    ).decode("utf-8").rstrip("\0").split("\0"))
+    directories = {parent.as_posix() for path in tracked for parent in Path(path).parents}
+    valid_paths = tracked | directories
+    for filename in sorted(tracked):
+        if not filename.endswith(".md"):
             continue
+        markdown = ROOT / filename
         text = markdown.read_text(encoding="utf-8")
         text = re.sub(r"\x60{3}[\s\S]*?\x60{3}|~~~[\s\S]*?~~~", "", text)
         for match in MARKDOWN_LINK.finditer(text):
             target = match.group(1).strip().split(maxsplit=1)[0].strip("<>")
             parsed = urlsplit(target)
-            if parsed.scheme or target.startswith("#") or not parsed.path:
+            if parsed.scheme or parsed.netloc:
                 continue
-            local = (markdown.parent / unquote(parsed.path)).resolve()
+            local = (markdown.parent / unquote(parsed.path)).resolve() if parsed.path else markdown
             count += 1
-            if not local.exists():
+            relative = local.relative_to(ROOT).as_posix() if local.is_relative_to(ROOT) else None
+            if relative not in valid_paths or not local.exists():
                 fail(
                     f"{markdown.relative_to(ROOT).as_posix()}: broken local link {target!r}",
                     errors,
                 )
+            elif parsed.fragment and local.suffix == ".md":
+                headings = markdown_anchors(local.read_text(encoding="utf-8"))
+                if unquote(parsed.fragment) not in headings:
+                    fail(f"{filename}: missing heading in {target!r}", errors)
     return count
 
 
