@@ -87,7 +87,7 @@ const homepage = template
   .replace("<!-- component count -->", components.length.toLocaleString("en-US"));
 await writeFile("dist/site/index.html", homepage);
 await writeFile("dist/site/ui-explorer.html", html);
-await writeFile("dist/site/ui-audit.json", JSON.stringify(audit) + "\\n");
+await writeFile("dist/site/ui-audit.json", JSON.stringify(audit) + "\n");
 await writeFile("dist/site/ui-index.json", JSON.stringify({
   schema_version: "1.0.0",
   generated_from: src.updated,
