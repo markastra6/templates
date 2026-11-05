@@ -1,0 +1,300 @@
+{
+  "schema_version": "1.0.0",
+  "updated": "2026-11-05",
+  "policy": "No paywalled extraction, no login bypass, no personal data, no bulk scraping of inspiration sites. Only source metadata from explicitly listed official GitHub public registries/trees; independently check item licenses before use.",
+  "sources": [
+    {
+      "id": "aceternity-ui",
+      "name": "Aceternity UI",
+      "url": "https://ui.aceternity.com",
+      "group": "components",
+      "focus": "Animated React, backgrounds and landing page blocks",
+      "collection": "reference",
+      "repo": "https://ui.aceternity.com/ai-recommendations",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "react-bits",
+      "name": "React Bits",
+      "url": "https://reactbits.dev",
+      "group": "motion",
+      "focus": "Animated text, backgrounds, interactive React effects",
+      "collection": "registry",
+      "repo": "https://github.com/DavidHDev/react-bits",
+      "notice": "Public registry or official GitHub file metadata only. Never bundle third-party code, images, premium assets or restricted material."
+    },
+    {
+      "id": "magic-ui",
+      "name": "Magic UI",
+      "url": "https://magicui.design",
+      "group": "motion",
+      "focus": "Motion effects, bento blocks and components",
+      "collection": "registry",
+      "repo": "https://github.com/magicuidesign/magicui",
+      "notice": "Public registry or official GitHub file metadata only. Never bundle third-party code, images, premium assets or restricted material."
+    },
+    {
+      "id": "motion-primitives",
+      "name": "Motion Primitives",
+      "url": "https://motion-primitives.com",
+      "group": "motion",
+      "focus": "Minimal composable motion primitives",
+      "collection": "tree",
+      "repo": "https://github.com/ibelick/motion-primitives",
+      "notice": "Public registry or official GitHub file metadata only. Never bundle third-party code, images, premium assets or restricted material."
+    },
+    {
+      "id": "shadcn-space",
+      "name": "Shadcn Space",
+      "url": "https://shadcnspace.com",
+      "group": "components",
+      "focus": "React components, full sections and dashboard layouts",
+      "collection": "registry",
+      "repo": "https://github.com/shadcnspace/shadcnspace",
+      "notice": "Public registry or official GitHub file metadata only. Never bundle third-party code, images, premium assets or restricted material."
+    },
+    {
+      "id": "reui",
+      "name": "ReUI",
+      "url": "https://reui.io",
+      "group": "components",
+      "focus": "UI controls, tables, charts and dashboard examples",
+      "collection": "tree",
+      "repo": "https://github.com/keenthemes/reui",
+      "notice": "Public registry or official GitHub file metadata only. Never bundle third-party code, images, premium assets or restricted material."
+    },
+    {
+      "id": "origin-ui",
+      "name": "Origin UI",
+      "url": "https://originui.com",
+      "group": "components",
+      "focus": "Modern React controls, forms and navigation",
+      "collection": "reference",
+      "repo": "https://github.com/origin-space",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "cult-ui",
+      "name": "Cult UI",
+      "url": "https://www.cult-ui.com",
+      "group": "components",
+      "focus": "Experimental user interface interactions",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "kokonut-ui",
+      "name": "Kokonut UI",
+      "url": "https://kokonutui.com",
+      "group": "components",
+      "focus": "Interactive components and AI chat UI",
+      "collection": "registry",
+      "repo": "https://github.com/kokonut-labs/kokonutui",
+      "notice": "Public registry or official GitHub file metadata only. Never bundle third-party code, images, premium assets or restricted material."
+    },
+    {
+      "id": "uiverse",
+      "name": "Uiverse",
+      "url": "https://uiverse.io",
+      "group": "components",
+      "focus": "Community CSS buttons, loaders and effects",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "shadcn-ui",
+      "name": "shadcn/ui",
+      "url": "https://ui.shadcn.com",
+      "group": "components",
+      "focus": "Accessible component primitives and example blocks",
+      "collection": "tree",
+      "repo": "https://github.com/shadcn-ui/ui",
+      "notice": "Public registry or official GitHub file metadata only. Never bundle third-party code, images, premium assets or restricted material."
+    },
+    {
+      "id": "tailwind-plus",
+      "name": "Tailwind Plus",
+      "url": "https://tailwindcss.com/plus",
+      "group": "templates",
+      "focus": "Premium Tailwind pages and components",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "flowbite",
+      "name": "Flowbite",
+      "url": "https://flowbite.com",
+      "group": "components",
+      "focus": "Tailwind components, UI kits and dashboards",
+      "collection": "reference",
+      "repo": "https://github.com/themesberg/flowbite",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "preline-ui",
+      "name": "Preline UI",
+      "url": "https://preline.co",
+      "group": "components",
+      "focus": "Tailwind application sections, controls and blocks",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "hyperui",
+      "name": "HyperUI",
+      "url": "https://www.hyperui.dev",
+      "group": "components",
+      "focus": "Open source Tailwind website and shop blocks",
+      "collection": "reference",
+      "repo": "https://github.com/markmead/hyperui",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "daisyui",
+      "name": "DaisyUI",
+      "url": "https://daisyui.com",
+      "group": "components",
+      "focus": "Tailwind themes and semantic CSS UI classes",
+      "collection": "reference",
+      "repo": "https://github.com/saadeghi/daisyui",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "float-ui",
+      "name": "Float UI",
+      "url": "https://floatui.com",
+      "group": "templates",
+      "focus": "Responsive website components and templates",
+      "collection": "reference",
+      "repo": "https://github.com/Float-UI/floatui-oss",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "bootstrapmade",
+      "name": "BootstrapMade",
+      "url": "https://bootstrapmade.com",
+      "group": "templates",
+      "focus": "Bootstrap website themes and dashboard templates",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "godly",
+      "name": "Godly",
+      "url": "https://godly.website",
+      "group": "inspiration",
+      "focus": "Creative website showcase",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "awwwards",
+      "name": "Awwwards",
+      "url": "https://www.awwwards.com",
+      "group": "inspiration",
+      "focus": "Award-winning sites and design inspiration",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "land-book",
+      "name": "Land-book",
+      "url": "https://land-book.com",
+      "group": "inspiration",
+      "focus": "Landing page design references",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "lapa-ninja",
+      "name": "Lapa Ninja",
+      "url": "https://www.lapa.ninja",
+      "group": "inspiration",
+      "focus": "Landing page references and layouts",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "landingfolio",
+      "name": "Landingfolio",
+      "url": "https://www.landingfolio.com",
+      "group": "inspiration",
+      "focus": "Landing page sections and templates",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "mobbin",
+      "name": "Mobbin",
+      "url": "https://mobbin.com",
+      "group": "inspiration",
+      "focus": "Real product app screens and flows",
+      "collection": "restricted",
+      "notice": "Do not bulk index user content or build a substitute for the site; use a direct site link."
+    },
+    {
+      "id": "refero",
+      "name": "Refero",
+      "url": "https://refero.design",
+      "group": "inspiration",
+      "focus": "Web and app design examples",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "dribbble",
+      "name": "Dribbble",
+      "url": "https://dribbble.com",
+      "group": "inspiration",
+      "focus": "Designer portfolios and design concepts",
+      "collection": "restricted",
+      "notice": "Site terms prohibit scraping and copying; use official API only if its terms permit your use."
+    },
+    {
+      "id": "behance",
+      "name": "Behance",
+      "url": "https://www.behance.net",
+      "group": "inspiration",
+      "focus": "Creative portfolio projects",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "framer-marketplace",
+      "name": "Framer Marketplace",
+      "url": "https://www.framer.com/marketplace/",
+      "group": "templates",
+      "focus": "Free and commercial Framer templates",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "webflow-templates",
+      "name": "Webflow Templates",
+      "url": "https://webflow.com/templates",
+      "group": "templates",
+      "focus": "Free and commercial Webflow templates",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "gsap",
+      "name": "GSAP",
+      "url": "https://gsap.com",
+      "group": "motion",
+      "focus": "Animation toolkit and demos",
+      "collection": "reference",
+      "repo": "https://github.com/greensock/GSAP",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    },
+    {
+      "id": "codepen",
+      "name": "CodePen",
+      "url": "https://codepen.io",
+      "group": "experiments",
+      "focus": "Community HTML, CSS and JavaScript experiments",
+      "collection": "reference",
+      "notice": "Discovery link only; no copying, crawling, or automated source import until rights and access are verified."
+    }
+  ]
+}
