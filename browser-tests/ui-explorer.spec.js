@@ -12,7 +12,7 @@ for (const width of [375, 1280]) {
     await expect(status).toContainText("33 component references");
     await query.fill("animated");
     await expect(status).toContainText("component references");
-    await expect(page.locator("#ui-components > li:visible").count()).resolves.toBeGreaterThan(0);
+    expect(await page.locator("#ui-components > li:visible").count()).toBeGreaterThan(0);
     await query.clear();
     await source.selectOption("");
     await expect(status).toContainText("3,776 component references");
