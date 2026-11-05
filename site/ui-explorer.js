@@ -1,9 +1,10 @@
-const query = document.getElementById("ui-query");
-const source = document.getElementById("ui-source");
-const status = document.getElementById("ui-status");
-const sources = Array.from(document.querySelectorAll("#ui-sources > li"));
-const components = Array.from(document.querySelectorAll("#ui-components > li"));
-const more = document.getElementById("show-more");
+export {};
+const query = /** @type {HTMLInputElement} */ (document.getElementById("ui-query"));
+const source = /** @type {HTMLSelectElement} */ (document.getElementById("ui-source"));
+const status = /** @type {HTMLElement} */ (document.getElementById("ui-status"));
+const sources = Array.from(document.querySelectorAll("#ui-sources > li")).map(el => /** @type {HTMLLIElement} */ (el));
+const components = Array.from(document.querySelectorAll("#ui-components > li")).map(el => /** @type {HTMLLIElement} */ (el));
+const more = /** @type {HTMLButtonElement} */ (document.getElementById("show-more"));
 let limit = 72;
 function refresh() {
   const words = query.value.toLocaleLowerCase().trim().split(/\s+/u).filter(Boolean);
