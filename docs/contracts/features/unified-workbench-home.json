@@ -1,0 +1,148 @@
+{
+  "contract_version": "1.0.0",
+  "contract_status": "active",
+  "feature": {
+    "id": "unified-workbench-home",
+    "name": "Unified workbench homepage",
+    "objective": "Make the repository's discovery, theme editing and development guidance approachable through one polished, accessible entry point.",
+    "audience": "Design and web/application development users",
+    "acceptance_criteria": [
+      "Show reliable source and reference counts computed at build time.",
+      "Link to the working component explorer and original design studio.",
+      "Preserve existing keyboard-first searchable tool directory without extra list items.",
+      "Remain responsive at 375px and 1280px, with reduced-motion-friendly behavior.",
+      "All relevant repository and browser CI checks pass."
+    ]
+  },
+  "source_of_truth": {
+    "design_source": "repository-owned-static-site",
+    "design_file": "site/index.html and site/style.css",
+    "page_or_artboard": "Unified homepage",
+    "source_version_or_revision": "based on 30dfce697edc9d1c4d7e0687f887fcfc64b24b67",
+    "authority_rule": "Existing searchable tool directory remains functional and authoritative for listed tools."
+  },
+  "design_system": {
+    "status": "existing-site-style-extended",
+    "owner": "site/style.css",
+    "tokens": {
+      "theme": "light/dark system",
+      "accent": "#176c4e",
+      "canvas": "#fafbf8",
+      "surface": "#ffffff",
+      "radius": "0.8rem–1.5rem",
+      "type_scale": "fluid heading and 0.8–1.2rem body"
+    },
+    "theme_modes": [
+      "light",
+      "dark"
+    ],
+    "contrast_review": "Browser automated checks and manual review"
+  },
+  "component_registry": [
+    {
+      "id": "homepage-workspace-cards",
+      "purpose": "Explain entry points to existing workbenches",
+      "source_tool_id": "repository-original",
+      "source_url": "site/index.html",
+      "implementation_mode": "original-static-html",
+      "license_review": "No third-party code imported",
+      "third_party_notices_review": "No third-party assets",
+      "dependencies": [],
+      "token_mapping": "inherits existing site CSS",
+      "keyboard_and_screen_reader_review": "semantic headings and links",
+      "responsive_review": "Playwright widths 375 and 1280",
+      "motion_owner": "none",
+      "status": "implemented"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "tool-search",
+      "trigger": "Search input",
+      "states": [
+        "empty",
+        "filtered",
+        "no-match"
+      ],
+      "success_condition": "Existing directory filters and count correct",
+      "failure_condition": "No matches message",
+      "cancellation_or_undo": "Clear query",
+      "accessible_status": "existing result role=status"
+    },
+    {
+      "id": "workspace-navigation",
+      "trigger": "Workspace links",
+      "states": [
+        "ready",
+        "navigated"
+      ],
+      "success_condition": "Open local explorer or token studio",
+      "failure_condition": "Unavailable page detected by browser checks",
+      "cancellation_or_undo": "Browser back",
+      "accessible_status": "semantic links"
+    }
+  ],
+  "motion_ownership": [],
+  "data_contracts": [
+    {
+      "entity": "homepage-coverage-metrics",
+      "source_type": "checked-in-static-indices",
+      "persistence": "build output",
+      "authentication": "none",
+      "loading_state": "build-time deterministic",
+      "empty_state": "build failure on invalid source",
+      "error_state": "build fails instead of stale counts",
+      "freshness": "matches commit",
+      "integration_owner": "scripts/build-site.mjs"
+    }
+  ],
+  "tool_runs": [
+    {
+      "tool_id": "github-connector",
+      "status": "verified",
+      "input_artifact": "main branch",
+      "output_artifact": "feature PR",
+      "decisions": "No paid or additional browser runtime dependencies introduced"
+    }
+  ],
+  "quality_gates": {
+    "viewports": [
+      "375px",
+      "1280px"
+    ],
+    "semantic_html": "required",
+    "keyboard_access": "required",
+    "visible_focus": "required",
+    "contrast": "manual",
+    "reduced_motion": "no animation introduced",
+    "loading_empty_error_states": "existing tool directory",
+    "automated_checks": [
+      "lint",
+      "typecheck",
+      "unit-tests",
+      "playwright",
+      "codeql",
+      "repo-validation",
+      "secret-scan"
+    ],
+    "security_scope": "repository only",
+    "security_review": "No external network fetches or scripts"
+  },
+  "decisions": [
+    {
+      "decision": "Homepage connects existing workspaces without installing external design libraries",
+      "reason": "Keep compatibility, permissions, security and zero-cost guarantees."
+    },
+    {
+      "decision": "Metrics come from validated source index",
+      "reason": "Prevent stale presentation numbers when catalogue changes."
+    }
+  ],
+  "defects": [],
+  "handoff": {
+    "current_stage": "feature implementation awaiting CI",
+    "next_stage": "verify tests and merge if all required checks pass",
+    "blocked_by": [],
+    "last_updated_by": "ChatGPT GitHub connector"
+  }
+}
