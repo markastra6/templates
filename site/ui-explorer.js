@@ -4,6 +4,9 @@ const el = id => document.getElementById(id);
 const query = /** @type {HTMLInputElement} */ (el("ui-query"));
 const source = /** @type {HTMLSelectElement} */ (el("ui-source"));
 const kind = /** @type {HTMLSelectElement} */ (el("ui-kind"));
+const category = /** @type {HTMLSelectElement} */ (el("ui-group"));
+const order = /** @type {HTMLSelectElement} */ (el("ui-sort"));
+const withDeps = /** @type {HTMLInputElement} */ (el("ui-has-dependencies"));
 const group = /** @type {HTMLInputElement} */ (el("ui-group-variants"));
 const onlySaved = /** @type {HTMLInputElement} */ (el("ui-favorites-only"));
 const status = /** @type {HTMLElement} */ (el("ui-status"));
@@ -17,6 +20,7 @@ const compareItems = /** @type {HTMLElement} */ (el("ui-compare-items"));
 const clearCompare = /** @type {HTMLButtonElement} */ (el("ui-clear-compare"));
 const sources = Array.from(document.querySelectorAll("#ui-sources > li")).map(e => /** @type {HTMLLIElement} */ (e));
 const sourceNames = new Map(Array.from(source.options).map(o => [o.value, o.textContent || o.value]));
+const sourceGroups = Object.fromEntries(sources.map(node => [node.dataset.source, node.dataset.group || ""]));
 const storageKey = "ui-workbench-saved-v1";
 let components = [], limit = 72;
 let favorites = new Set(), selected = new Set(), byID = new Map();
@@ -105,11 +109,13 @@ function refresh() {
   let sourceCount = 0;
   for (const node of sources) {
     const visible = (!source.value || source.value === node.dataset.source) &&
+      (!category.value || category.value === node.dataset.group) &&
       words.every(w => (node.dataset.text || "").includes(w));
     node.hidden = !visible; if (visible) sourceCount++;
   }
   const filtered = searchComponents(components, {
     query: query.value, source: source.value, kind: kind.value,
+    group: category.value, sourceGroups, hasDependencies: withDeps.checked, sort: order.value,
     groupVariants: group.checked, favoritesOnly: onlySaved.checked, favoriteIDs: favorites
   });
   const frag = document.createDocumentFragment();
@@ -120,7 +126,7 @@ function refresh() {
   status.textContent = `${sourceCount} sources · ${filtered.length.toLocaleString("en-US")} component references · ${favorites.size} saved · ${selected.size} comparing`;
   renderComparison();
 }
-for (const control of [query, source, kind, group, onlySaved]) {
+for (const control of [query, source, kind, category, order, withDeps, group, onlySaved]) {
   control.addEventListener(control.type === "checkbox" || control.tagName === "SELECT" ? "change" : "input", () => {
     limit = 72; refresh();
   });
