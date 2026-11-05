@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Offline quality and coverage report for the public UI reference catalogue.">
+<title>Catalogue audit</title><link rel="stylesheet" href="./style.css"><script type="module" src="./ui-audit.js"></script>
+</head><body><main class="explorer audit">
+<nav aria-label="Workspace navigation"><a href="./index.html">Home</a> · <a href="./ui-explorer.html">Component Explorer</a></nav>
+<header><h1>Catalogue audit</h1><p>Transparent counts, provenance and metadata validation for indexed public design references.</p></header>
+<p id="audit-status" role="status">Loading local audit report…</p>
+<div class="hub-metrics" id="audit-stats" aria-label="Index coverage"></div>
+<section aria-labelledby="audit-table-heading"><h2 id="audit-table-heading">Source coverage</h2>
+<div class="audit-table-wrap"><table class="audit-table"><thead><tr>
+<th scope="col">Source</th><th scope="col">Status</th><th scope="col">Records</th><th scope="col">Families</th><th scope="col">Variants</th><th scope="col">Declared dependencies</th><th scope="col">Snapshot</th>
+</tr></thead><tbody id="audit-rows"></tbody></table></div>
+</section>
+<section><h2>What this verifies</h2><p>Local JSON integrity, unique record IDs, HTTPS URL format, recorded source manifests, and family-level variant counts. It does not check whether remote links work, licenses permit copying, or code is secure or accessible.</p>
+<p>The full metadata index and its source references remain available in the repository. No external sites are contacted when viewing this report.</p></section>
+</main></body></html>
