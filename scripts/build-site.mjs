@@ -47,7 +47,7 @@ const html = `<!doctype html>
 <meta name="description" content="Browse 31 UI design sources and searchable public component references.">
 <title>UI source explorer</title><link rel="stylesheet" href="./style.css">
 <script type="module" src="./ui-explorer.js"></script></head>
-<body><main class="explorer"><a href="./index.html">← Creation directory</a>
+<body><main class="explorer"><a href="./index.html">← Creation directory</a> · <a href="./token-studio.html">Design Token Studio</a>
 <header><h1>UI source explorer</h1><p>31 design sources · ${components.length.toLocaleString("en-US")} public component references. The index contains links and metadata, not copied third-party code or images.</p></header>
 <div class="toolbar"><label for="ui-query">Search sources and components</label>
 <input id="ui-query" type="search" placeholder="dashboard, dialog, animation…" autocomplete="off">
@@ -82,6 +82,6 @@ await writeFile("dist/site/ui-index.json", JSON.stringify({
   count: components.length,
   entries: components
 }) + "\n");
-for (const file of ["directory.js", "style.css", "ui-explorer.js", "ui-tools.js"]) {
+for (const file of ["directory.js", "style.css", "ui-explorer.js", "ui-tools.js", "token-studio.html", "token-studio.css", "token-studio.js", "ui-tokens.js"]) {
   await copyFile("site/" + file, "dist/site/" + file);
 }
