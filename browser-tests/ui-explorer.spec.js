@@ -16,6 +16,15 @@ for (const width of [375, 1280]) {
     expect(await page.locator("#ui-components > li:visible").count()).toBeGreaterThan(0);
     await query.clear();
     await source.selectOption("");
+    const category = page.getByLabel("Source category");
+    await category.selectOption("motion");
+    await expect(status).toContainText("component references");
+    expect(await page.locator("#ui-sources > li:visible").count()).toBeGreaterThan(0);
+    await category.selectOption("");
+    await page.getByLabel("Order results").selectOption("name");
+    await page.getByLabel("Show declared dependencies only").check();
+    await expect(status).toContainText("component references");
+    await page.getByLabel("Show declared dependencies only").uncheck();
     await expect(status).toContainText("9,403 component references");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   });
