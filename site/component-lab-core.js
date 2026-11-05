@@ -17,14 +17,12 @@ export function defaultLab(type="button",theme=PRESETS.forest) {
 }
 export function validateLab(input) {
   if (!input || input.version !== 1 || !Object.hasOwn(EXAMPLES,input.type)) throw new Error("Invalid component schema");
-  const result={version:1,type:input.type};
+
   for (const [key,max] of [["title",90],["body",240],["action",40]]) {
     if (typeof input[key] !== "string" || input[key].length>max ||
         (key==="title" && !input[key].trim())) throw new Error("Invalid field: "+key);
-    result[key]=input[key];
   }
-  result.theme=validateTheme(input.theme);
-  return result;
+  return {version:1,type:input.type,title:input.title,body:input.body,action:input.action,theme:validateTheme(input.theme)};
 }
 export const STYLES = String.raw`
 *{box-sizing:border-box}body{margin:0;padding:clamp(12px,4vw,36px);background:var(--ui-canvas);color:var(--ui-text);font:400 1rem/1.55 var(--ui-font)}
