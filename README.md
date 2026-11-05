@@ -10,6 +10,10 @@ Original work and third-party resources have separate [reuse terms](RIGHTS.md).
 
 This project has a strict zero-spend requirement. Use free/open-source tools, free public-repository GitHub Actions, and GitHub Pages. Do not introduce paid subscriptions, paid model APIs, paid hosting, paid assets, or paid component licenses. Optional free tiers may have usage limits.
 
+## Current audit and improvement roadmap
+
+The [5 November 2026 repository-wide audit](docs/audits/2026-11-05-repository-audit.md) documents verified code, catalogue, security, governance, accessibility, publishing and Windows-access findings. It provides prioritized acceptance criteria and an implementation order. The audit distinguishes 9,403 discovery metadata records from executable or license-verified components.
+
 ## Current repository setup
 
 - Agent skills: Motion, GSAP, Taste, Vercel React best practices, Vercel web design guidelines, 21st.dev, UI/UX Pro Max, and the repository's design-to-code skill.
