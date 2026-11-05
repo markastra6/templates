@@ -70,11 +70,15 @@ export const SCRIPT = String.raw`
   });
  });
  const form=document.querySelector('[data-form]');
- if(form)form.addEventListener('submit',event=>{
-  event.preventDefault();
+ if(form){
   const email=form.querySelector('input[type="email"]');
-  document.querySelector('[data-status]').textContent=email.checkValidity()?'Email format valid. Nothing was sent.':'Enter a valid email address.';
- });
+  const validate=()=>{
+   document.querySelector('[data-status]').textContent=email.checkValidity()?'Email format valid. Nothing was sent.':'Enter a valid email address.';
+  };
+  form.addEventListener('submit',event=>{event.preventDefault();validate();});
+  form.querySelector('[data-check]').addEventListener('click',validate);
+  email.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();validate();}});
+ }
  const show=document.querySelector('[data-show]'),toast=document.querySelector('[data-toast]');
  if(show&&toast){
   show.addEventListener('click',()=>{toast.hidden=false;});
@@ -102,7 +106,7 @@ export function componentMarkup(input){
 <details class="disclosure"><summary>Is this keyboard accessible?</summary><p>Use Tab to focus and Enter or Space to expand the summary.</p></details>`;break;
  case "form":
   html=`<form data-form novalidate class="demo"><div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="off" placeholder="you@example.com" required><small>No information is sent or stored.</small></div>
-<button type="submit" class="primary">${action||"Check email"}</button><p class="status" data-status role="status">Enter an address to validate.</p></form>`;break;
+<button type="button" class="primary" data-check>${action||"Check email"}</button><p class="status" data-status role="status">Enter an address to validate.</p></form>`;break;
  case "toast":
   html=`<button type="button" class="primary" data-show>${action||"Show notification"}</button>
 <div class="toast" data-toast hidden role="status"><span>${body}</span><button type="button" class="secondary" data-dismiss>Dismiss</button></div>`;break;
