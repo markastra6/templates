@@ -28,9 +28,9 @@ class UnifiedToolchainContractTests(unittest.TestCase):
         errors: list[str] = []
         tool_ids = validate_toolchain_registry_data(registry, errors)
         version = validate_ui_handoff_template_data(handoff, tool_ids, errors)
-        self.assertEqual(len(tool_ids), 90)
+        self.assertEqual(len(tool_ids), 95)
         self.assertEqual(registry["core_tool_count"], 15)
-        self.assertEqual(registry["reviewed_candidate_count"], 75)
+        self.assertEqual(registry["reviewed_candidate_count"], 80)
         self.assertEqual(registry["total_tool_records"], len(tool_ids))
         self.assertEqual(version, "1.0.0")
         self.assertEqual(errors, [])
@@ -41,7 +41,7 @@ class UnifiedToolchainContractTests(unittest.TestCase):
             tool for tool in registry["tools"]
             if tool.get("repo_state", "").startswith("reviewed-candidate")
         ]
-        self.assertEqual(len(candidates), 75)
+        self.assertEqual(len(candidates), 80)
         for candidate in candidates:
             with self.subTest(tool=candidate.get("id")):
                 self.assertTrue(candidate.get("repo_url", "").startswith("https://github.com/"))

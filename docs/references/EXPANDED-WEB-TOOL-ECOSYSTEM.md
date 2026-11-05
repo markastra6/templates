@@ -11,7 +11,7 @@
 - **Client/runtime required** means a compatible coding agent, Node.js/browser runtime, desktop environment, backend or other host is needed. A GitHub entry alone does not activate a tool.
 - **Zero-cost boundary** refers to the software/project, not necessarily hosting, compute, commercial assets, usage overages or third-party services.
 
-The machine-readable source of truth is [toolchain.registry.json](../contracts/toolchain.registry.json). It now contains 90 tool records: the original 15 plus 75 reviewed candidates. Candidate state is recorded separately from active configuration.
+The machine-readable source of truth is [toolchain.registry.json](../contracts/toolchain.registry.json). It now contains 95 tool records: the original 15 plus 80 reviewed candidates. Candidate state is recorded separately from active configuration.
 
 ## 1. Agent skills and design judgment
 
@@ -240,6 +240,16 @@ React Spring and Anime.js are alternatives to the existing Motion/GSAP/CSS alloc
 - [Nuxt](https://github.com/nuxt/nuxt) — Vue full-stack framework.
 
 Choose one framework for an app. Do not combine multiple app shells simply because they appear in the catalogue.
+
+### Offline authoring, static search and publishing checks
+
+| Project | When to use it | Selection notes |
+| --- | --- | --- |
+| [Squoosh](https://github.com/GoogleChromeLabs/squoosh) | Compare a hero image at several quality settings in the browser and export the smallest acceptable version. | Use for one-off visual comparisons. Keep Sharp for repeatable batches. |
+| [draw.io Desktop](https://github.com/jgraph/drawio-desktop) | Draw a navigation map or architecture diagram offline and keep its editable source alongside the SVG export. | Choose for diagrams that contributors need to edit. Include a text description when publishing. |
+| [fontTools](https://github.com/fonttools/fonttools) | Subset a locally supplied font to reduce the bytes a page downloads. | Check the font license permits modification and test all supported scripts before shipping a subset. |
+| [Pagefind](https://github.com/Pagefind/pagefind) | Index rendered HTML after the site build and ship the search index with the static site. | Choose when a documentation site needs full-text search on GitHub Pages. Index only public output. |
+| [lychee](https://github.com/lycheeverse/lychee) | Find broken links in Markdown and generated HTML before publishing. | Use offline mode for local paths. Enable external checks only when network access is appropriate. |
 
 ### License and cost policy
 

@@ -2451,13 +2451,133 @@
       "selection_rule": "Use for generative CSS patterns, backgrounds and creative visual effects. Keep decorative output non-interactive, low-cost and hidden from assistive technology where appropriate.",
       "cost_boundary": "Upstream repository license: MIT. Source is available without a paid subscription; hosting, managed tiers, optional AI/model APIs, commercial add-ons or infrastructure may have separate costs. Review the exact package and deployment license before adoption.",
       "license_note": "Upstream repository declares MIT; verify the exact package, plugins, assets and deployment terms at adoption. This registry entry is not legal approval."
+    },
+    {
+      "id": "squoosh",
+      "name": "Squoosh",
+      "organ": "image-compression",
+      "kind": "browser-app",
+      "repo_url": "https://github.com/GoogleChromeLabs/squoosh",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Compare a hero image at several quality settings in the browser and export the smallest acceptable version.",
+      "consumes": [
+        "source-image"
+      ],
+      "produces": [
+        "optimized-image"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use for one-off visual comparisons. Keep Sharp for repeatable batches.",
+      "cost_boundary": "Run locally without a subscription or paid API.",
+      "license_note": "Upstream repository license: Apache-2.0. Check separate rights for input assets and bundled third-party components."
+    },
+    {
+      "id": "drawio-desktop",
+      "name": "draw.io Desktop",
+      "organ": "diagram-authoring",
+      "kind": "desktop-app",
+      "repo_url": "https://github.com/jgraph/drawio-desktop",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Draw a navigation map or architecture diagram offline and keep its editable source alongside the SVG export.",
+      "consumes": [
+        "navigation-or-architecture-brief"
+      ],
+      "produces": [
+        "editable-diagram-and-svg"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Choose for diagrams that contributors need to edit. Include a text description when publishing.",
+      "cost_boundary": "Run locally without a subscription or paid API.",
+      "license_note": "Upstream repository license: GPL-3.0. Check separate rights for input assets and bundled third-party components."
+    },
+    {
+      "id": "fonttools",
+      "name": "fontTools",
+      "organ": "font-subsetting",
+      "kind": "python-toolkit",
+      "repo_url": "https://github.com/fonttools/fonttools",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Subset a locally supplied font to reduce the bytes a page downloads.",
+      "consumes": [
+        "licensed-font-and-required-characters"
+      ],
+      "produces": [
+        "subset-font"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Check the font license permits modification and test all supported scripts before shipping a subset.",
+      "cost_boundary": "Run locally without a subscription or paid API.",
+      "license_note": "Upstream repository license: MIT. Check separate rights for input assets and bundled third-party components."
+    },
+    {
+      "id": "pagefind",
+      "name": "Pagefind",
+      "organ": "site-search",
+      "kind": "static-indexer",
+      "repo_url": "https://github.com/Pagefind/pagefind",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Index rendered HTML after the site build and ship the search index with the static site.",
+      "consumes": [
+        "rendered-public-html"
+      ],
+      "produces": [
+        "static-search-index"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Choose when a documentation site needs full-text search on GitHub Pages. Index only public output.",
+      "cost_boundary": "Run locally without a subscription or paid API.",
+      "license_note": "Upstream repository license: MIT. Check separate rights for input assets and bundled third-party components."
+    },
+    {
+      "id": "lychee",
+      "name": "lychee",
+      "organ": "link-validation",
+      "kind": "cli",
+      "repo_url": "https://github.com/lycheeverse/lychee",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Find broken links in Markdown and generated HTML before publishing.",
+      "consumes": [
+        "documentation-or-rendered-html"
+      ],
+      "produces": [
+        "broken-link-report"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use offline mode for local paths. Enable external checks only when network access is appropriate.",
+      "cost_boundary": "Run locally without a subscription or paid API.",
+      "license_note": "Upstream repository license: Apache-2.0. Check separate rights for input assets and bundled third-party components."
     }
   ],
-  "research_date": "2026-11-03",
+  "research_date": "2026-11-05",
   "coverage_note": "Curated public GitHub scan, not an exhaustive enumeration of all GitHub repositories. Candidates are not automatically installed or connected. Each entry distinguishes repository review from active client/runtime availability.",
   "selection_policy": "Use capability-triggered selection, not tool accumulation. Verify current releases, component/package license, third-party notices, dependencies, permissions, client compatibility and actual cost boundary before activating a candidate.",
   "core_tool_count": 15,
-  "reviewed_candidate_count": 75,
-  "total_tool_records": 90,
+  "reviewed_candidate_count": 80,
+  "total_tool_records": 95,
   "candidate_status_policy": "Reviewed candidates are research references, not installed dependencies, active MCP servers or live connections. Activate only against a feature requirement and after checking package license, environment, accessibility, security and cost."
 }
