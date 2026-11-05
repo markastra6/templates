@@ -9,7 +9,7 @@ for (const width of [375, 1280]) {
     await page.keyboard.press("Tab");
     await expect(page.getByRole("searchbox")).toBeFocused();
     await page.getByRole("searchbox").fill("AutoAnimate");
-    await expect(page.locator("#tools > li")).toHaveCount(1);
+    await expect(page.locator("#tools > li:visible")).toHaveCount(1);
     await page.getByRole("searchbox").clear();
     await expect(page.getByRole("link",{name:"Open component explorer"})).toBeVisible();
     await expect(page.getByRole("link",{name:"Open design studio"})).toBeVisible();
