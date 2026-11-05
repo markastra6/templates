@@ -1,0 +1,181 @@
+{
+  "contract_version": "1.0.0",
+  "contract_status": "active",
+  "feature": {
+    "id": "ui-discovery-workspace",
+    "name": "Component discovery and saved-reference workspace",
+    "objective": "Find, filter, shortlist, compare and export verified public UI reference metadata offline without executing or republishing third-party code.",
+    "audience": "UI designers and web/application developers",
+    "acceptance_criteria": [
+      "Search 9,403 indexed references with source and type filters without regressing current search.",
+      "Group known style/implementation variants conservatively without deleting source entries.",
+      "Save up to 200 references in browser-local storage and export/import valid JSON safely.",
+      "Compare up to three entries side by side with upstream links, dependencies and metadata.",
+      "Mobile and desktop browsing remain usable and accessible; Node and Chromium tests pass."
+    ]
+  },
+  "source_of_truth": {
+    "design_source": "repository-owned-static-site",
+    "design_file": "site/index.html and scripts/build-site.mjs",
+    "page_or_artboard": "ui-explorer.html",
+    "source_version_or_revision": "main at 01f9f1491784cb22f8e2028778f57638880eecf3",
+    "authority_rule": "Preserve the repository's existing UI; other websites are reference data, never authoritative designs."
+  },
+  "design_system": {
+    "status": "existing-simple-CSS-extended",
+    "owner": "repository-maintained-site/style.css",
+    "tokens": {
+      "canvas": "#fafbf8",
+      "text": "#202724",
+      "accent": "#175341",
+      "focus": "#3472bf",
+      "spacing": "0.5rem–1.5rem",
+      "radii": "0.5rem–0.85rem",
+      "theme_modes": [
+        "light",
+        "dark"
+      ],
+      "motion": "Optional subtle CSS feedback; honors prefers-reduced-motion"
+    },
+    "contrast_review": "CI plus manual visual review outstanding"
+  },
+  "component_registry": [],
+  "interactions": [
+    {
+      "id": "saved-reference",
+      "trigger": "Save/Saved button",
+      "states": [
+        "unsaved",
+        "saved",
+        "storage-unavailable",
+        "limit-reached"
+      ],
+      "success_condition": "Saved list updated and export enabled",
+      "failure_condition": "No data lost; warning explains storage/limit",
+      "cancellation_or_undo": "Toggle Saved to remove",
+      "accessible_status": "aria-pressed plus result count"
+    },
+    {
+      "id": "compare",
+      "trigger": "Compare button",
+      "states": [
+        "unselected",
+        "selected",
+        "limit-reached"
+      ],
+      "success_condition": "Up to three public metadata records shown",
+      "failure_condition": "Further entries disabled",
+      "cancellation_or_undo": "Compare toggle or Clear comparison",
+      "accessible_status": "aria-pressed and panel heading"
+    },
+    {
+      "id": "import-export",
+      "trigger": "JSON upload/download",
+      "states": [
+        "ready",
+        "success",
+        "invalid"
+      ],
+      "success_condition": "Known IDs restored or downloadable JSON created",
+      "failure_condition": "Invalid upload leaves existing saved list unchanged",
+      "cancellation_or_undo": "Export first; import a previously saved list",
+      "accessible_status": "Notice text"
+    }
+  ],
+  "motion_ownership": [
+    {
+      "target": "save-and-compare-buttons",
+      "owner": "css",
+      "animated_properties": [
+        "background-color",
+        "border-color"
+      ],
+      "reason": "Nonessential state feedback only",
+      "reduced_motion_behavior": "Changes remain visible without animation"
+    }
+  ],
+  "data_contracts": [
+    {
+      "entity": "indexed-ui-reference",
+      "source_type": "static-build-json",
+      "persistence": "committed snapshot: docs/references/ui-index",
+      "authentication": "none",
+      "loading_state": "defined",
+      "empty_state": "zero matching results",
+      "error_state": "source links stay accessible",
+      "freshness": "dated upstream GitHub metadata snapshot 2026-11-05",
+      "integration_owner": "repository build script"
+    },
+    {
+      "entity": "saved-reference-list",
+      "source_type": "browser-local-storage",
+      "persistence": "best-effort localStorage + user-exported JSON",
+      "authentication": "none",
+      "loading_state": "restored after metadata validation",
+      "empty_state": "no saved references",
+      "error_state": "notice and export fallback",
+      "freshness": "user-managed",
+      "integration_owner": "site/ui-explorer.js"
+    }
+  ],
+  "tool_runs": [
+    {
+      "tool_id": "github-connector",
+      "status": "connected",
+      "input_artifact": "current main repository",
+      "output_artifact": "feature branch and PR",
+      "decisions": "GitHub connector verified; no browser MCP or external component services required."
+    },
+    {
+      "tool_id": "playwright",
+      "status": "CI-defined",
+      "input_artifact": "static build",
+      "output_artifact": "browser-tests/ui-workspace.spec.js",
+      "decisions": "Results must be verified from GitHub Actions before merge."
+    }
+  ],
+  "quality_gates": {
+    "viewports": [
+      "375px",
+      "1280px"
+    ],
+    "semantic_html": "required",
+    "keyboard_access": "required",
+    "visible_focus": "required",
+    "contrast": "manual follow-up",
+    "reduced_motion": "implemented",
+    "loading_empty_error_states": "defined",
+    "automated_checks": [
+      "lint",
+      "typecheck",
+      "node-unit",
+      "playwright",
+      "repository-validation",
+      "CodeQL",
+      "secret-scan"
+    ],
+    "security_scope": "authorized-repository-only",
+    "security_review": "no external scripts, import validation, textContent rendering, HTTPS links"
+  },
+  "decisions": [
+    {
+      "decision": "Keep metadata-only discovery and comparison",
+      "reason": "Third-party preview code may be proprietary or unsafe to execute."
+    },
+    {
+      "decision": "Use browser local storage and explicit JSON import/export without cloud account",
+      "reason": "Zero-cost, private, no backend/dependency needed."
+    },
+    {
+      "decision": "Group only known React Bits and HyperUI variants",
+      "reason": "Avoid falsely deduplicating unrelated cards."
+    }
+  ],
+  "defects": [],
+  "handoff": {
+    "current_stage": "feature-implementation-under-review",
+    "next_stage": "run CI and confirm mobile/desktop regression coverage",
+    "blocked_by": [],
+    "last_updated_by": "ChatGPT GitHub connector"
+  }
+}
