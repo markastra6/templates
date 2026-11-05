@@ -16,7 +16,7 @@ function refresh() {
   sources.forEach(el => { el.hidden = !sourceMatches.includes(el); });
   components.forEach(el => { el.hidden = !componentMatches.includes(el) || componentMatches.indexOf(el) >= limit; });
   more.hidden = componentMatches.length <= limit;
-  status.textContent = `${sourceMatches.length} sources · ${componentMatches.length} component references`;
+  status.textContent = `${sourceMatches.length} sources · ${componentMatches.length.toLocaleString("en-US")} component references`;
 }
 query.addEventListener("input", () => { limit = 72; refresh(); });
 source.addEventListener("change", () => { limit = 72; refresh(); });
