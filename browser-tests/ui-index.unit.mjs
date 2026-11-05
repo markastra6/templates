@@ -32,14 +32,18 @@ test("all registry snapshots contain unique, well-formed metadata and no source 
     }
     count += index.count;
   }
-  assert.equal(count, 3776);
+  assert.equal(count, 9403);
 });
 test("site build includes explorer and source references", () => {
   execFileSync(process.execPath, ["scripts/build-site.mjs"]);
   const html = readFileSync("dist/site/ui-explorer.html","utf8");
-  assert.match(html, /3,776 public component references/);
+  assert.match(html, /9,403 public component references/);
   assert.match(html, /React Bits/);
   assert.match(html, /Motion Primitives/);
   assert.match(html, /Dribbble/);
   assert.match(readFileSync("dist/site/index.html","utf8"), /ui-explorer\.html/);
+  const index = readJSON("dist/site/ui-index.json");
+  assert.equal(index.count, 9403);
+  assert.ok(html.length < 120000, "Explorer HTML should remain compact");
+
 });
