@@ -40,6 +40,12 @@ The [source explorer](site/ui-explorer.js) now supports source and component-typ
 
 The explorer deliberately **does not execute or embed third-party components**; it links to their original websites or GitHub source for licensing, compatibility and preview review. See the [workspace instructions](docs/references/UI-WORKSPACE.md) and [source provenance](docs/references/UI-COMPONENT-INDEX.md). Implementation decisions and quality gates are recorded in the [feature handoff contract](docs/contracts/features/ui-discovery-workspace.json).
 
+## Design Token Studio
+
+The [Design Token Studio](site/token-studio.html) is an original, browser-local theme editor included in the static-site build. It provides three starting palettes (Forest, Ocean, Night), editable seven-color design tokens, typography, spacing and corner radius, and responsive desktop/tablet/mobile previews of a deliberately non-functional sample dashboard. It calculates WCAG normal-text contrast for both body and primary-action color pairs and explicitly warns when a combination falls below 4.5:1.
+
+Export reusable CSS custom properties or validated JSON, and import JSON themes (maximum 16 KiB). Themes are stored locally when browser storage is available; nothing is sent to a server. The studio does not embed or execute indexed third-party components. See the [token-studio reference](docs/references/DESIGN-TOKEN-STUDIO.md) and [feature contract](docs/contracts/features/design-token-studio.json).
+
 ## Run the starter
 
 The example website searches the tool registry. From the repository root, run the following with Node.js 24 and Python 3, then open the address printed by the local server.

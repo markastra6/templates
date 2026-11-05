@@ -7,8 +7,8 @@
   "type": "module",
   "name": "templates-directory-starter",
   "scripts": {
-    "lint": "node --check site/directory.js && node --check site/ui-explorer.js && node --check site/ui-tools.js && node --check scripts/build-site.mjs",
-    "typecheck": "tsc --allowJs --checkJs --noEmit --target es2022 site/directory.js site/ui-explorer.js site/ui-tools.js",
+    "lint": "node --check site/directory.js && node --check site/ui-explorer.js && node --check site/ui-tools.js && node --check scripts/build-site.mjs && node --check site/token-studio.js && node --check site/ui-tokens.js",
+    "typecheck": "tsc --allowJs --checkJs --noEmit --target es2022 site/directory.js site/ui-explorer.js site/ui-tools.js site/token-studio.js site/ui-tokens.js",
     "build": "node scripts/build-site.mjs",
     "test": "node --test browser-tests/*.unit.mjs"
   },
