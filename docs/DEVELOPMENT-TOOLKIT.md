@@ -173,7 +173,7 @@ Once the scaffold exists:
 
 ## 8. Expanded ecosystem: choose specialists by need
 
-The repository's [expanded ecosystem catalogue](references/EXPANDED-WEB-TOOL-ECOSYSTEM.md) and [95-entry tool registry](contracts/toolchain.registry.json) cover more than the original design/motion stack. The 80 additional projects are reviewed candidates, not automatically installed dependencies. Read the catalogue before adding any of them.
+The repository's [expanded ecosystem catalogue](references/EXPANDED-WEB-TOOL-ECOSYSTEM.md) and [108-entry tool registry](contracts/toolchain.registry.json) cover more than the original design/motion stack. The 93 additional projects are reviewed candidates, not automatically installed dependencies. Read the catalogue before adding any of them.
 
 ### Skills and agent capabilities
 

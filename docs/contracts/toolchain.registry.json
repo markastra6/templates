@@ -2571,13 +2571,325 @@
       "selection_rule": "Use offline mode for local paths. Enable external checks only when network access is appropriate.",
       "cost_boundary": "Run locally without a subscription or paid API.",
       "license_note": "Upstream repository license: Apache-2.0. Check separate rights for input assets and bundled third-party components."
+    },
+    {
+      "id": "flutter",
+      "name": "Flutter",
+      "organ": "app-implementation",
+      "kind": "framework",
+      "repo_url": "https://github.com/flutter/flutter",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Create a single Dart UI for Windows, macOS and Android.",
+      "consumes": [
+        "platform-requirements"
+      ],
+      "produces": [
+        "prototype-app"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Start here when mobile and desktop share workflows. Prototype the most platform-specific plugin first.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: BSD-3-Clause. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "tauri",
+      "name": "Tauri",
+      "organ": "app-implementation",
+      "kind": "framework",
+      "repo_url": "https://github.com/tauri-apps/tauri",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Package a web frontend with native platform integration.",
+      "consumes": [
+        "platform-requirements"
+      ],
+      "produces": [
+        "prototype-app"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Choose when reusing an existing web UI. Test system WebView differences and grant only required capabilities.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: MIT or Apache-2.0. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "avalonia",
+      "name": "Avalonia",
+      "organ": "app-implementation",
+      "kind": "framework",
+      "repo_url": "https://github.com/AvaloniaUI/Avalonia",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Build desktop and Android interfaces in C# and XAML.",
+      "consumes": [
+        "platform-requirements"
+      ],
+      "produces": [
+        "prototype-app"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Choose for a .NET team. Verify touch layout, keyboard navigation and the target runtime on each device.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: MIT. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "compose-multiplatform",
+      "name": "Compose Multiplatform",
+      "organ": "app-implementation",
+      "kind": "framework",
+      "repo_url": "https://github.com/JetBrains/compose-multiplatform",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Share declarative Kotlin screens between Android and desktop.",
+      "consumes": [
+        "platform-requirements"
+      ],
+      "produces": [
+        "prototype-app"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Choose when Kotlin is already in use. Keep platform file pickers and application lifecycle handling behind small interfaces.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: Apache-2.0. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "flutter-samples",
+      "name": "Flutter samples",
+      "organ": "interface-design",
+      "kind": "design-reference",
+      "repo_url": "https://github.com/flutter/samples",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Study runnable examples of navigation, state and adaptive layouts.",
+      "consumes": [
+        "screen-brief"
+      ],
+      "produces": [
+        "reviewed-screen-design"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Copy the smallest example that matches the feature and review its dependencies and asset licenses.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: BSD-style license in LICENSE. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "now-in-android",
+      "name": "Now in Android",
+      "organ": "interface-design",
+      "kind": "design-reference",
+      "repo_url": "https://github.com/android/nowinandroid",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Study an Android reference app built with Kotlin and Compose.",
+      "consumes": [
+        "screen-brief"
+      ],
+      "produces": [
+        "reviewed-screen-design"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use selected patterns for adaptive layouts, theming and offline data. Start with its demo data.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: Apache-2.0. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "windows-community-toolkit",
+      "name": "Windows Community Toolkit",
+      "organ": "interface-design",
+      "kind": "design-reference",
+      "repo_url": "https://github.com/CommunityToolkit/Windows",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Explore Windows controls and sample usage for a native Windows interface.",
+      "consumes": [
+        "screen-brief"
+      ],
+      "produces": [
+        "reviewed-screen-design"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use when a Windows-specific feature benefits from a native control. Check keyboard and high-contrast behavior.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: MIT. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "swiftui-food-truck",
+      "name": "Food Truck (SwiftUI sample)",
+      "organ": "interface-design",
+      "kind": "design-reference",
+      "repo_url": "https://github.com/apple/sample-food-truck",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Explore a working SwiftUI sample with navigation and platform-adaptive views.",
+      "consumes": [
+        "screen-brief"
+      ],
+      "produces": [
+        "reviewed-screen-design"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use the macOS target as a UI reference. Review the sample license and the requirements for individual features.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: MIT. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "material-color-utilities",
+      "name": "Material Color Utilities",
+      "organ": "interface-design",
+      "kind": "design-reference",
+      "repo_url": "https://github.com/material-foundation/material-color-utilities",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Generate coordinated light and dark color roles from a seed color.",
+      "consumes": [
+        "screen-brief"
+      ],
+      "produces": [
+        "reviewed-screen-design"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Use when building a theme. Check contrast on actual surfaces, including disabled, focused and error states.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: Apache-2.0. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "accessibility-insights-windows",
+      "name": "Accessibility Insights for Windows",
+      "organ": "release-qa",
+      "kind": "audit-tool",
+      "repo_url": "https://github.com/microsoft/accessibility-insights-windows",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Inspect Windows UI Automation names, roles and focus order.",
+      "consumes": [
+        "candidate-build"
+      ],
+      "produces": [
+        "audit-evidence"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Run on the installed Windows app and follow the automated checks with a keyboard-only task.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: MIT. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "maestro",
+      "name": "Maestro",
+      "organ": "release-qa",
+      "kind": "audit-tool",
+      "repo_url": "https://github.com/mobile-dev-inc/Maestro",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Replay an Android user journey from a readable YAML flow.",
+      "consumes": [
+        "candidate-build"
+      ],
+      "produces": [
+        "audit-evidence"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Run the local CLI with an emulator or attached device. Keep hosted device services optional.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: Apache-2.0. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "mobsf",
+      "name": "MobSF",
+      "organ": "release-qa",
+      "kind": "audit-tool",
+      "repo_url": "https://github.com/MobSF/Mobile-Security-Framework-MobSF",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Inspect an Android package for risky permissions, manifest settings and bundled code.",
+      "consumes": [
+        "candidate-build"
+      ],
+      "produces": [
+        "audit-evidence"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Scan your own release candidate locally. Triage findings against actual app behavior before release.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: GPL-3.0. Review notices for copied files, artwork and dependencies."
+    },
+    {
+      "id": "perfetto",
+      "name": "Perfetto",
+      "organ": "release-qa",
+      "kind": "audit-tool",
+      "repo_url": "https://github.com/google/perfetto",
+      "activation": "feature-requirement-matched",
+      "repo_state": "reviewed-candidate-not-installed",
+      "client_state": "requires-project-stack-or-compatible-runtime",
+      "responsibility": "Trace Android startup, rendering stalls and scheduling on a device.",
+      "consumes": [
+        "candidate-build"
+      ],
+      "produces": [
+        "audit-evidence"
+      ],
+      "handoff_to": [
+        "implementation",
+        "qa"
+      ],
+      "selection_rule": "Capture a short local trace around a slow interaction and compare the same action after the change.",
+      "cost_boundary": "Use local tooling and available hardware. Exclude paid hosting, device farms, signing services and store distribution from the free baseline.",
+      "license_note": "Upstream source: Apache-2.0. Review notices for copied files, artwork and dependencies."
     }
   ],
   "research_date": "2026-11-05",
   "coverage_note": "Curated public GitHub scan, not an exhaustive enumeration of all GitHub repositories. Candidates are not automatically installed or connected. Each entry distinguishes repository review from active client/runtime availability.",
   "selection_policy": "Use capability-triggered selection, not tool accumulation. Verify current releases, component/package license, third-party notices, dependencies, permissions, client compatibility and actual cost boundary before activating a candidate.",
   "core_tool_count": 15,
-  "reviewed_candidate_count": 80,
-  "total_tool_records": 95,
+  "reviewed_candidate_count": 93,
+  "total_tool_records": 108,
   "candidate_status_policy": "Reviewed candidates are research references, not installed dependencies, active MCP servers or live connections. Activate only against a feature requirement and after checking package license, environment, accessibility, security and cost."
 }
