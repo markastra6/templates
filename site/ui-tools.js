@@ -10,6 +10,9 @@ export function variantFamily(item) {
   return item.id;
 }
 
+/** @param {Array<any>} items
+ * @param {{query?:string,source?:string,kind?:string,favoritesOnly?:boolean,favoriteIDs?:Set<string>,groupVariants?:boolean}} [options]
+ */
 export function searchComponents(items, options = {}) {
   const words = String(options.query || "").trim().toLocaleLowerCase().split(/\s+/u).filter(Boolean);
   const favoriteIDs = options.favoriteIDs || new Set();
