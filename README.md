@@ -19,7 +19,7 @@ This project has a strict zero-spend requirement. Use free/open-source tools, fr
 - Quality: Markdown lint and optional Node.js dependency audit, lint, typecheck, test and build jobs.
 - Security: CodeQL for JavaScript/TypeScript when present, Gitleaks history scans and npm audit when a Node.js project exists.
 - Browser and UX: Chromium browser tests, manual Pa11y accessibility audit and manual Lighthouse audit.
-- Deployment: manual GitHub Pages workflow for the generated static directory in `dist/site/`.
+- Deployment: GitHub Pages workflow builds and publishes `dist/site/` on every push to `main`, with optional manual dispatch. Requires one-time Pages source configuration in repository settings.
 - Dependency maintenance: weekly Dependabot updates for GitHub Actions; npm updates cover the starter and local toolkit.
 
 ## Mobile-first workflow
@@ -63,6 +63,15 @@ The [Component Lab](site/component-lab.html) contains six repository-owned examp
 Switch between desktop, tablet and mobile frame sizes, edit bounded example text, select Forest/Ocean/Night or import the locally saved Design Token Studio theme, and inspect the generated source. Export a standalone HTML document that works without a network connection, or editable JSON that can be imported again. The iframe is recreated when editing changes; interactive demo state is not persisted. The standalone form is a non-network demo and never submits an email address. These are starter components, not a general React source-code runner or production application backend.
 
 See [Component Lab reference](docs/references/COMPONENT-LAB.md) and its [feature contract](docs/contracts/features/original-component-lab.json).
+
+## Hosted workbench (no Node.js needed on your computer)
+
+This public repository can host the complete static workbench through GitHub Pages. In repository **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions** once. Thereafter, the [Pages workflow](.github/workflows/pages.yml) automatically builds and deploys the site whenever changes land on `main`; it also supports a manual **Run workflow** action. Deployment must succeed before these URLs become available:
+
+- Workbench: `https://markastra6.github.io/templates/`
+- Component Lab: `https://markastra6.github.io/templates/component-lab.html`
+
+No local Node.js, npm or Python web server is needed for visitors. To check a failure, open **Actions → Deploy static site to GitHub Pages** and inspect the latest deployment log. If Pages has not been enabled in settings, the repository owner must enable that setting; a workflow cannot guarantee access on its own.
 
 ## Run the starter
 
