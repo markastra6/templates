@@ -36,3 +36,23 @@ test("Import rejects malformed, oversized or non-string IDs and drops unknown ID
   assert.throws(()=>parseFavorites({version:1,favorites:[123]},known),/Invalid/);
   assert.throws(()=>parseFavorites({version:1,favorites:[items[0].id,items[1].id]},known,1), /limit/);
 });
+
+test("Category and dependency facets restrict results without mutating source entries", () => {
+  const richer = items.map(item => ({ ...item, name: item.slug, dependencies: item.source === "magic-ui" ? ["motion"] : [] }));
+  const groups = { "react-bits": "motion", "magic-ui": "motion", hyperui: "components" };
+  assert.deepEqual(searchComponents(richer, {group: "components", sourceGroups: groups}).map(x => x.source), ["hyperui","hyperui"]);
+  assert.deepEqual(searchComponents(richer, {hasDependencies: true}).map(x => x.id), ["magic-ui:card"]);
+  assert.equal(searchComponents(richer, {group:"motion",sourceGroups:groups,hasDependencies:true}).length,1);
+  assert.equal(searchComponents(richer,{source:"hyperui",group:"motion",sourceGroups:groups}).length,0);
+});
+
+test("Ranking is deterministic and prioritizes exact name over description matches", () => {
+  const data = [
+    {id:"b",name:"Cards collection",slug:"cards-collection",source:"demo",kind:"block",search:"cards collection card"},
+    {id:"c",name:"Card",slug:"card",source:"demo",kind:"block",search:"card"},
+    {id:"a",name:"Special layout",slug:"layout",source:"demo",kind:"block",search:"special layout card"}
+  ];
+  assert.deepEqual(searchComponents(data,{query:"card",sort:"relevance"}).map(x=>x.id),["c","b","a"]);
+  assert.deepEqual(searchComponents(data,{query:"card",sort:"name"}).map(x=>x.id),["c","b","a"]);
+  assert.deepEqual(data.map(x=>x.id),["b","c","a"]);
+});
