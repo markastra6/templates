@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free local design token studio: edit colors, radius, typography and density with accessible previews and CSS export.">
+  <title>Design Token Studio</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./token-studio.css">
+  <script type="module" src="./token-studio.js"></script>
+</head>
+<body>
+<main class="studio">
+  <nav aria-label="Workspace navigation"><a href="./index.html">Creation directory</a> · <a href="./ui-explorer.html">Component explorer</a></nav>
+  <header class="studio-header">
+    <h1>Design Token Studio</h1>
+    <p>Create a coherent, portable theme from reusable design tokens. Preview original UI examples, check text contrast and export CSS or JSON. Everything runs locally.</p>
+  </header>
+  <div class="studio-layout">
+    <section class="studio-controls" aria-labelledby="studio-controls-title">
+      <h2 id="studio-controls-title">Theme settings</h2>
+      <div class="studio-field">
+        <label for="studio-preset">Starting preset</label>
+        <select id="studio-preset">
+          <option value="forest">Forest</option>
+          <option value="ocean">Ocean</option>
+          <option value="night">Night</option>
+          <option value="custom" disabled>Custom edits</option>
+        </select>
+      </div>
+      <div class="studio-field">
+        <label for="studio-name">Theme name</label>
+        <input id="studio-name" type="text" maxlength="48" required value="Forest" autocomplete="off">
+      </div>
+      <fieldset class="palette-fieldset">
+        <legend>Colors</legend>
+        <div class="palette-grid">
+          <label for="studio-canvas">Canvas <input type="color" id="studio-canvas" data-color="canvas" value="#f1f6f2"></label>
+          <label for="studio-surface">Surface <input type="color" id="studio-surface" data-color="surface" value="#ffffff"></label>
+          <label for="studio-text">Text <input type="color" id="studio-text" data-color="text" value="#183428"></label>
+          <label for="studio-muted">Secondary text <input type="color" id="studio-muted" data-color="muted" value="#496354"></label>
+          <label for="studio-accent">Accent <input type="color" id="studio-accent" data-color="accent" value="#17694e"></label>
+          <label for="studio-onAccent">Accent text <input type="color" id="studio-onAccent" data-color="onAccent" value="#ffffff"></label>
+          <label for="studio-border">Border <input type="color" id="studio-border" data-color="border" value="#d2e1d6"></label>
+        </div>
+      </fieldset>
+      <div class="studio-field">
+        <label for="studio-font">Typography</label>
+        <select id="studio-font">
+          <option value="system">System sans-serif</option>
+          <option value="serif">Serif</option>
+          <option value="mono">Monospace</option>
+        </select>
+      </div>
+      <div class="studio-field">
+        <label for="studio-radius">Corner radius: <output id="studio-radius-value">12 px</output></label>
+        <input type="range" id="studio-radius" min="0" max="32" value="12" step="1">
+      </div>
+      <div class="studio-field">
+        <label for="studio-density">Spacing scale: <output id="studio-density-value">1.00×</output></label>
+        <input type="range" id="studio-density" min="0.75" max="1.5" value="1" step="0.05">
+      </div>
+      <div class="studio-controls-actions">
+        <button type="button" id="studio-reset">Reset preset</button>
+        <button type="button" id="studio-export-css">Export CSS</button>
+        <button type="button" id="studio-export-json">Export JSON</button>
+        <label for="studio-import">Import theme JSON</label>
+        <input type="file" id="studio-import" accept=".json,application/json">
+      </div>
+      <p id="studio-status" role="status" aria-live="polite">Choose a preset or edit any token.</p>
+    </section>
+    <section class="studio-live" aria-labelledby="studio-preview-title">
+      <div class="studio-live-heading">
+        <h2 id="studio-preview-title">Responsive preview</h2>
+        <div class="studio-viewports" role="group" aria-label="Preview viewport">
+          <button type="button" data-width="desktop" aria-pressed="true">Desktop</button>
+          <button type="button" data-width="tablet" aria-pressed="false">Tablet</button>
+          <button type="button" data-width="mobile" aria-pressed="false">Mobile</button>
+        </div>
+      </div>
+      <p class="studio-explain">Original demonstration components only. This is a design preview, not a connected analytics application.</p>
+      <div class="studio-frame" id="studio-frame" data-width="desktop">
+        <div class="preview-app" id="studio-preview">
+          <div class="preview-shell">
+            <aside class="preview-sidebar" aria-label="Example navigation">
+              <div class="preview-logo">Northstar<span class="preview-logo-dot">.</span></div>
+              <div class="preview-nav-selected">Overview</div>
+              <div>Reports</div><div>Team</div><div>Settings</div>
+            </aside>
+            <div class="preview-content">
+              <div class="preview-topbar"><span>Workspace / Overview</span><span class="preview-avatar" aria-label="Example avatar">N</span></div>
+              <div class="preview-heading"><div><p class="preview-eyebrow">PRODUCT ANALYTICS</p><h3>Good morning.</h3><p>Here is your weekly performance at a glance.</p></div><span class="preview-main-action">+ New report</span></div>
+              <div class="preview-stats">
+                <div class="preview-stat"><span>Revenue</span><strong>$24,890</strong><small>+12.8% this month</small></div>
+                <div class="preview-stat"><span>Active users</span><strong>8,482</strong><small>+4.3% this month</small></div>
+                <div class="preview-stat"><span>Conversion</span><strong>4.72%</strong><small>+1.2% this month</small></div>
+              </div>
+              <div class="preview-panels">
+                <div class="preview-panel">
+                  <div class="preview-panel-heading"><strong>Performance trend</strong><span>Last 7 days</span></div>
+                  <svg viewBox="0 0 470 190" width="100%" role="img" aria-label="Example trend chart rising through the week">
+                    <path class="chart-grid" d="M0 30 H470 M0 90 H470 M0 150 H470" fill="none"/>
+                    <path class="chart-shade" d="M0 150 L67 123 L134 138 L201 78 L268 99 L335 60 L402 80 L470 30 L470 185 L0 185 Z"/>
+                    <path class="chart-line" d="M0 150 L67 123 L134 138 L201 78 L268 99 L335 60 L402 80 L470 30" fill="none"/>
+                  </svg>
+                  <div class="preview-days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+                </div>
+                <div class="preview-panel preview-side-panel"><strong>Recent activity</strong><p><span class="activity-dot"></span> New project created</p><p><span class="activity-dot"></span> Monthly report shared</p><p><span class="activity-dot"></span> Settings updated</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="studio-contrast" aria-labelledby="studio-contrast-heading">
+        <h3 id="studio-contrast-heading">Contrast checks</h3>
+        <p id="contrast-body">Checking body text…</p>
+        <p id="contrast-action">Checking accent button…</p>
+        <p class="studio-explain">WCAG AA normal text requires at least 4.5:1. These checks cover the two displayed color pairs only.</p>
+      </section>
+    </section>
+  </div>
+  <footer class="studio-footer">No external component source or personal data is sent to a server. Export your work before clearing browser storage.</footer>
+</main>
+</body>
+</html>
