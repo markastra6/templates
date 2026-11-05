@@ -16,11 +16,12 @@ openssl req -x509 -newkey rsa:2048 -nodes -days 1 -subj '/CN=audit-fixture.examp
 # Limit the unprivileged TLS fixture to the capability needed to bind port 443.
 sudo systemd-run --unit=templates-test-tls --property="User=$(id -un)" \
   --property=AmbientCapabilities=CAP_NET_BIND_SERVICE \
-  "$(command -v python)" "$PWD/tests/fixture_https.py" "$scratch/ca" "$scratch/key"
+  /usr/bin/python3 "$PWD/tests/fixture_https.py" "$scratch/ca" "$scratch/key"
 trap 'sudo systemctl stop templates-test-tls || true; cleanup' EXIT
 for _ in {1..50}; do
   if curl --noproxy '*' --silent --fail --cacert "$scratch/ca" https://audit-fixture.example/ >/dev/null; then break; fi
   sleep .1
 done
+curl --noproxy '*' --silent --show-error --fail --cacert "$scratch/ca" https://audit-fixture.example/ || { sudo journalctl -u templates-test-tls --no-pager; exit 1; }
 AUDIT_CA="$scratch/ca" AUDIT_HOST=audit-fixture.example TARGET_URL=https://audit-fixture.example/ \
   bash scripts/run_isolated_audit.sh probe

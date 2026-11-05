@@ -18,7 +18,7 @@ This project has a strict zero-spend requirement. Use free/open-source tools, fr
 - Validation: repository validation checks MCP JSON, environment placeholders, `.gitignore`, local Markdown links, audit-target URL safety tests, installer syntax, GitHub Actions workflow syntax and full-diff whitespace on every push/pull request.
 - Quality: Markdown lint and optional Node.js dependency audit, lint, typecheck, test and build jobs.
 - Security: CodeQL for JavaScript/TypeScript when present, Gitleaks history scans and npm audit when a Node.js project exists.
-- Browser and UX: conditional Playwright tests, manual Pa11y accessibility audit and manual Lighthouse audit.
+- Browser and UX: Chromium browser tests, manual Pa11y accessibility audit and manual Lighthouse audit.
 - Deployment: manual GitHub Pages workflow for the generated static directory in `dist/site/`.
 - Dependency maintenance: weekly Dependabot updates for GitHub Actions; npm updates cover the starter and local toolkit.
 

@@ -63,7 +63,9 @@ jobs:
       - name: Audit dependencies
         if: steps.detect.outputs.present == 'true'
         run: npm audit --audit-level=high
-      - name: Run available project checks
+      - name: Audit the optional agent tools lockfile
+        run: npm audit --prefix tools/agent --audit-level=high
+      - name: Run required project checks
         if: steps.detect.outputs.present == 'true'
         run: |
           npm run lint

@@ -2,7 +2,7 @@
 
 ## Project state
 
-This repository is being prepared as a website project. Do not assume a framework, package manager, or application structure until the project scaffold is selected and committed.
+The example website is a dependency-free static tool directory built from the registry, with npm tooling for CI. Choose a native framework only when a separate app brief requires it.
 
 ## Zero-cost requirement
 

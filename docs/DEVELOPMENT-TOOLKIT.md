@@ -99,17 +99,17 @@ The repository contains GitHub Actions workflows for:
 | Workflow | Trigger | Purpose | Current state |
 |---|---|---|---|
 | Repository validation | Every push, pull request, manual | Checks MCP JSON, env placeholders, `.gitignore`, local Markdown links, public audit URL regression tests, installer syntax, GitHub Actions syntax via actionlint and full-diff whitespace | Runs now; actionlint is checksum-verified before use |
-| Quality checks | Push, pull request, manual | Markdown lint; optional npm dependency audit, lint, typecheck, test and build | Markdown runs now; Node.js checks wait for a package manifest and lockfile |
-| CodeQL | Push, pull request, weekly schedule | Static security analysis for JavaScript/TypeScript | Skips until JS/TS source files exist |
+| Quality checks | Push, pull request, manual | Markdown lint; optional npm dependency audit, lint, typecheck, test and build | Runs on the directory starter |
+| CodeQL | Push, pull request, weekly schedule | Static security analysis for Python and JavaScript/TypeScript | Both languages have tracked source |
 | Secret scan | Push, pull request, weekly schedule | Gitleaks scans Git history for accidentally committed credentials | Runs now |
-| Browser tests | Push, pull request, manual | Playwright Chromium tests | Skips until package manifest, lockfile and Playwright config exist |
+| Browser tests | Push, pull request, manual | Playwright Chromium tests | Runs the directory search and keyboard tests at desktop and phone widths |
 | Accessibility audit | Manual | Pa11y CI audit against a supplied public URL | Runs when a target URL is provided |
 | Lighthouse audit | Manual | Performance, accessibility, best-practices and SEO report | Runs when a target URL is provided; report stored as a short-retention artifact |
-| GitHub Pages deploy | Manual | Deploys the `site/` directory | Waits for `site/index.html` and Pages configuration |
+| GitHub Pages deploy | Manual | Builds the directory and deploys `dist/site/` | Requires Pages configuration |
 
 The repository also has a Python-based validator at `scripts/validate_repo.py`; it checks the repository-owned MCP and environment configuration, not whether remote MCP endpoints are reachable. The workflow separately runs actionlint against every GitHub Actions workflow, downloading a pinned release and verifying its SHA-256 checksum before execution. Its checkout disables persisted Git credentials. Keep this validation workflow and script when editing `.mcp.json`, `.env.example`, `.gitignore`, or Markdown links.
 
-The public repository uses standard GitHub-hosted runners. The workflows do not call paid AI APIs or paid external scanning services. Lighthouse and accessibility audits accept only public HTTPS targets: a standard-library Python validator rejects credentials, local/reserved hostnames, non-default ports, and DNS answers containing non-global IP addresses. Its regression tests run in repository validation. This reduces common SSRF mistakes but is not a network sandbox; only submit sites you trust and control. Do not put credentials or private URLs into workflow inputs.
+The public repository uses standard GitHub-hosted runners. The workflows do not call paid AI APIs or paid external scanning services. Lighthouse and accessibility audits accept only public HTTPS targets: a standard-library Python validator rejects credentials, local/reserved hostnames, non-default ports, and DNS answers containing non-global IP addresses. Its regression tests run in repository validation. The hosted browser runs inside a separate Linux network namespace with a pinned TLS relay for the authorized hostname. Use a staging site you control. Do not put credentials or private URLs into workflow inputs.
 
 ### Running manual audits from GitHub on mobile
 
@@ -123,11 +123,11 @@ These manual audits become useful once the site is deployed.
 
 ### GitHub Pages setup
 
-When the website is ready, open **Settings â†’ Pages** and set the build/deployment source to **GitHub Actions**. The included deployment workflow expects the built static site in `site/` and an `index.html` at its root. No custom domain is required.
+When the website is ready, open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. The deployment workflow generates `dist/site/index.html` from the registry. No custom domain is required.
 
 ### Dependency updates
 
-Dependabot currently checks GitHub Actions weekly. The npm updater is intentionally disabled because this repository has no `package.json`; leaving it enabled produces a failed update job (`/package.json not found`). Add the appropriate Dependabot ecosystem only after selecting the application's package manager and committing its manifest and lockfile. The Node.js CI job runs `npm audit --audit-level=high` only when an npm project and `package-lock.json` are present.
+Dependabot checks Actions and both npm projects weekly. CI runs locked installs and rejects high-severity advisories.
 
 ## 5. Strix without API spending
 
@@ -245,69 +245,69 @@ Supabase and Appwrite are backend alternatives. Umami is an optional privacy-ori
 
 PocketBase is deliberately excluded from the recommended candidate list because its upstream repository was archived on October 26, 2026. A tool being open source is not enough; active maintenance and acceptable risk still matter.
 
-## 1.3.0 â€” Application builders, interactive UI and dynamic layout
+## 1.3.0 — Application builders, interactive UI and dynamic layout
 
 The latest expansion adds 30 candidates specifically for building apps, editable pages, interactive UI, visual flows, responsive workspaces and dynamic CSS. These tools solve different problems and should not be stacked indiscriminately.
 
 ### Visual webpage and page-authoring systems
 
-- **Puck** â€” React-native visual page editor. Use when the product itself needs editable page composition inside a React app.
-- **GrapesJS** â€” framework-agnostic HTML/CSS drag-and-drop builder. Use for template/CMS-style editing; inspect generated markup and plugin licenses.
-- **Webstudio** â€” full visual website builder. AGPL-3.0; review deployment and modification obligations before self-hosting.
-- **Onlook** â€” visual editing of real codebases. Core source is Apache-2.0; AI features may need external model services and must not silently create API spend.
+- **Puck** — React-native visual page editor. Use when the product itself needs editable page composition inside a React app.
+- **GrapesJS** — framework-agnostic HTML/CSS drag-and-drop builder. Use for template/CMS-style editing; inspect generated markup and plugin licenses.
+- **Webstudio** — full visual website builder. AGPL-3.0; review deployment and modification obligations before self-hosting.
+- **Onlook** — visual editing of real codebases. Core source is Apache-2.0; AI features may need external model services and must not silently create API spend.
 
 ### Visual app builders and code-first admin frameworks
 
-- **Appsmith** â€” low-code internal tools, dashboards and data-backed admin panels.
-- **Budibase** â€” internal business apps and operations workflows. Overall GPLv3 guidance; check each package's license.
-- **ToolJet** â€” low-code internal apps and workflows. AGPL-3.0.
-- **Refine** â€” code-first React framework for custom admin/B2B applications.
-- **React Admin** â€” data-centric CRUD interfaces over REST/GraphQL.
+- **Appsmith** — low-code internal tools, dashboards and data-backed admin panels.
+- **Budibase** — internal business apps and operations workflows. Overall GPLv3 guidance; check each package's license.
+- **ToolJet** — low-code internal apps and workflows. AGPL-3.0.
+- **Refine** — code-first React framework for custom admin/B2B applications.
+- **React Admin** — data-centric CRUD interfaces over REST/GraphQL.
 
 Appsmith/Budibase/ToolJet are visual low-code builders; Refine/React Admin are code-first frameworks. Choose one architecture based on product requirements. Self-hosting still needs infrastructure; managed tiers can cost money.
 
 ### Interactive component systems and primitives
 
-- **Magic UI** â€” animated React/Tailwind component source.
-- **daisyUI** â€” semantic Tailwind components and theme layer.
-- **Flowbite React** â€” Tailwind-based React components; distinguish free core from separately licensed Pro assets.
-- **Chakra UI** and **MUI** â€” alternative full React component/design systems.
-- **Headless UI** â€” unstyled accessible interactive primitives.
-- **Floating UI** â€” low-level tooltip, popover, menu and anchored-element positioning engine.
+- **Magic UI** — animated React/Tailwind component source.
+- **daisyUI** — semantic Tailwind components and theme layer.
+- **Flowbite React** — Tailwind-based React components; distinguish free core from separately licensed Pro assets.
+- **Chakra UI** and **MUI** — alternative full React component/design systems.
+- **Headless UI** — unstyled accessible interactive primitives.
+- **Floating UI** — low-level tooltip, popover, menu and anchored-element positioning engine.
 
 Do not combine multiple global design systems. Keep shadcn as the existing baseline unless a feature has a documented reason to choose another.
 
 ### Flow editors, diagrams and canvas interfaces
 
-- **React Flow / Svelte Flow** â€” interactive node graphs and workflow designers.
-- **Rete.js** â€” programmable visual programming and dataflow editors.
-- **Excalidraw** â€” freeform diagramming and whiteboard canvas.
+- **React Flow / Svelte Flow** — interactive node graphs and workflow designers.
+- **Rete.js** — programmable visual programming and dataflow editors.
+- **Excalidraw** — freeform diagramming and whiteboard canvas.
 
 Use structured node editors for workflows and Excalidraw for freeform sketching; these are not interchangeable.
 
 ### Dynamic layouts and drag/drop
 
-- **React Grid Layout** â€” draggable/resizable dashboard widget grids with responsive breakpoints.
-- **dnd-kit** â€” sortable, nested and custom drag/drop interactions.
-- **FormKit Drag and Drop** â€” lighter framework-agnostic drag/drop alternative.
-- **React Resizable Panels** â€” resizable split panes and workspace layouts.
+- **React Grid Layout** — draggable/resizable dashboard widget grids with responsive breakpoints.
+- **dnd-kit** — sortable, nested and custom drag/drop interactions.
+- **FormKit Drag and Drop** — lighter framework-agnostic drag/drop alternative.
+- **React Resizable Panels** — resizable split panes and workspace layouts.
 
 Every drag interaction needs keyboard alternatives, touch support, responsive behavior and an explicit persistence policy.
 
 ### Dynamic CSS and alternative motion models
 
-- **Open Props** â€” CSS custom properties for design tokens, easing, spacing, colors and typography. Map selected values into the existing project token contract.
-- **CSS Doodle** â€” generative CSS visuals and backgrounds. Keep effects decorative, performant and accessible.
-- **React Spring** â€” spring-physics animation for React.
-- **Anime.js** â€” framework-agnostic property/SVG/timeline animation.
+- **Open Props** — CSS custom properties for design tokens, easing, spacing, colors and typography. Map selected values into the existing project token contract.
+- **CSS Doodle** — generative CSS visuals and backgrounds. Keep effects decorative, performant and accessible.
+- **React Spring** — spring-physics animation for React.
+- **Anime.js** — framework-agnostic property/SVG/timeline animation.
 
 React Spring and Anime.js are alternatives, not additional defaults. Maintain one animation owner per DOM target.
 
 ### Application framework alternatives
 
-- **Next.js** â€” React full-stack framework.
-- **SvelteKit** â€” Svelte full-stack framework.
-- **Nuxt** â€” Vue full-stack framework.
+- **Next.js** — React full-stack framework.
+- **SvelteKit** — Svelte full-stack framework.
+- **Nuxt** — Vue full-stack framework.
 
 These are mutually exclusive app-shell choices for a given application. The repository still has no selected framework.
 
