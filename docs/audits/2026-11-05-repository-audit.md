@@ -1,8 +1,8 @@
 # Repository-wide technical and product audit
 
-**Repository:** [markastra6/templates](https://github.com/markastra6/templates)  
-**Audit date:** 2026-11-05  
-**Audited branch/commit:** `main` at `885b82c0669889ed0c55b06f6654e966f043338d`  
+**Repository:** [markastra6/templates](https://github.com/markastra6/templates)
+**Audit date:** 2026-11-05
+**Audited branch/commit:** `main` at `885b82c0669889ed0c55b06f6654e966f043338d`
 **Method:** GitHub repository tree, tracked source and configuration, all 15 index manifests, workflow definitions, and most recent default-branch GitHub Actions logs. Reviewed GitHub Pages official setup/action documentation. No local Node.js run, penetration test, live upstream link crawl, manual screen reader test, or Lighthouse/Pa11y scan was performed for this audit.
 
 ## Executive decision
