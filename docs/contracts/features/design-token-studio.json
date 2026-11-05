@@ -1,0 +1,185 @@
+{
+  "contract_version": "1.0.0",
+  "contract_status": "active",
+  "feature": {
+    "id": "design-token-studio",
+    "name": "Local Design Token Studio and responsive original preview",
+    "objective": "Provide a zero-cost browser-local token editor with live accessible preview, contrast calculations, and safe CSS/JSON export.",
+    "audience": "Designers and engineers using the unified UI repository",
+    "acceptance_criteria": [
+      "Three selectable original design presets, customizable colors/font/radius/density.",
+      "Responsive preview at desktop/tablet/mobile without executing third-party code.",
+      "Both selected body and primary action color pairs checked for WCAG AA 4.5:1.",
+      "Validated bounded JSON import; deterministic safe CSS and JSON export; browser-local persistence.",
+      "Existing source explorer and tool directory work unchanged; all applicable CI checks pass."
+    ]
+  },
+  "source_of_truth": {
+    "design_source": "repository-owned-original-design",
+    "design_file": "site/token-studio.html and site/token-studio.css",
+    "page_or_artboard": "Token Studio / example dashboard",
+    "source_version_or_revision": "based on main 3e7bc3a60697dab338484e07460a7beeff3fb213",
+    "authority_rule": "Original source owned within repository; no third-party visual frame or copied implementation is used."
+  },
+  "design_system": {
+    "status": "token-editor-demo",
+    "owner": "site/ui-tokens.js",
+    "tokens": {
+      "canvas": "preset-derived",
+      "surface": "preset-derived",
+      "text": "preset-derived",
+      "muted": "preset-derived",
+      "accent": "preset-derived",
+      "onAccent": "preset-derived",
+      "border": "preset-derived",
+      "radius": "0–32px",
+      "density": "0.75–1.5 rem",
+      "font": "system/serif/mono"
+    },
+    "theme_modes": [
+      "forest",
+      "ocean",
+      "night",
+      "custom"
+    ],
+    "contrast_review": "Two specific color pairs computed in studio; not full accessibility audit."
+  },
+  "component_registry": [
+    {
+      "id": "original-dashboard-preview",
+      "purpose": "Responsive original example illustrating the current token set",
+      "source_tool_id": "repository-owned",
+      "source_url": "site/token-studio.html",
+      "implementation_mode": "original",
+      "license_review": "No external code imported",
+      "third_party_notices_review": "No external assets",
+      "dependencies": [],
+      "token_mapping": "seven shared CSS variables + font/radius/density",
+      "keyboard_and_screen_reader_review": "Browser CI and manual review",
+      "responsive_review": "Container query and Playwright",
+      "motion_owner": "css",
+      "status": "implemented"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "preset-and-token-editing",
+      "trigger": "Form input and preset selection",
+      "states": [
+        "default",
+        "custom",
+        "invalid-name"
+      ],
+      "success_condition": "Validated token set immediately updates sample preview and stored theme",
+      "failure_condition": "Invalid name restored with accessible feedback",
+      "cancellation_or_undo": "Reset current preset",
+      "accessible_status": "Studio status and labeled controls"
+    },
+    {
+      "id": "theme-export-and-import",
+      "trigger": "Download or JSON file upload",
+      "states": [
+        "ready",
+        "imported",
+        "rejected"
+      ],
+      "success_condition": "Valid JSON accepted or CSS/JSON file downloaded",
+      "failure_condition": "Malformed or oversized file leaves current theme unchanged",
+      "cancellation_or_undo": "Export prior version as portable backup",
+      "accessible_status": "Live status text"
+    },
+    {
+      "id": "contrast",
+      "trigger": "Palette adjustment",
+      "states": [
+        "pass",
+        "below-threshold"
+      ],
+      "success_condition": "Two ratio measurements recomputed",
+      "failure_condition": "Below-AA warning displayed",
+      "cancellation_or_undo": "Change theme colors",
+      "accessible_status": "Textual ratios and pass/fail labels"
+    }
+  ],
+  "motion_ownership": [
+    {
+      "target": "studio-frame-viewport-width",
+      "owner": "css",
+      "animated_properties": [
+        "max-width"
+      ],
+      "reason": "Optional smooth preview resize",
+      "reduced_motion_behavior": "Disable transition when prefers-reduced-motion"
+    }
+  ],
+  "data_contracts": [
+    {
+      "entity": "design-theme",
+      "source_type": "user-specified-and-built-in-original-presets",
+      "persistence": "browser-localStorage plus JSON export",
+      "authentication": "none",
+      "loading_state": "default preset available",
+      "empty_state": "default preset available",
+      "error_state": "invalid import leaves current state intact",
+      "freshness": "user-managed",
+      "integration_owner": "site/token-studio.js"
+    }
+  ],
+  "tool_runs": [
+    {
+      "tool_id": "github-connector",
+      "status": "verified",
+      "input_artifact": "current main branch",
+      "output_artifact": "feature branch and pull request",
+      "decisions": "No external runtime or paid tools used"
+    },
+    {
+      "tool_id": "playwright",
+      "status": "CI-defined",
+      "input_artifact": "browser-tests/token-studio.spec.js",
+      "output_artifact": "GitHub CI results pending",
+      "decisions": "Use mobile/desktop viewport checks and import/export assertions"
+    }
+  ],
+  "quality_gates": {
+    "viewports": [
+      "375px",
+      "1280px",
+      "simulated narrow container"
+    ],
+    "semantic_html": "required",
+    "keyboard_access": "required",
+    "visible_focus": "required",
+    "contrast": "two WCAG AA normal-text pairs computed",
+    "reduced_motion": "required",
+    "loading_empty_error_states": "defined",
+    "automated_checks": [
+      "unit",
+      "lint",
+      "typecheck",
+      "playwright",
+      "repository-validation",
+      "CodeQL",
+      "secret-scan"
+    ],
+    "security_scope": "repository-only",
+    "security_review": "Strict whitelisted token schema, no external code or network calls"
+  },
+  "decisions": [
+    {
+      "decision": "Original static sample dashboard rather than arbitrary third-party live code preview",
+      "reason": "Avoid executing untrusted or licensed component code while preserving zero-spend architecture."
+    },
+    {
+      "decision": "Use CSS variables and browser-local persistence",
+      "reason": "Portable token contract without adding paid services or global UI frameworks."
+    }
+  ],
+  "defects": [],
+  "handoff": {
+    "current_stage": "implementation-awaiting-CI",
+    "next_stage": "Validate browser workflow and review before merging",
+    "blocked_by": [],
+    "last_updated_by": "GitHub-connected ChatGPT"
+  }
+}
