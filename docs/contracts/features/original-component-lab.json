@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "contract_status": "active",
+  "contract_status": "implemented-and-verified",
   "feature": {
     "id": "original-component-lab",
     "name": "Original interactive Component Lab",
@@ -19,7 +19,7 @@
     "design_source": "repository-owned-original",
     "design_file": "site/component-lab-core.js",
     "page_or_artboard": "Component Lab",
-    "source_version_or_revision": "new original component lab feature branch",
+    "source_version_or_revision": "main merge commit 9ecca2f388e79859b48ac0fccf62a9d44dc7c67d",
     "authority_rule": "Repository-owned theme tokens and examples are canonical; external indexed sources remain discovery metadata only."
   },
   "design_system": {
@@ -111,16 +111,16 @@
   "tool_runs": [
     {
       "tool_id": "github-connector",
-      "status": "connected",
+      "status": "verified",
       "input_artifact": "main branch and existing design-token schema",
-      "output_artifact": "feature branch and PR",
+      "output_artifact": "Merged PR #12, commit 9ecca2f388e79859b48ac0fccf62a9d44dc7c67d",
       "decisions": "No new packages or remote preview execution."
     },
     {
       "tool_id": "playwright",
-      "status": "CI-defined",
+      "status": "CI-passed",
       "input_artifact": "browser-tests/component-lab.spec.js",
-      "output_artifact": "GitHub Actions workflow",
+      "output_artifact": "GitHub Actions PR #12: Chromium browser tests passed",
       "decisions": "Automated checks plus manual accessibility review required."
     }
   ],
@@ -146,7 +146,19 @@
       "secret scan"
     ],
     "security_scope": "repository only",
-    "security_review": "iframe sandbox with separate origin; restrictive CSP; no external assets or network requests; validated inputs"
+    "security_review": "iframe sandbox with separate origin; restrictive CSP; no external assets or network requests; validated inputs",
+    "verified_results": {
+      "pr": 12,
+      "merged_commit": "9ecca2f388e79859b48ac0fccf62a9d44dc7c67d",
+      "workflows": [
+        "Repository validation",
+        "Quality checks",
+        "Secret scan",
+        "CodeQL",
+        "Browser tests"
+      ],
+      "result": "all passed before merge"
+    }
   },
   "decisions": [
     {
@@ -160,8 +172,8 @@
   ],
   "defects": [],
   "handoff": {
-    "current_stage": "implementation-pending-CI",
-    "next_stage": "validate tests, fix defects, review and merge PR",
+    "current_stage": "merged-and-verified",
+    "next_stage": "Maintain original components, review accessibility, and extend the library only with explicit provenance and validation",
     "blocked_by": [],
     "last_updated_by": "ChatGPT GitHub connector"
   }
