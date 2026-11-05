@@ -51,13 +51,26 @@ const html = `<!doctype html>
 <header><h1>UI source explorer</h1><p>31 design sources · ${components.length.toLocaleString("en-US")} public component references. The index contains links and metadata, not copied third-party code or images.</p></header>
 <div class="toolbar"><label for="ui-query">Search sources and components</label>
 <input id="ui-query" type="search" placeholder="dashboard, dialog, animation…" autocomplete="off">
-<label for="ui-source">Library</label><select id="ui-source"><option value="">All libraries</option>${src.sources.map(s => `<option value="${escape(s.id)}">${escape(s.name)}</option>`).join("")}</select></div>
+<label for="ui-source">Library</label><select id="ui-source"><option value="">All libraries</option>${src.sources.map(s => `<option value="${escape(s.id)}">${escape(s.name)}</option>`).join("")}</select>
+<label for="ui-kind">Component type</label><select id="ui-kind"><option value="">All types</option></select>
+<div class="ui-checks">
+<label><input id="ui-group-variants" type="checkbox"> Group style variants</label>
+<label><input id="ui-favorites-only" type="checkbox"> Show saved only</label>
+</div></div>
+<div class="workspace-toolbar"><span><strong>My saved references</strong> · Up to 200 locally, no account needed</span>
+<button type="button" id="ui-export" disabled>Export saved</button>
+<label for="ui-import">Import saved JSON</label><input id="ui-import" type="file" accept=".json,application/json"></div>
+<p id="ui-workspace-notice" class="fine">Saved lists stay in this browser. Export before switching devices or clearing browser data.</p>
 <p id="ui-status" role="status" aria-live="polite">Loading component references…</p>
 <section aria-labelledby="source-heading"><h2 id="source-heading">Sources</h2><ul id="ui-sources" class="explorer-grid">${sourceCards}</ul></section>
 <section aria-labelledby="component-heading"><h2 id="component-heading">Component references</h2><p>Search metadata by name, category, library and dependencies; follow upstream source links for licensing and implementation details.</p>
 <noscript>JavaScript is required for local component searching; the 31 source links above remain available.</noscript>
 <ul id="ui-components" class="explorer-grid" aria-busy="true"></ul>
 <button type="button" id="show-more" hidden>Show more results</button></section>
+<section id="ui-compare" hidden aria-labelledby="ui-compare-heading"><div class="comparison-header">
+<h2 id="ui-compare-heading">Compare selected components</h2><button id="ui-clear-compare" type="button">Clear comparison</button>
+</div><p>Compare up to three component metadata records. This is not a live code preview or a compatibility guarantee.</p>
+<div id="ui-compare-items" class="comparison-grid"></div></section>
 <footer><p class="fine">Index snapshot: ${escape(src.updated)}. Restricted and paid content is not collected.</p></footer></main></body></html>`;
 
 await mkdir("dist/site", { recursive: true });
@@ -69,6 +82,6 @@ await writeFile("dist/site/ui-index.json", JSON.stringify({
   count: components.length,
   entries: components
 }) + "\n");
-for (const file of ["directory.js", "style.css", "ui-explorer.js"]) {
+for (const file of ["directory.js", "style.css", "ui-explorer.js", "ui-tools.js"]) {
   await copyFile("site/" + file, "dist/site/" + file);
 }
