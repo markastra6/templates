@@ -56,6 +56,14 @@ The [Page Composer](site/page-composer.html) assembles a standalone original pag
 
 The composer is **not** an arbitrary third-party code runner or a production CMS. Its sample content and navigation should be reviewed and rewritten for the intended website before publication. See [usage, safety and export details](docs/references/PAGE-COMPOSER.md) and the [feature contract](docs/contracts/features/starter-page-composer.json).
 
+## Original Component Lab
+
+The [Component Lab](site/component-lab.html) contains six repository-owned examples: toggle button, keyboard tabs, native accordion, email-validation form, status notification and example metric. Each example uses an isolated `sandbox="allow-scripts"` iframe with an opaque origin, built-in restrictive CSP, repository-owned CSS and scripts, and the shared seven-color token schema. No external component code or catalogue assets are executed.
+
+Switch between desktop, tablet and mobile frame sizes, edit bounded example text, select Forest/Ocean/Night or import the locally saved Design Token Studio theme, and inspect the generated source. Export a standalone HTML document that works without a network connection, or editable JSON that can be imported again. The iframe is recreated when editing changes; interactive demo state is not persisted. The standalone form is a non-network demo and never submits an email address. These are starter components, not a general React source-code runner or production application backend.
+
+See [Component Lab reference](docs/references/COMPONENT-LAB.md) and its [feature contract](docs/contracts/features/original-component-lab.json).
+
 ## Run the starter
 
 The example website searches the tool registry. From the repository root, run the following with Node.js 24 and Python 3, then open the address printed by the local server.

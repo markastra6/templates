@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Preview accessible original UI components, reuse saved design tokens, and export standalone working HTML.">
+<title>Original Component Lab</title>
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./component-lab.css">
+<script type="module" src="./component-lab.js"></script>
+</head>
+<body>
+<main class="lab-workbench">
+<nav class="lab-breadcrumb" aria-label="Workspace navigation"><a href="./index.html">Home</a> · <a href="./ui-explorer.html">Component references</a> · <a href="./token-studio.html">Design tokens</a> · <a href="./page-composer.html">Page composer</a></nav>
+<header class="lab-heading">
+  <p class="lab-eyebrow">INTERACTIVE COMPONENT WORKSPACE</p>
+  <h1>Original Component Lab</h1>
+  <p>Try interactive components in an isolated, responsive preview. Change content and themes, inspect generated HTML and export fully standalone examples. No third-party catalogue code is executed.</p>
+</header>
+<div class="lab-grid">
+  <aside class="lab-editor" aria-label="Component editing controls">
+    <section aria-labelledby="lab-edit-heading"><h2 id="lab-edit-heading">Edit example</h2>
+      <label for="lab-type">Component</label><select id="lab-type">
+        <option value="button">Toggle button</option><option value="tabs">Keyboard tabs</option>
+        <option value="accordion">Disclosure accordion</option><option value="form">Validated email form</option>
+        <option value="toast">Status notification</option><option value="metric">Analytics metric</option>
+      </select>
+      <label for="lab-title">Heading</label><input id="lab-title" type="text" maxlength="90" autocomplete="off">
+      <label for="lab-body">Description</label><textarea id="lab-body" rows="4" maxlength="240"></textarea>
+      <div id="lab-action-row"><label for="lab-action">Button label</label><input id="lab-action" type="text" maxlength="40" autocomplete="off"></div>
+    </section>
+    <section aria-labelledby="lab-theme-heading"><h2 id="lab-theme-heading">Theme</h2>
+      <label for="lab-preset">Starting palette</label><select id="lab-preset">
+        <option value="forest">Forest</option><option value="ocean">Ocean</option><option value="night">Night</option>
+        <option value="custom">Custom theme</option>
+      </select>
+      <button id="lab-saved-theme" type="button">Use saved Token Studio theme</button>
+    </section>
+    <section aria-labelledby="lab-files-heading"><h2 id="lab-files-heading">Project files</h2>
+      <div class="lab-buttons"><button type="button" id="lab-export-html">Export standalone HTML</button>
+      <button type="button" id="lab-export-json">Export editable JSON</button>
+      <button type="button" id="lab-copy">Copy generated HTML</button>
+      <button type="button" id="lab-reset">Reset example</button></div>
+      <label for="lab-import">Import component JSON</label><input id="lab-import" type="file" accept=".json,application/json">
+      <p class="lab-help">Maximum import: 16 KiB. The JSON uses the same validated theme schema as Design Token Studio.</p>
+    </section>
+  </aside>
+  <section class="lab-main" aria-labelledby="lab-preview-heading">
+    <div class="lab-preview-header">
+      <h2 id="lab-preview-heading">Interactive preview</h2>
+      <div class="lab-viewports" role="group" aria-label="Preview width">
+        <button type="button" data-lab-view="desktop" aria-pressed="true">Desktop</button>
+        <button type="button" data-lab-view="tablet" aria-pressed="false">Tablet</button>
+        <button type="button" data-lab-view="mobile" aria-pressed="false">Mobile</button>
+      </div>
+    </div>
+    <p class="lab-help">The preview uses a sandboxed, separate-origin frame. It runs only the first-party component example shown here.</p>
+    <div class="lab-preview-shell" id="lab-preview-shell" data-width="desktop">
+      <iframe id="lab-preview" title="Live original component preview" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+    </div>
+    <h2 id="lab-code-heading">Generated standalone HTML</h2>
+    <label for="lab-source">Read-only source (HTML, CSS, interaction logic and your validated theme)</label>
+    <textarea id="lab-source" rows="12" spellcheck="false" readonly aria-labelledby="lab-code-heading"></textarea>
+  </section>
+</div>
+<p id="lab-status" class="lab-live-status" role="status" aria-live="polite">Loading original component preview.</p>
+<footer class="lab-footer">Examples are original, dependency-free and use demonstration data. Exports contain no external scripts, assets, requests or user-submitted code. Review final accessibility and content before production use.</footer>
+</main>
+</body></html>
