@@ -40,7 +40,7 @@ const sourceCards = src.sources.map(s => {
   const count = counts.get(s.id) || 0;
   const coverage = count ? count.toLocaleString("en-US") + " indexed" :
     s.collection === "restricted" ? "Link only" : "Discovery";
-  return `<li class="resource" data-source="${escape(s.id)}" data-text="${escape([s.name,s.focus,s.group].join(" ").toLowerCase())}"><h3><a href="${safeUrl(s.url)}" target="_blank" rel="noopener noreferrer">${escape(s.name)}</a></h3><p>${escape(s.focus)}</p><p class="meta">${escape(s.group)} · ${escape(coverage)}</p><p class="fine">${escape(s.notice)}</p></li>`;
+  return `<li class="resource" data-source="${escape(s.id)}" data-group="${escape(s.group)}" data-text="${escape([s.name,s.focus,s.group].join(" ").toLowerCase())}"><h3><a href="${safeUrl(s.url)}" target="_blank" rel="noopener noreferrer">${escape(s.name)}</a></h3><p>${escape(s.focus)}</p><p class="meta">${escape(s.group)} · ${escape(coverage)}</p><p class="fine">${escape(s.notice)}</p></li>`;
 }).join("\n");
 const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,8 +53,11 @@ const html = `<!doctype html>
 <input id="ui-query" type="search" placeholder="dashboard, dialog, animation…" autocomplete="off">
 <label for="ui-source">Library</label><select id="ui-source"><option value="">All libraries</option>${src.sources.map(s => `<option value="${escape(s.id)}">${escape(s.name)}</option>`).join("")}</select>
 <label for="ui-kind">Component type</label><select id="ui-kind"><option value="">All types</option></select>
+<label for="ui-group">Source category</label><select id="ui-group"><option value="">All categories</option>${[...new Set(src.sources.map(s => s.group))].sort().map(g => `<option value="${escape(g)}">${escape(g)}</option>`).join("")}</select>
+<label for="ui-sort">Order results</label><select id="ui-sort"><option value="relevance">Best match</option><option value="name">Name A–Z</option><option value="source">Library A–Z</option></select>
 <div class="ui-checks">
 <label><input id="ui-group-variants" type="checkbox"> Group style variants</label>
+<label><input id="ui-has-dependencies" type="checkbox"> Show declared dependencies only</label>
 <label><input id="ui-favorites-only" type="checkbox"> Show saved only</label>
 </div></div>
 <div class="workspace-toolbar"><span><strong>My saved references</strong> · Up to 200 locally, no account needed</span>

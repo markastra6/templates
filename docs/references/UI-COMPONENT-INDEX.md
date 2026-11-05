@@ -24,7 +24,7 @@
 | DaisyUI | saadeghi/daisyui, CSS component files | 61 | Only style paths |
 | Float UI | MarsX-dev/floatui, componentsDB/**/*.mdx | 198 | MDX example paths only |
 
-**Total: 9,403 records.** This is not 3,776 distinct production-ready designs. Snapshot counts were validated against retrieved upstream registry entries and tree paths at collection time. The full 31-source listing is [ui-component-sources.json](ui-component-sources.json). Source pages and licensing can change.
+**Total: 9,403 records.** This is not 9,403 distinct production-ready designs. Snapshot counts were validated against retrieved upstream registry entries and tree paths at collection time. The full 31-source listing is [ui-component-sources.json](ui-component-sources.json). Source pages and licensing can change.
 
 ## Collection boundaries
 
@@ -49,4 +49,4 @@ The snapshot is **not a scheduled scraper**. No network calls run in the deploye
 
 ## Usage
 
-Run `npm run build`; browse `dist/site/ui-explorer.html`. The browser loads `ui-index.json` locally and renders only the first 72 matching records, avoiding thousands of initial DOM elements. Filter by source and search names, tags, or dependency names. Search results display metadata and take you to original source pages for actual preview, licensing and implementation review. For project implementation, use the existing unified web engineering skill and component provenance records in feature handoffs.
+Run `npm run build`; browse `dist/site/ui-explorer.html`. The browser loads `ui-index.json` locally and renders only the first 72 matching records, avoiding thousands of initial DOM elements. Filter by source, source category, component type, declared dependencies, and search names, tags or dependency names. Order results by best match, name or library. The dependency filter only means the upstream manifest listed dependencies; missing dependency metadata does not prove that a component is dependency-free. Search results display metadata and take you to original source pages for actual preview, licensing and implementation review. For project implementation, use the existing unified web engineering skill and component provenance records in feature handoffs.
