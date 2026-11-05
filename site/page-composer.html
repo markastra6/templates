@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compose original, accessible page sections locally and export standalone HTML without third-party assets.">
+  <title>Starter Page Composer</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./page-composer.css">
+  <script type="module" src="./page-composer.js"></script>
+</head>
+<body>
+<main class="composer">
+  <nav aria-label="Workspace navigation"><a href="./index.html">Home</a> · <a href="./ui-explorer.html">Component explorer</a> · <a href="./token-studio.html">Design Token Studio</a></nav>
+  <header class="composer-header"><p class="composer-eyebrow">ORIGINAL PAGE COMPOSITION</p><h1>Starter Page Composer</h1><p>Build a responsive, standalone page from original sections. Edit copy, reorder using accessible controls, reuse a saved design theme, and export HTML without a runtime framework.</p></header>
+  <div class="composer-layout">
+    <aside class="composer-editor" aria-label="Page editing controls">
+      <section aria-labelledby="sections-heading">
+        <h2 id="sections-heading">Page sections</h2>
+        <p class="composer-help">Select a section to edit it. Reorder with Move up and Move down; no mouse dragging is required.</p>
+        <ol id="composer-sections"></ol>
+        <div class="composer-add">
+          <label for="composer-add-type">Add section</label>
+          <select id="composer-add-type">
+            <option value="hero">Hero</option>
+            <option value="features">Features</option>
+            <option value="highlights">Highlights</option>
+            <option value="callout">Call to action</option>
+            <option value="footer">Footer</option>
+          </select>
+          <button type="button" id="composer-add">Add section</button>
+        </div>
+      </section>
+      <section id="composer-inspector" aria-labelledby="inspector-heading">
+        <h2 id="inspector-heading">Edit selected section</h2>
+        <p id="composer-selected-label" class="composer-help"></p>
+        <label for="composer-title">Heading</label>
+        <input type="text" id="composer-title" maxlength="100" autocomplete="off">
+        <label for="composer-body">Description</label>
+        <textarea id="composer-body" maxlength="240" rows="4"></textarea>
+        <div id="composer-action-field">
+          <label for="composer-action">Link label</label>
+          <input type="text" id="composer-action" maxlength="36" autocomplete="off">
+          <p class="composer-help">Links point to the following section, or back to the page top when last.</p>
+        </div>
+      </section>
+      <section class="composer-exports" aria-labelledby="exports-heading">
+        <h2 id="exports-heading">Project files</h2>
+        <button type="button" id="composer-theme">Use saved token-studio theme</button>
+        <button type="button" id="composer-export-html">Export standalone HTML</button>
+        <button type="button" id="composer-export-json">Export editable JSON</button>
+        <label for="composer-import">Import project JSON</label>
+        <input id="composer-import" type="file" accept=".json,application/json">
+        <button type="button" id="composer-reset">Reset example</button>
+        <p id="composer-status" role="status" aria-live="polite">Changes are saved in this browser. Export your project before clearing site data.</p>
+      </section>
+    </aside>
+    <section class="composer-live" aria-labelledby="composer-preview-heading">
+      <div class="composer-preview-top">
+        <h2 id="composer-preview-heading">Live page preview</h2>
+        <div class="composer-viewports" role="group" aria-label="Preview width">
+          <button type="button" data-viewport="desktop" aria-pressed="true">Desktop</button>
+          <button type="button" data-viewport="tablet" aria-pressed="false">Tablet</button>
+          <button type="button" data-viewport="mobile" aria-pressed="false">Mobile</button>
+        </div>
+      </div>
+      <p class="composer-help">Only original page sections are shown. This preview does not execute third-party component code or external scripts.</p>
+      <div id="composer-frame" class="composer-frame" data-viewport="desktop">
+        <div id="composer-canvas" class="composer-canvas" aria-label="Editable page preview"></div>
+      </div>
+    </section>
+  </div>
+  <footer class="composer-footer">Standalone exports use semantic HTML and CSS variables. Final content, accessibility, licensing and deployment remain the project owner's responsibility.</footer>
+</main>
+</body></html>

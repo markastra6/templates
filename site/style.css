@@ -80,7 +80,7 @@ li p { margin: .35rem 0; } a { color: #175341; font-weight: 700; }
 .hub-section-heading h2 { font-size: clamp(1.5rem, 3vw, 2.3rem); margin: 0; line-height: 1.13; letter-spacing: -.04em; }
 .hub-section-heading p:not(.hub-eyebrow) { font-size: .9rem; max-width: 28rem; margin: 0; color: #567064; }
 .hub-workspaces { margin-block: 2.5rem; }
-.hub-workspace-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.hub-workspace-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
 .hub-workspace-card { border: 1px solid #c4d4ca; background: #fff; border-radius: 1.1rem; padding: clamp(1rem, 2vw, 1.6rem); display: flex; flex-direction: column; align-items: flex-start; min-width: 0; min-height: 14.5rem; box-shadow: 0 1px 2px #1539200a; }
 .hub-workspace-card .hub-card-index { color: #507663; font-size: .68rem; font-weight: 800; letter-spacing: .13em; }
 .hub-workspace-card .hub-icon { color: #18553e; background: #e3f2e7; border: 1px solid #c8dfcf; width: 2.3rem; height: 2.3rem; border-radius: .7rem; display: grid; place-items: center; font-size: 1.25rem; margin: .95rem 0; }

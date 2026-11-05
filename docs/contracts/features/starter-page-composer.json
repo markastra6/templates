@@ -1,0 +1,179 @@
+{
+  "contract_version": "1.0.0",
+  "contract_status": "active",
+  "feature": {
+    "id": "starter-page-composer",
+    "name": "Original static-page composer",
+    "objective": "Let the user assemble, edit, reorder and export a responsive original page with a compatible design token theme, without running external component source.",
+    "audience": "Designers and developers preparing starter pages",
+    "acceptance_criteria": [
+      "Provide five original section types with keyboard-accessible select/up/down/remove controls.",
+      "Support editing text and links with validated bounds, up to 16 sections.",
+      "Allow responsive preview and reusing saved theme from Design Token Studio.",
+      "Export safe standalone HTML and editable JSON; validated import and best-effort browser-local persistence.",
+      "Preserve existing workbench behavior and pass all automated checks."
+    ]
+  },
+  "source_of_truth": {
+    "design_source": "repository-owned-original",
+    "design_file": "site/page-composer.html and site/page-composer-core.js",
+    "page_or_artboard": "Starter Page Composer",
+    "source_version_or_revision": "main at 710a8ee057a053562c76c96c93487dd2dc643321",
+    "authority_rule": "Original content templates, not copied third-party sites; treat external UI catalogues as references only."
+  },
+  "design_system": {
+    "status": "shared-token-schema",
+    "owner": "site/ui-tokens.js",
+    "tokens": {
+      "colors": "seven color slots",
+      "radius": "0-32px",
+      "density": "0.75-1.5rem",
+      "font": "system/serif/mono",
+      "theme_source": "validated saved Design Token Studio theme"
+    },
+    "theme_modes": [
+      "forest",
+      "ocean",
+      "night",
+      "imported"
+    ],
+    "contrast_review": "Requires final page audit; token studio performs two color-pair checks only."
+  },
+  "component_registry": [
+    {
+      "id": "original-section-templates",
+      "purpose": "Hero, features, highlights, callout and footer",
+      "source_tool_id": "repository-original",
+      "source_url": "site/page-composer-core.js",
+      "implementation_mode": "original-static-html",
+      "license_review": "No external code included",
+      "third_party_notices_review": "No external assets",
+      "dependencies": [],
+      "token_mapping": "Validated CSS custom properties",
+      "keyboard_and_screen_reader_review": "Semantic sections and native buttons",
+      "responsive_review": "CSS container queries and Playwright",
+      "motion_owner": "css",
+      "status": "implemented"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "edit-sections",
+      "trigger": "Native input controls",
+      "states": [
+        "editing",
+        "saved",
+        "invalid"
+      ],
+      "success_condition": "Live preview and local project updated",
+      "failure_condition": "Invalid JSON/section rejected",
+      "cancellation_or_undo": "Export backup, reset with confirmation",
+      "accessible_status": "Status paragraph and semantic headings"
+    },
+    {
+      "id": "reorder",
+      "trigger": "Move up/down buttons",
+      "states": [
+        "available",
+        "disabled-at-boundary"
+      ],
+      "success_condition": "Selected section changes position without data loss",
+      "failure_condition": "No mutation outside boundaries",
+      "cancellation_or_undo": "Move in reverse direction",
+      "accessible_status": "Button labels mention section title"
+    },
+    {
+      "id": "page-export",
+      "trigger": "Export HTML or JSON",
+      "states": [
+        "ready",
+        "downloaded"
+      ],
+      "success_condition": "Standalone HTML or portable project JSON produced locally",
+      "failure_condition": "Browser download failure surfaced by browser",
+      "cancellation_or_undo": "Restore exported JSON",
+      "accessible_status": "Status paragraph"
+    }
+  ],
+  "motion_ownership": [
+    {
+      "target": "preview-width",
+      "owner": "css",
+      "animated_properties": [
+        "max-width"
+      ],
+      "reason": "Responsive layout preview",
+      "reduced_motion_behavior": "Transition disabled when reduced motion is preferred"
+    }
+  ],
+  "data_contracts": [
+    {
+      "entity": "page-project",
+      "source_type": "original-local-schema",
+      "persistence": "browser localStorage + JSON export",
+      "authentication": "none",
+      "loading_state": "original demo available",
+      "empty_state": "one section minimum",
+      "error_state": "malformed import preserves existing project",
+      "freshness": "user-managed",
+      "integration_owner": "site/page-composer.js"
+    }
+  ],
+  "tool_runs": [
+    {
+      "tool_id": "github-connector",
+      "status": "connected",
+      "input_artifact": "main commit and repository source",
+      "output_artifact": "feature branch and PR",
+      "decisions": "No new runtime dependencies or remote third-party code"
+    },
+    {
+      "tool_id": "playwright",
+      "status": "CI-defined",
+      "input_artifact": "browser-tests/page-composer.spec.js",
+      "output_artifact": "GitHub Actions pending",
+      "decisions": "Test portable exports and mobile/desktop flow"
+    }
+  ],
+  "quality_gates": {
+    "viewports": [
+      "375px",
+      "1280px",
+      "preview mobile 390px"
+    ],
+    "semantic_html": "required",
+    "keyboard_access": "required",
+    "visible_focus": "required",
+    "contrast": "requires manual final review",
+    "reduced_motion": "required",
+    "loading_empty_error_states": "handled",
+    "automated_checks": [
+      "lint",
+      "typecheck",
+      "node-unit",
+      "browser-tests",
+      "repository-validation",
+      "CodeQL",
+      "secret-scan"
+    ],
+    "security_scope": "repository only",
+    "security_review": "Strict schema; text escape; no arbitrary HTML, external URLs or code evaluation"
+  },
+  "decisions": [
+    {
+      "decision": "Native keyboard-selectable move up/down controls instead of drag-and-drop library",
+      "reason": "Dependency-free, accessible and simpler to maintain."
+    },
+    {
+      "decision": "Single-file HTML export rather than framework app generation",
+      "reason": "Delivers a usable, portable first version without pretending arbitrary external components are executable."
+    }
+  ],
+  "defects": [],
+  "handoff": {
+    "current_stage": "implementation-pending-CI",
+    "next_stage": "verify tests and browser behaviors then merge",
+    "blocked_by": [],
+    "last_updated_by": "ChatGPT GitHub connector"
+  }
+}

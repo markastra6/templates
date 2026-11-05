@@ -50,6 +50,12 @@ The [Design Token Studio](site/token-studio.html) is an original, browser-local 
 
 Export reusable CSS custom properties or validated JSON, and import JSON themes (maximum 16 KiB). Themes are stored locally when browser storage is available; nothing is sent to a server. The studio does not embed or execute indexed third-party components. See the [token-studio reference](docs/references/DESIGN-TOKEN-STUDIO.md) and [feature contract](docs/contracts/features/design-token-studio.json).
 
+## Starter Page Composer
+
+The [Page Composer](site/page-composer.html) assembles a standalone original page from five built-in section types (Hero, Features, Highlights, Call to action, Footer). Use the section list's **Move up** and **Move down** controls for keyboard-accessible reordering; edit headings, descriptions and section-navigation labels; preview desktop, tablet or mobile; and import your saved Design Token Studio theme. Export a single-file HTML page with inline, validated CSS tokens, or a portable editable project JSON. Up to 16 sections are supported, with best-effort local browser persistence.
+
+The composer is **not** an arbitrary third-party code runner or a production CMS. Its sample content and navigation should be reviewed and rewritten for the intended website before publication. See [usage, safety and export details](docs/references/PAGE-COMPOSER.md) and the [feature contract](docs/contracts/features/starter-page-composer.json).
+
 ## Run the starter
 
 The example website searches the tool registry. From the repository root, run the following with Node.js 24 and Python 3, then open the address printed by the local server.
