@@ -22,6 +22,6 @@
 ## Continue by project type
 
 - **Website or dashboard** — explore [components, frameworks, testing and deployment tools](references/EXPANDED-WEB-TOOL-ECOSYSTEM.md).
-- **Windows, macOS or Android app** — compare [app frameworks and platform samples](references/APP-TOOLKIT.md), then copy the [planning and audit worksheet](contracts/APP-PLAN-AND-AUDIT.md).
+- **Interactive app planning** — use [App Blueprint Studio](../site/app-blueprint.html) and the [usage guide](references/APP-BLUEPRINT-STUDIO.md) to prepare responsive workflow screens and record release checks.\n- **Windows, macOS or Android app** — compare [app frameworks and platform samples](references/APP-TOOLKIT.md), then copy the [planning and audit worksheet](contracts/APP-PLAN-AND-AUDIT.md).
 - **Design file to implementation** — start with the [design tool setup](DESIGN-TOOLS.md) and [shared UI handoff](contracts/ui-handoff.template.json).
 - **Automated tool selection** — look up IDs, inputs, outputs, availability and cost boundaries in the [machine-readable registry](contracts/toolchain.registry.json).
