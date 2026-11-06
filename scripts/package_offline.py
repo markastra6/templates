@@ -10,7 +10,7 @@ import zipfile
 
 WINDOWS = r"""@echo off
 setlocal
-cd /d "%~dp0"
+pushd "%~dp0" || exit /b 1
 echo Open http://127.0.0.1:8080/app-blueprint.html
 where py >nul 2>&1
 if not errorlevel 1 (
@@ -18,6 +18,7 @@ if not errorlevel 1 (
 ) else (
     python -m http.server 8080 --bind 127.0.0.1 --directory site
 )
+popd
 pause
 """
 MACOS = """#!/bin/sh
