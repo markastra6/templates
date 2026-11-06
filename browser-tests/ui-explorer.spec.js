@@ -29,3 +29,10 @@ for (const width of [375, 1280]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   });
 }
+
+test("component matches keep corresponding source cards visible",async({page})=>{
+  await page.goto("/ui-explorer.html");
+  await page.getByRole("searchbox").fill("accordion");
+  await expect(page.getByRole("status")).not.toContainText("0 sources");
+  expect(await page.locator("#ui-sources > li:visible").count()).toBeGreaterThan(0);
+});
