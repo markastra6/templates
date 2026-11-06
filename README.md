@@ -2,7 +2,7 @@
 
 Start with the [website and app creation directory](docs/CREATION-DIRECTORY.md) to find design skills, component connectors, motion libraries, graphics and audit tools.
 
-For Windows, macOS and Android, use the [app toolkit](docs/references/APP-TOOLKIT.md) and copy the [app planning and audit template](docs/contracts/APP-PLAN-AND-AUDIT.md) into your feature folder.
+Use the [interactive App Blueprint Studio](site/app-blueprint.html) to plan a cross-platform application, preview responsive navigation and record audit results locally. [Usage, privacy and test-evidence guide](docs/references/APP-BLUEPRINT-STUDIO.md). The studio does not build native binaries.\n\nFor Windows, macOS and Android, use the [app toolkit](docs/references/APP-TOOLKIT.md) and copy the [app planning and audit template](docs/contracts/APP-PLAN-AND-AUDIT.md) into your feature folder.
 
 Original work and third-party resources have separate [reuse terms](RIGHTS.md).
 
