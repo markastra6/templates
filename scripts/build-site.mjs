@@ -94,6 +94,6 @@ await writeFile("dist/site/ui-index.json", JSON.stringify({
   count: components.length,
   entries: components
 }) + "\n");
-for (const file of ["directory.js", "style.css", "ui-explorer.js", "ui-tools.js", "token-studio.html", "token-studio.css", "token-studio.js", "ui-tokens.js", "page-composer.html", "page-composer.css", "page-composer.js", "page-composer-core.js", "ui-audit.html", "ui-audit.js", "component-lab.html", "component-lab.css", "component-lab.js", "component-lab-core.js"]) {
+for (const file of ["directory.js", "style.css", "ui-explorer.js", "ui-tools.js", "token-studio.html", "token-studio.css", "token-studio.js", "ui-tokens.js", "page-composer.html", "page-composer.css", "page-composer.js", "page-composer-core.js", "ui-audit.html", "ui-audit.js", "component-lab.html", "component-lab.css", "component-lab.js", "component-lab-core.js", "app-blueprint.html", "app-blueprint.css", "app-blueprint.js", "app-blueprint-core.js"]) {
   await copyFile("site/" + file, "dist/site/" + file);
 }

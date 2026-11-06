@@ -7,8 +7,8 @@
   "type": "module",
   "name": "templates-directory-starter",
   "scripts": {
-    "lint": "node --check site/directory.js && node --check site/ui-explorer.js && node --check site/ui-tools.js && node --check scripts/build-site.mjs && node --check site/token-studio.js && node --check site/ui-tokens.js && node --check site/page-composer.js && node --check site/page-composer-core.js && node --check site/ui-audit.js && node --check scripts/ui-audit.mjs && node --check site/component-lab.js && node --check site/component-lab-core.js",
-    "typecheck": "tsc --allowJs --checkJs --noEmit --target es2022 site/directory.js site/ui-explorer.js site/ui-tools.js site/token-studio.js site/ui-tokens.js site/page-composer.js site/page-composer-core.js site/ui-audit.js site/component-lab.js site/component-lab-core.js",
+    "lint": "node --check site/directory.js && node --check site/ui-explorer.js && node --check site/ui-tools.js && node --check scripts/build-site.mjs && node --check site/token-studio.js && node --check site/ui-tokens.js && node --check site/page-composer.js && node --check site/page-composer-core.js && node --check site/ui-audit.js && node --check scripts/ui-audit.mjs && node --check site/component-lab.js && node --check site/component-lab-core.js && node --check site/app-blueprint.js && node --check site/app-blueprint-core.js",
+    "typecheck": "tsc --allowJs --checkJs --noEmit --target es2022 site/directory.js site/ui-explorer.js site/ui-tools.js site/token-studio.js site/ui-tokens.js site/page-composer.js site/page-composer-core.js site/ui-audit.js site/component-lab.js site/component-lab-core.js site/app-blueprint.js site/app-blueprint-core.js",
     "build": "node scripts/build-site.mjs",
     "test": "node --test browser-tests/*.unit.mjs"
   },

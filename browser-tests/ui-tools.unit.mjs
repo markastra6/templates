@@ -56,3 +56,11 @@ test("Ranking is deterministic and prioritizes exact name over description match
   assert.deepEqual(searchComponents(data,{query:"card",sort:"name"}).map(x=>x.id),["c","b","a"]);
   assert.deepEqual(data.map(x=>x.id),["b","c","a"]);
 });
+
+test("best relevant grouped variant wins regardless of upstream order", () => {
+  const data=[
+    {id:"react-bits:Chip-JS-TW",name:"Fancy chip",slug:"Chip-JS-TW",source:"react-bits",kind:"component",search:"chip"},
+    {id:"react-bits:Chip-TS-CSS",name:"Chip",slug:"Chip-TS-CSS",source:"react-bits",kind:"component",search:"chip"}
+  ];
+  assert.deepEqual(searchComponents(data,{query:"chip",sort:"relevance",groupVariants:true}).map(x=>x.id),["react-bits:Chip-TS-CSS"]);
+});

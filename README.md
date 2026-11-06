@@ -2,9 +2,13 @@
 
 Start with the [website and app creation directory](docs/CREATION-DIRECTORY.md) to find design skills, component connectors, motion libraries, graphics and audit tools.
 
-For Windows, macOS and Android, use the [app toolkit](docs/references/APP-TOOLKIT.md) and copy the [app planning and audit template](docs/contracts/APP-PLAN-AND-AUDIT.md) into your feature folder.
+Use the [interactive App Blueprint Studio](site/app-blueprint.html) to plan a cross-platform application, preview responsive navigation and record audit results locally. [Usage, privacy and test-evidence guide](docs/references/APP-BLUEPRINT-STUDIO.md). The studio does not build native binaries.\n\nFor Windows, macOS and Android, use the [app toolkit](docs/references/APP-TOOLKIT.md) and copy the [app planning and audit template](docs/contracts/APP-PLAN-AND-AUDIT.md) into your feature folder.
 
 Original work and third-party resources have separate [reuse terms](RIGHTS.md).
+
+## Offline Windows/macOS workbench
+
+The [offline-bundle workflow](.github/workflows/offline-bundle.yml) creates an integrity-checked, prebuilt ZIP containing the full website catalogue plus Windows and macOS Python launchers. Download the **ui-workbench-offline** artifact from a successful [GitHub Actions run](https://github.com/markastra6/templates/actions/workflows/offline-bundle.yml), extract it, and run `Start_Workbench.bat` on Windows or `Start_Workbench.command` on macOS. Open `http://127.0.0.1:8080/` in your browser. Only Python 3 is needed to run the prebuilt site—no npm or hosting. This is not a native installer or APK.
 
 ## Cost policy
 

@@ -1,6 +1,6 @@
 # Windows, macOS and Android app toolkit
 
-Use the [app planning and audit template](../contracts/APP-PLAN-AND-AUDIT.md) to define a feature and record results from an installed build. Start with one framework and one representative workflow. The examples below can be explored individually.
+Use the [interactive App Blueprint Studio](../../site/app-blueprint.html) for original responsive workflow previews, cross-platform decisions and offline audit status. Read [the usage and verification guide](APP-BLUEPRINT-STUDIO.md).\n\nUse the [app planning and audit template](../contracts/APP-PLAN-AND-AUDIT.md) to define a feature and record results from an installed build. Start with one framework and one representative workflow. The examples below can be explored individually.
 
 ## Choose an app framework
 

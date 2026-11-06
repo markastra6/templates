@@ -105,19 +105,27 @@ function renderComparison() {
   compareItems.replaceChildren(frag);
 }
 function refresh() {
-  const words = query.value.toLowerCase().trim().split(/\s+/u).filter(Boolean);
-  let sourceCount = 0;
-  for (const node of sources) {
-    const visible = (!source.value || source.value === node.dataset.source) &&
-      (!category.value || category.value === node.dataset.group) &&
-      words.every(w => (node.dataset.text || "").includes(w));
-    node.hidden = !visible; if (visible) sourceCount++;
-  }
+  const words = query.value.toLocaleLowerCase().trim().split(/\s+/u).filter(Boolean);
   const filtered = searchComponents(components, {
     query: query.value, source: source.value, kind: kind.value,
     group: category.value, sourceGroups, hasDependencies: withDeps.checked, sort: order.value,
     groupVariants: group.checked, favoritesOnly: onlySaved.checked, favoriteIDs: favorites
   });
+  const matchingSourceIDs = new Set(filtered.map(item => item.source));
+  const componentFacetActive = Boolean(kind.value || withDeps.checked || onlySaved.checked);
+  let sourceCount = 0;
+  for (const node of sources) {
+    const sourceMatches = (!source.value || source.value === node.dataset.source) &&
+      (!category.value || category.value === node.dataset.group);
+    const textMatches = words.every(word => (node.dataset.text || "").includes(word));
+    const componentMatches = matchingSourceIDs.has(node.dataset.source);
+    // A component search should also reveal its publisher, even if the search
+    // phrase is absent from the publisher description.
+    const visible = sourceMatches && (componentFacetActive ? componentMatches :
+      words.length === 0 || textMatches || componentMatches);
+    node.hidden = !visible;
+    if (visible) sourceCount++;
+  }
   const frag = document.createDocumentFragment();
   for (const item of filtered.slice(0, limit)) frag.append(card(item));
   list.replaceChildren(frag);

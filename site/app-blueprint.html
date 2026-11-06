@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Plan and audit Windows, macOS, Android and web applications offline.">
+<title>App Blueprint Studio</title><link rel="stylesheet" href="./app-blueprint.css"><script type="module" src="./app-blueprint.js"></script></head>
+<body><main>
+<nav><a href="./index.html">← Workbench</a> · <a href="./component-lab.html">Component Lab</a> · <a href="./token-studio.html">Token Studio</a></nav>
+<header><p class="eyebrow">CROSS-PLATFORM DESIGN WORKSPACE</p><h1>App Blueprint Studio</h1>
+<p>Plan a real Windows, macOS, Android or web app, preview adaptive navigation and track release audits. Everything stays in this browser; this is a planning tool, not a native app compiler.</p></header>
+<div class="layout"><section class="panel" aria-labelledby="setup-title"><h2 id="setup-title">Application brief</h2>
+<label for="name">Application name</label><input id="name" maxlength="120">
+<label for="kind">Starting pattern</label><select id="kind"><option value="operations">Operations console</option><option value="assessment">Assessment and quiz</option><option value="tracker">Project tracker</option><option value="inventory">Inventory manager</option><option value="custom">Custom application</option></select>
+<label for="framework">Implementation choice</label><select id="framework"><option value="flutter">Flutter · Dart</option><option value="tauri">Tauri · Web/Rust</option><option value="avalonia">Avalonia · C#</option><option value="compose">Compose Multiplatform · Kotlin</option><option value="web">Responsive website / PWA</option></select>
+<fieldset><legend>Target platforms</legend><label><input type="checkbox" name="platform" value="windows"> Windows</label><label><input type="checkbox" name="platform" value="macos"> macOS</label><label><input type="checkbox" name="platform" value="android"> Android</label><label><input type="checkbox" name="platform" value="web"> Web</label></fieldset>
+<label for="task">Primary user task</label><textarea id="task" rows="2" maxlength="240"></textarea>
+<label class="inline"><input id="offline" type="checkbox"> Must work offline</label>
+<p id="advice" class="hint"></p>
+<label for="notes">Constraints and design notes</label><textarea id="notes" rows="3" maxlength="2000"></textarea>
+<div class="actions"><button id="export" type="button">Export project JSON</button><label class="file" for="import">Import project JSON</label><input type="file" id="import" accept=".json,application/json"><button id="reset" type="button">Reset project</button></div>
+<p id="status" role="status" aria-live="polite">Ready. Changes are saved locally when storage is available.</p>
+</section>
+<section class="panel" aria-labelledby="preview-title"><h2 id="preview-title">Responsive screen blueprint</h2>
+<p class="hint">Original illustrative layout. Screen labels are editable through your starting pattern; these are not live application screens.</p>
+<div class="view-switch" role="group" aria-label="Preview size"><button type="button" data-view="desktop" aria-pressed="true">Desktop</button><button type="button" data-view="tablet" aria-pressed="false">Tablet</button><button type="button" data-view="phone" aria-pressed="false">Phone</button></div>
+<div id="preview" class="preview desktop"><div class="mock-top"><strong id="mock-name">Application</strong><span>DEMO · NOT LIVE</span></div>
+<div class="mock-body"><div id="mock-nav" class="mock-nav" aria-label="Example screen list"></div>
+<div class="mock-content"><small>PRIMARY WORKFLOW</small><h3 id="mock-task">Review and resolve a pending item</h3><div class="mock-card"><span>Item status</span><strong>Pending review</strong><p>Example data only. Actual data, saves and permissions require implementation and testing.</p><div class="mock-btn">Review item</div></div><div class="mock-lines"><span></span><span></span><span></span></div></div></div></div>
+<h3>Required states</h3><p class="hint">Loading · Empty · Normal · Saving · Success · Validation error · Offline · Retry · Conflict · Permission denied</p>
+</section></div>
+<section class="panel audit" aria-labelledby="audit-title"><div class="audit-heading"><div><h2 id="audit-title">Release audit checklist</h2><p>Mark checks from installed-build evidence. This checklist never claims native verification automatically.</p></div><strong id="audit-summary">0 of 12 verified</strong></div>
+<div id="checks" class="check-grid"></div>
+<p id="release" role="status"></p></section>
+<footer>This tool stores only local project configuration. Export a JSON copy before clearing your browser data.</footer>
+</main></body></html>
