@@ -105,7 +105,7 @@ function renderComparison() {
   compareItems.replaceChildren(frag);
 }
 function refresh() {
-  const words = query.value.toLocaleLowerCase().trim().split(/\\s+/u).filter(Boolean);
+  const words = query.value.toLocaleLowerCase().trim().split(/\s+/u).filter(Boolean);
   const filtered = searchComponents(components, {
     query: query.value, source: source.value, kind: kind.value,
     group: category.value, sourceGroups, hasDependencies: withDeps.checked, sort: order.value,
