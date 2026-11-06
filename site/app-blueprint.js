@@ -1,6 +1,7 @@
 import { appTypes, checks, defaultBlueprint, validateBlueprint, auditSummary, frameworkAdvice } from "./app-blueprint-core.js";
 
-const $ = id => document.getElementById(id);
+const $ = id => /** @type {any} */ (document.getElementById(id));
+const all = selector => /** @type {any[]} */ (Array.from(document.querySelectorAll(selector)));
 const storageKey = "app-blueprint-v1";
 let model = defaultBlueprint();
 let restored = false;
@@ -20,7 +21,7 @@ function persist() {
 function render() {
   $("name").value = model.name; $("kind").value=model.kind; $("framework").value=model.framework;
   $("task").value=model.primaryTask; $("offline").checked=model.offline; $("notes").value=model.notes;
-  document.querySelectorAll('input[name="platform"]').forEach(input => { input.checked=model.platforms.includes(input.value); });
+  all('input[name="platform"]').forEach(input => { input.checked=model.platforms.includes(input.value); });
   $("advice").textContent=frameworkAdvice(model);
   $("mock-name").textContent=model.name;
   $("mock-task").textContent=model.primaryTask||appTypes[model.kind].task;
@@ -28,7 +29,7 @@ function render() {
     const item=document.createElement("span"); item.textContent=label; return item;
   }));
   $("preview").className="preview "+view;
-  document.querySelectorAll("[data-view]").forEach(button => {
+  all("[data-view]").forEach(button => {
     button.setAttribute("aria-pressed",String(button.dataset.view===view));
   });
   checkList.replaceChildren(...checks.map(check => {
@@ -72,12 +73,12 @@ for(const field of fields) {
     } else render();
   });
 }
-document.querySelectorAll('input[name="platform"]').forEach(input=>input.addEventListener("change",()=>{
-  const values=[...document.querySelectorAll('input[name="platform"]:checked')].map(e=>e.value);
+all('input[name="platform"]').forEach(input=>input.addEventListener("change",()=>{
+  const values=[...all('input[name="platform"]:checked')].map(e=>e.value);
   if(!values.length){input.checked=true;$("status").textContent="Select at least one platform.";return;}
   model.platforms=values;persist();render();
 }));
-document.querySelectorAll("[data-view]").forEach(button=>button.addEventListener("click",()=>{
+all("[data-view]").forEach(button=>button.addEventListener("click",()=>{
   view=button.dataset.view;render();
 }));
 $("reset").addEventListener("click",()=>{
