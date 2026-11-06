@@ -28,7 +28,7 @@ export function defaultBlueprint() {
     audit:{}, notes:"", modified:"" };
 }
 export function validateBlueprint(value) {
-  if (!value || value.version!==1 || typeof value.name!=="string" || !appTypes[value.kind] ||
+  if (!value || value.version!==1 || typeof value.name!=="string" || !Object.hasOwn(appTypes,value.kind) ||
       !["flutter","tauri","avalonia","compose","web"].includes(value.framework) ||
       !Array.isArray(value.platforms) || !value.platforms.length ||
       value.platforms.some(x=>!platforms.includes(x)) ||
