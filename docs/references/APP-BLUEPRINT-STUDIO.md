@@ -4,6 +4,8 @@ The [App Blueprint Studio](../../site/app-blueprint.html) is a zero-cost origina
 
 ## Start without installing Node.js on the target Windows PC
 
+For an offline prebuilt release, download **ui-workbench-offline** from the [offline-bundle Actions workflow](https://github.com/markastra6/templates/actions/workflows/offline-bundle.yml) after a successful run. The ZIP includes `Start_Workbench.bat` for Windows and `Start_Workbench.command` for macOS, plus a per-file SHA-256 manifest that is verified while packaging.
+
 The checked-in `site/` folder is source code and is not a complete offline distribution of the entire existing workbench: the component explorer still needs the generated `ui-index.json` built by CI. Use the prebuilt website distribution once packaged by the repository's release pipeline, or build the whole site once on a development machine using `npm ci && npm run build`. Serve `dist/site` with `python -m http.server 8080 --bind 127.0.0.1 --directory dist/site` and open `http://127.0.0.1:8080/app-blueprint.html`. This avoids any external web hosting and does not require npm on the machine running the built website. Do not assume the offline ZIP exists until a release job publishes it.
 
 ## Workflows
