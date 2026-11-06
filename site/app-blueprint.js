@@ -65,8 +65,11 @@ for(const field of fields) {
     else if(field==="kind") {
       model.kind=target.value;model.primaryTask=appTypes[target.value].task;
     } else model[field]=target.value;
-    persist();render();
-    if(field==="name"||field==="task"||field==="notes")target.focus();
+    persist();
+    if(field==="name"||field==="task"||field==="notes") {
+      $("mock-name").textContent=model.name;
+      $("mock-task").textContent=model.primaryTask||appTypes[model.kind].task;
+    } else render();
   });
 }
 document.querySelectorAll('input[name="platform"]').forEach(input=>input.addEventListener("change",()=>{
