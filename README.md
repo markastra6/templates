@@ -6,6 +6,10 @@ Use the [interactive App Blueprint Studio](site/app-blueprint.html) to plan a cr
 
 Original work and third-party resources have separate [reuse terms](RIGHTS.md).
 
+## Offline Windows/macOS workbench
+
+The [offline-bundle workflow](.github/workflows/offline-bundle.yml) creates an integrity-checked, prebuilt ZIP containing the full website catalogue plus Windows and macOS Python launchers. Download the **ui-workbench-offline** artifact from a successful [GitHub Actions run](https://github.com/markastra6/templates/actions/workflows/offline-bundle.yml), extract it, and run `Start_Workbench.bat` on Windows or `Start_Workbench.command` on macOS. Open `http://127.0.0.1:8080/` in your browser. Only Python 3 is needed to run the prebuilt site—no npm or hosting. This is not a native installer or APK.
+
 ## Cost policy
 
 This project has a strict zero-spend requirement. Use free/open-source tools, free public-repository GitHub Actions, and GitHub Pages. Do not introduce paid subscriptions, paid model APIs, paid hosting, paid assets, or paid component licenses. Optional free tiers may have usage limits.
